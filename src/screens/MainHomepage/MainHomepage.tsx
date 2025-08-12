@@ -21,7 +21,7 @@ export const MainHomepage = (): JSX.Element => {
   {
     id: 3,
       title: "Olive Groves",
-      image: "https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg/960px-Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg"
     },
     {
       id: 4,
@@ -57,38 +57,21 @@ export const MainHomepage = (): JSX.Element => {
 
 
 
-      {/* Action Cards Section */}
-      <section className="py-20 relative bg-black/20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4a574] to-transparent h-px top-0"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4a574] to-transparent h-px bottom-0"></div>
-        </div>
-        
+      {/* CTA trio under hero (no section header) */}
+      <section className="py-16 relative bg-black/20 overflow-hidden">
         <div className="container mx-auto px-4 text-center relative">
-          {/* Section Header */}
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 canaanite-title">
-              Join Our Community
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Be part of preserving cultural heritage through meaningful connections and shared stories
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-16 max-w-5xl mx-auto">
             {/* Join Collective */}
             <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-b from-[#d4a574]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
-              <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500 hover:transform hover:scale-105">
+              <div className="relative bg-black/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500">
                 <div className="w-20 h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-6 mx-auto group-hover:rotate-12 transition-transform duration-500 shadow-lg">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Join Collective</h3>
-                <p className="text-gray-400 mb-6 text-sm leading-relaxed">Connect with storytellers, historians, and cultural preservationists from around the world</p>
-                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#d4a574]/20 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
+                <p className="text-gray-400 mb-6 text-sm leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
                   <span className="relative z-10">Join now</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                 </button>
@@ -97,8 +80,7 @@ export const MainHomepage = (): JSX.Element => {
 
             {/* Send Gift */}
             <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-b from-[#d4a574]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
-              <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500 hover:transform hover:scale-105">
+              <div className="relative bg-black/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500">
                 <div className="w-20 h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-6 mx-auto group-hover:rotate-12 transition-transform duration-500 shadow-lg">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="3" y="8" width="18" height="4" rx="1" stroke="white" strokeWidth="2"/>
@@ -108,8 +90,8 @@ export const MainHomepage = (): JSX.Element => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Send Gift</h3>
-                <p className="text-gray-400 mb-6 text-sm leading-relaxed">Support cultural preservation efforts through meaningful contributions and donations</p>
-                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#d4a574]/20 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
+                <p className="text-gray-400 mb-6 text-sm leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
                   <span className="relative z-10">Send now</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                 </button>
@@ -118,8 +100,7 @@ export const MainHomepage = (): JSX.Element => {
                     
             {/* Share Story */}
             <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-b from-[#d4a574]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
-              <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500 hover:transform hover:scale-105">
+              <div className="relative bg-black/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500">
                 <div className="w-20 h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-6 mx-auto group-hover:rotate-12 transition-transform duration-500 shadow-lg">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="white" strokeWidth="2"/>
@@ -127,8 +108,8 @@ export const MainHomepage = (): JSX.Element => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Share Story</h3>
-                <p className="text-gray-400 mb-6 text-sm leading-relaxed">Contribute your personal narratives and help preserve collective cultural memory</p>
-                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#d4a574]/20 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
+                <p className="text-gray-400 mb-6 text-sm leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
                   <span className="relative z-10">Share with us</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                 </button>
@@ -152,16 +133,15 @@ export const MainHomepage = (): JSX.Element => {
           </div>
           <p className="text-gray-400 mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
           
-          {/* Modern Hexagonal Grid Layout */}
-          <div className="relative max-w-6xl mx-auto px-6 overflow-hidden">
-            
-            {/* Row 1: 4 hexagons - centered */}
-            <div className="flex justify-center items-center gap-6 mb-10">
+          {/* Grid to match mockup: honeycomb 5 then 4 with row offset (full-bleed) */}
+          <div className="relative full-bleed px-4 md:px-8 overflow-hidden">
+            {/* Row 1: 5 hexagons */}
+            <div className="flex justify-center items-center gap-3 md:gap-5 lg:gap-6 mb-6 lg:mb-8">
               <HexagonalCard 
                 title="Old City Jerusalem" 
                 author="true" 
                 date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                backgroundImage="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg/960px-Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg"
               />
               <HexagonalCard 
                 title="Olive Trees Heritage" 
@@ -180,11 +160,17 @@ export const MainHomepage = (): JSX.Element => {
                 author="true" 
                 date="true" 
                 backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                      />
-                    </div>
-                    
-            {/* Row 2: 5 hexagons - centered */}
-            <div className="flex justify-center items-center gap-6 mb-10">
+              />
+              <HexagonalCard 
+                title="Seafaring Memory" 
+                author="true" 
+                date="true" 
+                backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              />
+            </div>
+
+            {/* Row 2: 4 hexagons, horizontally offset for honeycomb; remove ghost in feature */}
+            <div className="flex justify-center items-center gap-3 md:gap-5 lg:gap-6 md:translate-x-12 sm:translate-x-9 translate-x-6">
               <HexagonalCard 
                 title="Historic Architecture" 
                 author="true" 
@@ -204,44 +190,10 @@ export const MainHomepage = (): JSX.Element => {
                 backgroundImage="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               />
               <HexagonalCard 
-                title="Traditional Cuisine" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
                 title="Ancient Paths" 
                 author="true" 
                 date="true" 
                 backgroundImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-                  </div>
-            
-            {/* Row 3: 4 hexagons - centered */}
-            <div className="flex justify-center items-center gap-6">
-              <HexagonalCard 
-                title="Cultural Festivals" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Sacred Sites" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Local Markets" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Community Life" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               />
             </div>
             
@@ -260,26 +212,21 @@ export const MainHomepage = (): JSX.Element => {
                 <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
-        </div>
+          </div>
           <p className="text-gray-400 mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
-          
-                    {/* Modern Collections Grid */}
-          <div className="max-w-6xl mx-auto px-6">
-            
-            {/* Single row of collections - clean layout */}
-            <div className="flex justify-center items-center gap-6 flex-wrap">
-              <HexagonalCard articles="12 articles" variant="tall" />
-              <HexagonalCard articles="24 articles" variant="tall" />
-              <HexagonalCard articles="8 articles" variant="tall" />
-              <HexagonalCard articles="6 articles" variant="tall" />
-              <HexagonalCard articles="16 articles" variant="tall" />
+          <div className="max-w-6xl mx-auto px-2">
+            <div className="flex justify-start items-center gap-6 md:gap-8 flex-nowrap overflow-x-auto hide-scrollbar px-1">
+              <HexagonalCard articles="12 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard articles="24 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard articles="8 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard articles="6 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard articles="16 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?auto=format&fit=crop&w=800&q=80" />
             </div>
-            
           </div>
         </div>
       </section>
 
-      {/* Latest Content Section */}
+      {/* Latest Content Section - 5-5-5-5-5-5 honeycomb with alternating offsets */}
       <section className="py-16 relative bg-black/30">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
@@ -293,11 +240,11 @@ export const MainHomepage = (): JSX.Element => {
               </div>
           <p className="text-gray-400 mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
           
-                    {/* Modern Latest Content Grid */}
-          <div className="relative max-w-6xl mx-auto px-6 overflow-hidden">
+          {/* Modern Latest Content Grid */}
+          <div className="relative full-bleed px-4 md:px-8 overflow-hidden">
             
-            {/* Row 1: 4 hexagons - centered */}
-            <div className="flex justify-center items-center gap-6 mb-10">
+            {/* Row 1: 5 hexagons - centered */}
+            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10">
               <HexagonalCard 
                 title="Gaza Seashore Stories" 
                 author="true" 
@@ -322,10 +269,16 @@ export const MainHomepage = (): JSX.Element => {
                 date="true" 
                 backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               />
+              <HexagonalCard 
+                title="Al-Quds Stories" 
+                author="true" 
+                date="true" 
+                backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              />
                             </div>
             
-            {/* Row 2: 5 hexagons - centered */}
-            <div className="flex justify-center items-center gap-6 mb-10">
+            {/* Row 2: 5 hexagons - centered with slight left offset for honeycomb */}
+            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10 md:-translate-x-10 sm:-translate-x-8 -translate-x-6">
               <HexagonalCard 
                 title="Hebron Glasswork" 
                 author="true" 
@@ -358,8 +311,8 @@ export const MainHomepage = (): JSX.Element => {
               />
             </div>
             
-            {/* Row 3: 4 hexagons - centered */}
-            <div className="flex justify-center items-center gap-6 mb-10">
+            {/* Row 3: 5 hexagons - centered */}
+            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10">
               <HexagonalCard 
                 title="Olive Harvest Season" 
                 author="true" 
@@ -384,10 +337,16 @@ export const MainHomepage = (): JSX.Element => {
                 date="true" 
                 backgroundImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               />
+              <HexagonalCard 
+                title="Village Craft" 
+                author="true" 
+                date="true" 
+                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              />
                           </div>
             
-            {/* Row 4: 5 hexagons - centered */}
-            <div className="flex justify-center items-center gap-6 mb-10">
+            {/* Row 4: 5 hexagons - centered with left offset */}
+            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10 md:-translate-x-10 sm:-translate-x-8 -translate-x-6">
               <HexagonalCard 
                 title="Family Traditions" 
                 author="true" 
@@ -420,8 +379,8 @@ export const MainHomepage = (): JSX.Element => {
               />
             </div>
             
-            {/* Row 5: 4 hexagons - centered */}
-            <div className="flex justify-center items-center gap-6 mb-10">
+            {/* Row 5: 5 hexagons - centered */}
+            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10">
               <HexagonalCard 
                 title="Refugee Narratives" 
                 author="true" 
@@ -446,10 +405,16 @@ export const MainHomepage = (): JSX.Element => {
                 date="true" 
                 backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               />
+              <HexagonalCard 
+                title="Heritage Cuisine" 
+                author="true" 
+                date="true" 
+                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              />
             </div>
             
-            {/* Row 6: 5 hexagons - centered */}
-            <div className="flex justify-center items-center gap-6">
+            {/* Row 6: 5 hexagons - centered with left offset */}
+            <div className="flex justify-center items-center gap-5 lg:gap-6 md:-translate-x-10 sm:-translate-x-8 -translate-x-6">
               <HexagonalCard 
                 title="Cultural Exchange" 
                 author="true" 
@@ -486,80 +451,21 @@ export const MainHomepage = (): JSX.Element => {
           </div>
         </section>
 
-        {/* Share Your Story Section */}
-        <section className="py-32 text-center relative overflow-hidden">
-          {/* Background Elements */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/10"></div>
-          <div className="absolute inset-0">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#d4a574]/5 rounded-full blur-3xl"></div>
-            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-[#d4a574]/10 rounded-full blur-2xl"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#d4a574]/8 rounded-full blur-2xl"></div>
-          </div>
-          
+        {/* Share Your Story Section - simplified */}
+        <section className="py-24 text-center relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
-            {/* Enhanced icon with animation */}
-            <div className="relative mb-8">
-              <div className="w-24 h-24 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mx-auto mb-2 shadow-lg shadow-[#d4a574]/20 hover:scale-110 transition-transform duration-500 cursor-pointer group">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform duration-300">
-                  <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="white" strokeWidth="2"/>
-                  <path d="M6.5 2H20v20L13 17H6.5a2.5 2.5 0 010-5" stroke="white" strokeWidth="2"/>
-                </svg>
-              </div>
-              {/* Decorative rings with smooth rotation instead of pulse */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-32 h-32 border border-[#d4a574]/20 rounded-full animate-spin" style={{animationDuration: '20s'}}></div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-40 h-40 border border-[#d4a574]/10 rounded-full animate-spin" style={{animationDuration: '30s', animationDirection: 'reverse'}}></div>
-              </div>
+            <div className="w-16 h-16 bg-white/10 rounded-xl mx-auto mb-6 flex items-center justify-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="white" strokeWidth="2"/>
+                <path d="M6.5 2H20v20L13 17H6.5a2.5 2.5 0 010-5" stroke="white" strokeWidth="2"/>
+              </svg>
             </div>
-            
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 canaanite-title">
-              Share your story
-            </h2>
-            
-            <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Every story matters. Help us preserve the collective memory by contributing your 
-              personal experiences, testimonies, or knowledge of historical events that shape our shared heritage.
-            </p>
-            
-            {/* Enhanced CTA */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="group relative bg-[#d4a574] hover:bg-[#c49660] text-black px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-[#d4a574]/20 focus:outline-none focus:ring-4 focus:ring-[#d4a574]/50 focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
-                <span className="relative z-10 flex items-center">
-                  Contribute Now!
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
-                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-              
-              <button className="group text-white/80 hover:text-white px-6 py-4 rounded-full border-2 border-white/20 hover:border-[#d4a574]/50 transition-all duration-300 font-semibold">
-                <span className="flex items-center">
-                  Learn More
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2 group-hover:rotate-45 transition-transform duration-300">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-            </div>
-            
-            {/* Stats or features */}
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center group">
-                <div className="text-3xl font-bold text-[#d4a574] mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
-                <div className="text-gray-400">Stories Shared</div>
-              </div>
-              <div className="text-center group">
-                <div className="text-3xl font-bold text-[#d4a574] mb-2 group-hover:scale-110 transition-transform duration-300">50+</div>
-                <div className="text-gray-400">Countries Reached</div>
-              </div>
-              <div className="text-center group">
-                <div className="text-3xl font-bold text-[#d4a574] mb-2 group-hover:scale-110 transition-transform duration-300">3+</div>
-                <div className="text-gray-400">Languages</div>
-              </div>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Share your story</h2>
+            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">Every story matters. Help us preserve the collective memory by contributing your personal experiences, testimonies, or knowledge of historical events.</p>
+            <button className="group relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
+              <span className="relative z-10">Contribute Now!</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
           </div>
         </section>
         

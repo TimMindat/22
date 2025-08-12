@@ -17,6 +17,13 @@
   scroll-snap-align: center;
 }
 
+/* Full-bleed helper: make child span entire viewport width inside a centered container */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
 .carousel-card {
   transition: all 0.3s ease;
 }
@@ -284,24 +291,24 @@
 
 /* Dark theme background gradient */
 .dark-gradient-bg {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: linear-gradient(180deg, #0c0c0c 0%, #141414 30%, #0f0f0f 100%);
 }
 
 /* Golden accent color utilities */
 .text-golden {
-  color: #d4a574;
+  color: #C9A96E; /* mockup gold */
 }
 
 .bg-golden {
-  background-color: #d4a574;
+  background-color: #C9A96E;
 }
 
 .border-golden {
-  border-color: #d4a574;
+  border-color: #C9A96E;
 }
 
 .hover\:bg-golden-dark:hover {
-  background-color: #c49660;
+  background-color: #bf9a59;
 }
 
 /* Enhanced Button Styles */

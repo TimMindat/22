@@ -146,6 +146,32 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
 
   return (
     <section className="relative h-[90vh] min-h-[800px] overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#1a1a1a] to-[#2d2d2d]">
+      {/* Background media layer matching active hexagon */}
+      <div className="absolute inset-0 -z-10">
+        <div
+          className="absolute inset-0 opacity-35"
+          style={{
+            backgroundImage: `url(${items[currentIndex]?.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'grayscale(100%)',
+          }}
+        />
+        {/* Shadow / Horizontal (match figma spec) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(90deg, #171717 0%, rgba(23, 23, 23, 0.984378) 4.7%, rgba(23, 23, 23, 0.967022) 8.9%, rgba(23, 23, 23, 0.9472) 12.8%, rgba(23, 23, 23, 0.924178) 16.56%, rgba(23, 23, 23, 0.897222) 20.37%, rgba(23, 23, 23, 0.8656) 24.4%, rgba(23, 23, 23, 0.828578) 28.83%, rgba(23, 23, 23, 0.785422) 33.84%, rgba(23, 23, 23, 0.7354) 39.6%, rgba(23, 23, 23, 0.677778) 46.3%, rgba(23, 23, 23, 0.611822) 54.1%, rgba(23, 23, 23, 0.5368) 63.2%, rgba(23, 23, 23, 0.451978) 73.76%, rgba(23, 23, 23, 0.356622) 85.97%, rgba(23, 23, 23, 0.25) 100%)'
+          }}
+        />
+        {/* Shadow / Vertical (match figma spec) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, rgba(23, 23, 23, 0) 0%, rgba(23, 23, 23, 0.0208296) 4.7%, rgba(23, 23, 23, 0.0439704) 8.9%, rgba(23, 23, 23, 0.0704) 12.8%, rgba(23, 23, 23, 0.101096) 16.56%, rgba(23, 23, 23, 0.137037) 20.37%, rgba(23, 23, 23, 0.1792) 24.4%, rgba(23, 23, 23, 0.228563) 28.83%, rgba(23, 23, 23, 0.286104) 33.84%, rgba(23, 23, 23, 0.3528) 39.6%, rgba(23, 23, 23, 0.42963) 46.3%, rgba(23, 23, 23, 0.51757) 54.1%, rgba(23, 23, 23, 0.6176) 63.2%, rgba(23, 23, 23, 0.730696) 73.76%, rgba(23, 23, 23, 0.857837) 85.97%, #171717 100%)'
+          }}
+        />
+      </div>
       
       {/* Hero Title Overlay */}
       <div className="absolute top-16 md:top-20 left-6 md:left-12 z-20 max-w-sm md:max-w-lg">
@@ -170,7 +196,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             key={currentContent.title}
           >
             {currentContent.title}<br />
-            <span className="text-[#d4a574] text-gradient">{currentContent.subtitle}</span>
+            <span className="text-[#C9A96E]">{currentContent.subtitle}</span>
           </motion.h1>
           <motion.p 
             className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed"
@@ -188,7 +214,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             transition={{ delay: 0.3, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <motion.button 
-              className="group relative bg-[#d4a574] hover:bg-[#c49660] text-black font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#d4a574]/25 focus:outline-none focus:ring-4 focus:ring-[#d4a574]/50 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
+              className="group relative bg-[#C9A96E] hover:bg-[#bf9a59] text-black font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#C9A96E]/25 focus:outline-none focus:ring-4 focus:ring-[#C9A96E]/50 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
               whileHover={{ 
                 scale: 1.01,
                 y: -1,
@@ -198,10 +224,10 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                 scale: 0.99,
                 transition: { duration: 0.1 }
               }}
-              aria-label="Explore cultural stories and narratives"
+              aria-label="View content"
             >
               <span className="relative z-10 flex items-center">
-                Explore Stories
+                View content
                 <motion.svg 
                   width="20" 
                   height="20" 
@@ -215,36 +241,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </motion.svg>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </motion.button>
-            
-            <motion.button 
-              className="group border-2 border-white/30 hover:border-[#d4a574]/70 text-white hover:text-[#d4a574] font-semibold py-4 px-6 rounded-xl transition-all duration-300 backdrop-blur-sm hover:bg-white/10 focus:outline-none focus:ring-4 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-black"
-              whileHover={{ 
-                scale: 1.005,
-                transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
-              }}
-              whileTap={{ 
-                scale: 0.995,
-                transition: { duration: 0.1 }
-              }}
-              aria-label="Learn more about cultural preservation"
-            >
-              <span className="flex items-center">
-                Learn More
-                <motion.svg 
-                  width="16" 
-                  height="16" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className="ml-2"
-                  whileHover={{ rotate: 15 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </motion.svg>
-              </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#bf9a59] to-[#C9A96E] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </motion.button>
           </motion.div>
         </motion.div>
@@ -469,7 +466,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             {/* Divider */}
             <div className="w-px h-4 bg-white/20"></div>
 
-            {/* Progress dots */}
+            {/* Progress dots with animated SVG ring */}
             <div className="flex gap-2">
               {items.map((item, index) => (
                 <motion.button
@@ -486,28 +483,31 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                   aria-label={`Go to ${item.title} story`}
                   aria-current={index === currentIndex ? 'true' : 'false'}
                 >
-                  {/* Active indicator ring */}
                   {index === currentIndex && (
                     <motion.div
-                      className="absolute -inset-1 border border-[#d4a574]/40 rounded-full"
+                      className="absolute -inset-1 rounded-full"
                       initial={{ scale: 0.9, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ duration: 0.2 }}
-                    />
-                  )}
-                  
-                  {/* Progress ring for auto-play */}
-                  {index === currentIndex && isAutoPlaying && (
-                    <motion.div
-                      className="absolute -inset-1 border-2 border-[#d4a574] rounded-full"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 4, ease: "linear" }}
-                      style={{
-                        strokeDasharray: 20,
-                        strokeDashoffset: 20,
-                      }}
-                    />
+                    >
+                      {/* Animated progress ring when autoplay is on */}
+                      {isAutoPlaying && (
+                        <svg className="absolute inset-0" viewBox="0 0 24 24">
+                          <motion.circle
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            fill="none"
+                            stroke="#d4a574"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 4, ease: 'linear' }}
+                          />
+                        </svg>
+                      )}
+                    </motion.div>
                   )}
                 </motion.button>
               ))}
