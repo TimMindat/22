@@ -131,46 +131,52 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
   const getVisibleItems = () => {
     const visibleCount = 5;
     const result = [];
-    
     for (let i = 0; i < visibleCount; i++) {
       const index = (currentIndex + i - 2 + items.length) % items.length;
       result.push({
         ...items[index],
-        position: i - 2, // -2, -1, 0, 1, 2
-        isActive: i === 2
+        position: i - 2,
+        isActive: i === 2,
       });
     }
-    
     return result;
   };
 
   return (
-    <section className="relative h-[90vh] min-h-[800px] overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#1a1a1a] to-[#2d2d2d]">
+    <section className="relative h-[90vh] min-h-[800px] overflow-hidden bg-[#171717]">
       {/* Background media layer matching active hexagon */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-0">
         <div
-          className="absolute inset-0 opacity-35"
+          className="absolute inset-0 opacity-60"
           style={{
             backgroundImage: `url(${items[currentIndex]?.image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            filter: 'grayscale(100%)',
+            filter: 'grayscale(70%)',
           }}
         />
-        {/* Shadow / Horizontal (match figma spec) */}
+        {/* Grain top edge and dual gradients to match reference */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(90deg, #171717 0%, rgba(23, 23, 23, 0.984378) 4.7%, rgba(23, 23, 23, 0.967022) 8.9%, rgba(23, 23, 23, 0.9472) 12.8%, rgba(23, 23, 23, 0.924178) 16.56%, rgba(23, 23, 23, 0.897222) 20.37%, rgba(23, 23, 23, 0.8656) 24.4%, rgba(23, 23, 23, 0.828578) 28.83%, rgba(23, 23, 23, 0.785422) 33.84%, rgba(23, 23, 23, 0.7354) 39.6%, rgba(23, 23, 23, 0.677778) 46.3%, rgba(23, 23, 23, 0.611822) 54.1%, rgba(23, 23, 23, 0.5368) 63.2%, rgba(23, 23, 23, 0.451978) 73.76%, rgba(23, 23, 23, 0.356622) 85.97%, rgba(23, 23, 23, 0.25) 100%)'
+            background: 'linear-gradient(90deg, #171717 0%, rgba(23, 23, 23, 0.9) 6%, rgba(23, 23, 23, 0.8) 12%, rgba(23, 23, 23, 0.7) 24%, rgba(23, 23, 23, 0.55) 48%, rgba(23, 23, 23, 0.3) 100%)',
+            opacity: 0.7
           }}
         />
         {/* Shadow / Vertical (match figma spec) */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(180deg, rgba(23, 23, 23, 0) 0%, rgba(23, 23, 23, 0.0208296) 4.7%, rgba(23, 23, 23, 0.0439704) 8.9%, rgba(23, 23, 23, 0.0704) 12.8%, rgba(23, 23, 23, 0.101096) 16.56%, rgba(23, 23, 23, 0.137037) 20.37%, rgba(23, 23, 23, 0.1792) 24.4%, rgba(23, 23, 23, 0.228563) 28.83%, rgba(23, 23, 23, 0.286104) 33.84%, rgba(23, 23, 23, 0.3528) 39.6%, rgba(23, 23, 23, 0.42963) 46.3%, rgba(23, 23, 23, 0.51757) 54.1%, rgba(23, 23, 23, 0.6176) 63.2%, rgba(23, 23, 23, 0.730696) 73.76%, rgba(23, 23, 23, 0.857837) 85.97%, #171717 100%)'
+            background: 'linear-gradient(180deg, rgba(23, 23, 23, 0) 0%, rgba(23, 23, 23, 0.06) 8%, rgba(23, 23, 23, 0.12) 16%, rgba(23, 23, 23, 0.2) 32%, rgba(23, 23, 23, 0.3) 50%, rgba(23, 23, 23, 0.45) 70%, #171717 100%)',
+            opacity: 0.85
           }}
         />
+        {/* Noise strip at the very top */}
+        <div className="absolute top-0 left-0 right-0 h-16 pointer-events-none" style={{
+          backgroundImage: 'url(/gradient-to-body.svg)',
+          backgroundSize: 'cover',
+          opacity: 0.45
+        }} />
       </div>
       
       {/* Hero Title Overlay */}
@@ -250,7 +256,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
       {/* Carousel Container */}
       <div 
         ref={carouselRef}
-        className="absolute inset-0 flex items-end justify-center pb-20 sm:pb-24 overflow-hidden"
+        className="absolute inset-0 flex items-end justify-center pb-20 sm:pb-24 overflow-hidden z-10"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -293,7 +299,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         </AnimatePresence>
 
         {/* Hexagonal Carousel Items */}
-        <motion.div 
+            <motion.div 
           className="flex items-center justify-center gap-4 md:gap-6 w-full px-4"
           layout
           transition={{
@@ -307,35 +313,23 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
               initial={{ opacity: 0.9, y: 8 }}
               animate={{ 
                 opacity: item.position === 0 ? 1 : 0.85,
-                y: item.position === 0 ? 0 : item.position === -1 || item.position === 1 ? 2 : 4,
-                x: item.position * 8, // Subtle horizontal movement based on position
-                scale: item.position === 0 ? 1.0 : item.position === -1 || item.position === 1 ? 0.92 : 0.88,
+                y: 0,
+                x: item.position * 8,
+                scale: 1.0,
                 zIndex: item.position === 0 ? 20 : 10,
-                rotateY: item.position * 2, // Subtle 3D rotation for depth
+                rotateY: 0,
               }}
               transition={{
                 duration: 0.9,
                 ease: [0.23, 1, 0.32, 1], // Smoother easing
                 delay: 0,
                 opacity: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
-                scale: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
-                x: { duration: 0.9, ease: [0.23, 1, 0.32, 1] },
-                y: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
-                rotateY: { duration: 0.9, ease: [0.23, 1, 0.32, 1] }
+                x: { duration: 0.9, ease: [0.23, 1, 0.32, 1] }
               }}
               style={{
                 filter: item.position === 0 ? 'none' : 'brightness(0.88) saturate(0.96)',
               }}
-              whileHover={{
-                scale: item.position === 0 ? 1.012 : 0.93,
-                y: item.position === 0 ? -3 : item.position === -1 || item.position === 1 ? 0 : 2,
-                rotateY: item.position * 1.5,
-                transition: { 
-                  duration: 0.4, 
-                  ease: [0.23, 1, 0.32, 1],
-                  rotateY: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
-                }
-              }}
+              whileHover={{}}
               onClick={() => {
                 setCurrentIndex((currentIndex + item.position + items.length) % items.length);
                 // Haptic feedback for supported devices

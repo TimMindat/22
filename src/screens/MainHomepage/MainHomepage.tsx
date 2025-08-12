@@ -135,8 +135,9 @@ export const MainHomepage = (): JSX.Element => {
           
           {/* Grid to match mockup: honeycomb 5 then 4 with row offset (full-bleed) */}
           <div className="relative full-bleed px-4 md:px-8 overflow-hidden">
-            {/* Row 1: 5 hexagons */}
-            <div className="flex justify-center items-center gap-3 md:gap-5 lg:gap-6 mb-6 lg:mb-8">
+            {/* Row 1: 5 hexagons with edge ghosts bleeding out */}
+            <div className="flex justify-center items-center gap-4 lg:gap-5 mb-6 lg:mb-8 mx-[-110px] sm:mx-[-120px] md:mx-[-140px]">
+              <HexagonalCard ghost className="opacity-30" />
               <HexagonalCard 
                 title="Old City Jerusalem" 
                 author="true" 
@@ -167,10 +168,12 @@ export const MainHomepage = (): JSX.Element => {
                 date="true" 
                 backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               />
+              <HexagonalCard ghost className="opacity-30" />
             </div>
 
-            {/* Row 2: 4 hexagons, horizontally offset for honeycomb; remove ghost in feature */}
-            <div className="flex justify-center items-center gap-3 md:gap-5 lg:gap-6 md:translate-x-12 sm:translate-x-9 translate-x-6">
+            {/* Row 2: 4 hexagons, horizontally offset for honeycomb with edge ghosts */}
+            <div className="flex justify-center items-center gap-4 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-8 mx-[-110px] sm:mx-[-120px] md:mx-[-140px]">
+              <HexagonalCard ghost className="opacity-30" />
               <HexagonalCard 
                 title="Historic Architecture" 
                 author="true" 
@@ -195,6 +198,7 @@ export const MainHomepage = (): JSX.Element => {
                 date="true" 
                 backgroundImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               />
+              <HexagonalCard ghost className="opacity-30" />
             </div>
             
           </div>
@@ -240,214 +244,28 @@ export const MainHomepage = (): JSX.Element => {
               </div>
           <p className="text-gray-400 mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
           
-          {/* Modern Latest Content Grid */}
+          {/* Modern Latest Content Grid (two rows: 5 then 4) */}
           <div className="relative full-bleed px-4 md:px-8 overflow-hidden">
-            
-            {/* Row 1: 5 hexagons - centered */}
-            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10">
-              <HexagonalCard 
-                title="Gaza Seashore Stories" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Bethlehem Artisans" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Ramallah Youth" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Nablus Heritage" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Al-Quds Stories" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-                            </div>
-            
-            {/* Row 2: 5 hexagons - centered with slight left offset for honeycomb */}
-            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10 md:-translate-x-10 sm:-translate-x-8 -translate-x-6">
-              <HexagonalCard 
-                title="Hebron Glasswork" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Jericho Oasis" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Jerusalem Quarters" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="West Bank Villages" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Traditional Embroidery" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
+            {/* Row 1: 5 hexagons with edge ghosts */}
+            <div className="flex justify-center items-center gap-4 lg:gap-5 mb-8 lg:mb-10 mx-[-110px] sm:mx-[-120px] md:mx-[-140px]">
+              <HexagonalCard ghost className="opacity-30" />
+              <HexagonalCard title="Gaza Seashore Stories" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard title="Bethlehem Artisans" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard title="Ramallah Youth" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard title="Nablus Heritage" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard title="Al-Quds Stories" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard ghost className="opacity-30" />
             </div>
-            
-            {/* Row 3: 5 hexagons - centered */}
-            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10">
-              <HexagonalCard 
-                title="Olive Harvest Season" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Traditional Music" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Coastal Cities" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Stone Architecture" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Village Craft" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-                          </div>
-            
-            {/* Row 4: 5 hexagons - centered with left offset */}
-            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10 md:-translate-x-10 sm:-translate-x-8 -translate-x-6">
-              <HexagonalCard 
-                title="Family Traditions" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Agricultural Heritage" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Ancient Ruins" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Modern Resistance" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Educational Stories" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
+
+            {/* Row 2: 4 hexagons, offset with edge ghosts */}
+            <div className="flex justify-center items-center gap-4 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-8 mx-[-110px] sm:mx-[-120px] md:mx-[-140px]">
+              <HexagonalCard ghost className="opacity-30" />
+              <HexagonalCard title="Hebron Glasswork" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard title="Jericho Oasis" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard title="Jerusalem Quarters" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+              <HexagonalCard ghost className="opacity-30" />
             </div>
-            
-            {/* Row 5: 5 hexagons - centered */}
-            <div className="flex justify-center items-center gap-5 lg:gap-6 mb-8 lg:mb-10">
-              <HexagonalCard 
-                title="Refugee Narratives" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Children's Dreams" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Women's Leadership" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Hope & Resilience" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Heritage Cuisine" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-            </div>
-            
-            {/* Row 6: 5 hexagons - centered with left offset */}
-            <div className="flex justify-center items-center gap-5 lg:gap-6 md:-translate-x-10 sm:-translate-x-8 -translate-x-6">
-              <HexagonalCard 
-                title="Cultural Exchange" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Language & Poetry" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Future Visions" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Peace & Unity" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Global Solidarity" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-            </div>
-            
-            </div>
+          </div>
           </div>
         </section>
 

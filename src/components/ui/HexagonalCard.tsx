@@ -31,34 +31,6 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
   return (
     <motion.div
       className={`hexagonal-card relative ${ghost ? 'pointer-events-none select-none' : 'cursor-pointer'} group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#d4a574]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-xl ${className}`}
-      whileHover={
-        className?.includes('hero-hexagon') 
-          ? { 
-              y: -1, 
-              scale: 1.005,
-              transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
-            }
-          : { 
-              y: -4, 
-              scale: 1.015,
-              transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
-            }
-      }
-      whileTap={
-        className?.includes('hero-hexagon')
-          ? {
-              scale: 0.998,
-              transition: { duration: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }
-            }
-          : {
-              scale: 0.985,
-              transition: { duration: 0.1 }
-            }
-      }
-      transition={{ 
-        duration: className?.includes('hero-hexagon') ? 0.3 : 0.25, 
-        ease: className?.includes('hero-hexagon') ? [0.25, 0.46, 0.45, 0.94] : [0.25, 0.1, 0.25, 1]
-      }}
       onClick={ghost ? undefined : onClick}
       onKeyDown={(e: React.KeyboardEvent) => {
         if ((e.key === 'Enter' || e.key === ' ') && onClick) {
@@ -76,12 +48,12 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
             ? 'w-[200px] h-[330px] md:w-[220px] md:h-[360px]'
             : (variant === 'hero' || className?.includes('hero-hexagon'))
               ? 'w-[264px] h-[281px]'
-              : 'w-[190px] h-[210px] sm:w-[200px] sm:h-[220px] md:w-[220px] md:h-[240px]'
+              : 'w-[276px] h-[294px]'
         }`}>
         {/* Background Image Layer */}
         {backgroundImage && (
           <div 
-            className={`absolute inset-0 w-full h-full ${ghost ? 'opacity-10' : (variant === 'hero' || className?.includes('hero-hexagon') ? 'opacity-20' : 'opacity-30')}`}
+            className={`absolute inset-0 w-full h-full ${ghost ? 'opacity-10' : 'opacity-100'}`}
             style={{
               clipPath: variant === 'tall' 
                 ? 'polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%)' 
@@ -94,8 +66,8 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
           />
         )}
         
-        {/* Text readability overlay for Hero Hexagons (match mockup: dark bottom gradient) */}
-        {(variant === 'hero' || className?.includes('hero-hexagon')) && backgroundImage && !ghost && (
+        {/* Text readability overlay (bottom gradient) for all variants when image exists */}
+        {backgroundImage && !ghost && (
           <div 
             className="absolute inset-0 w-full h-full pointer-events-none"
             style={{
@@ -106,7 +78,7 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
               className="absolute inset-x-0 bottom-0"
               style={{
                 height: '116px',
-                background: 'linear-gradient(180deg, rgba(23,23,23,0) 0%, rgba(23,23,23,0.64) 50%, rgba(23,23,23,0.88) 100%)',
+                background: 'linear-gradient(180deg, rgba(23,23,23,0) 0%, rgba(23,23,23,0.55) 48%, rgba(23,23,23,0.86) 100%)',
                 backdropFilter: 'blur(2px)'
               }}
             />
@@ -114,43 +86,46 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
         )}
         
         <div 
-          className={`hexagon-shape w-full h-full flex items-center justify-center relative transition-all duration-300 backdrop-blur-sm ${
+          className={`hexagon-shape w-full h-full flex items-center justify-center relative transition-colors duration-300 ${
             ghost
-              ? 'bg-gradient-to-br from-white/50 via-white/60 to-white/50 border border-white/20 shadow-md'
-              : 'bg-gradient-to-br from-slate-50/92 via-white/96 to-slate-100/92 border border-slate-300/60 hover:border-slate-400/70 shadow-lg hover:shadow-xl'
+              ? 'bg-black/40 shadow-md'
+              : 'shadow-lg hover:shadow-xl'
           }`}
           style={{
             clipPath: variant === 'tall' 
               ? 'polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%)' // Much taller hexagon
               : 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)', // Standard hexagon
             background: backgroundImage 
-              ? 'linear-gradient(145deg, rgba(248, 250, 252, 0.85) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(241, 245, 249, 0.85) 100%)'
+              ? 'transparent'
               : variant === 'tall' 
                 ? 'linear-gradient(145deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%)'
                 : 'linear-gradient(145deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%)',
-            boxShadow: variant === 'tall'
+            boxShadow: `${variant === 'tall' 
               ? '0 15px 35px -5px rgba(51, 65, 85, 0.15), 0 8px 15px -3px rgba(51, 65, 85, 0.1)'
-              : '0 12px 30px -5px rgba(51, 65, 85, 0.15), 0 6px 12px -3px rgba(51, 65, 85, 0.1)'
+              : '0 12px 30px -5px rgba(51, 65, 85, 0.15), 0 6px 12px -3px rgba(51, 65, 85, 0.1)'}${ghost 
+              ? ', inset 0 0 0 1px rgba(255,255,255,0.10)'
+              : ', inset 0 0 0 1px rgba(201,169,110,0.24)'}`
           }}
         >
-          {/* Subtle gold stroke overlay clipped to hexagon */}
-          <motion.div
-            className="pointer-events-none absolute inset-0 rounded"
-            initial={{ opacity: ghost ? 0.08 : 0.14 }}
-            whileHover={{ opacity: ghost ? 0.08 : 0.28 }}
-            transition={{ duration: 0.25 }}
-            style={{
-              clipPath: variant === 'tall'
-                ? 'polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%)'
-                : 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-              padding: '1px',
-              background: 'linear-gradient(135deg, rgba(201,169,110,0.35), rgba(201,169,110,0.12), rgba(201,169,110,0.35))',
-              WebkitMask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
-              WebkitMaskComposite: 'xor' as any,
-              mask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
-              maskComposite: 'exclude' as any,
-            }}
-          />
+          
+
+          {/* Top decorative icon (subtle) */}
+          {!ghost && (
+            <div className="pointer-events-none absolute top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-md overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-white/12 to-transparent" />
+              <div className="absolute inset-0 border border-white/20 rounded-md" />
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute inset-0 m-auto text-white/80"
+              >
+                <path d="M12 6l2 2-2 2-2-2 2-2Zm0 6l2 2-2 2-2-2 2-2Zm6-6l2 2-2 2-2-2 2-2Zm-12 0l2 2-2 2-2-2 2-2Z" stroke="currentColor" strokeWidth="1.5"/>
+              </svg>
+            </div>
+          )}
 
           {/* Content inside hexagon */}
           <div className={`hexagon-content text-center max-w-[85%] relative ${variant === 'hero' || className?.includes('hero-hexagon') ? 'z-30 p-0 h-full flex items-end justify-center overflow-hidden' : 'z-10 p-12'} ${variant === 'tall' ? 'p-12' : variant !== 'hero' && !className?.includes('hero-hexagon') ? 'p-10' : ''}`}>
@@ -167,27 +142,30 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
               </div>
             ) : (
               <>
-                <h3 className={`text-slate-900 font-bold leading-tight mb-4 ${variant === 'tall' ? 'text-xl' : 'text-lg'} ${backgroundImage ? 'text-shadow-sm' : ''}`}>
+                <h3 className={`${backgroundImage ? 'text-white' : 'text-slate-900'} font-medium leading-tight mb-3 ${variant === 'tall' ? 'text-xl' : 'text-lg'}`} style={{ textShadow: backgroundImage ? '0px 1px 2px rgba(0, 0, 0, 0.24)' : 'none' }}>
                   {title}
                 </h3>
                 {(author || date) && (
-                  <div className="flex items-center justify-center space-x-3 text-sm text-slate-600 mb-4">
+                  <div className="flex items-center justify-center space-x-3 text-sm mb-3">
                     {author && (
-                      <div className="flex items-center bg-white/70 backdrop-blur-sm rounded-full px-2 py-1">
-                        <div className="w-3 h-3 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full mr-1.5"></div>
-                        <span className="font-semibold">Author</span>
+                      <div className="flex items-center bg-white/15 text-white/90 rounded-full px-2 py-1">
+                        <span className="inline-block w-3 h-3 rounded-full bg-[#C9A96E] mr-1.5"></span>
+                        <span>Author</span>
                       </div>
                     )}
                     {date && (
-                      <div className="flex items-center bg-white/70 backdrop-blur-sm rounded-full px-2 py-1">
-                        <div className="w-3 h-3 bg-gradient-to-r from-red-400 to-rose-400 rounded-full mr-1.5"></div>
-                        <span className="font-semibold">Date</span>
+                      <div className="flex items-center bg-white/15 text-white/90 rounded-full px-2 py-1">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-1.5">
+                          <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+                          <path d="M3 9H21" stroke="currentColor" strokeWidth="1.5"/>
+                        </svg>
+                        <span>Date</span>
                       </div>
                     )}
                   </div>
                 )}
                 {(edition || articles) && (
-                  <div className={`font-bold text-slate-800 ${variant === 'tall' ? 'text-lg' : 'text-base'} ${backgroundImage ? 'bg-white/80 backdrop-blur-sm rounded-lg px-3 py-1 inline-block' : ''}`}>
+                  <div className={`text-white ${variant === 'tall' ? 'text-sm' : 'text-xs'} bg-black/60 border border-white/16 rounded-md px-3 py-1 inline-block`}>
                     {articles ? articles : edition}
                   </div>
                 )}
@@ -207,17 +185,17 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
             transition={{ duration: 0.4, ease: "easeOut" }}
           />
           
-          {/* Enhanced glow effect for hero hexagons */}
+          {/* Subtle glow for hero hexagons (no scaling) */}
           {(variant === 'hero' || className?.includes('hero-hexagon')) && !ghost && (
             <>
               <motion.div
                 className="absolute -inset-1 bg-gradient-to-br from-[#d4a574]/8 via-[#d4a574]/3 to-transparent rounded-full opacity-0 blur-lg"
-                whileHover={{ opacity: 0.7, scale: 1.03 }}
+                whileHover={{ opacity: 0.7 }}
                 transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               />
               <motion.div
                 className="absolute -inset-px bg-gradient-to-br from-[#d4a574]/15 via-[#d4a574]/8 to-transparent rounded-full opacity-0 blur-sm"
-                whileHover={{ opacity: 0.8, scale: 1.015 }}
+                whileHover={{ opacity: 0.8 }}
                 transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.02 }}
               />
             </>
