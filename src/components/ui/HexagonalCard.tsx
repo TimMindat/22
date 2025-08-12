@@ -30,7 +30,7 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={`hexagonal-card relative ${ghost ? 'pointer-events-none select-none' : 'cursor-pointer'} group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#d4a574]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-xl ${className}`}
+      className={`hexagonal-card relative shrink-0 ${ghost ? 'pointer-events-none select-none' : 'cursor-pointer'} group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#d4a574]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-xl ${className}`}
       onClick={ghost ? undefined : onClick}
       onKeyDown={(e: React.KeyboardEvent) => {
         if ((e.key === 'Enter' || e.key === ' ') && onClick) {
@@ -45,10 +45,10 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
       {/* Hexagonal shape using clip-path */}
       <div className={`hexagon-container relative mx-auto ${
           variant === 'tall'
-            ? 'w-[200px] h-[330px] md:w-[220px] md:h-[360px]'
+            ? 'w-[180px] h-[300px] sm:w-[200px] sm:h-[330px] md:w-[220px] md:h-[360px]'
             : (variant === 'hero' || className?.includes('hero-hexagon'))
-              ? 'w-[264px] h-[281px]'
-              : 'w-[276px] h-[294px]'
+              ? 'w-[200px] h-[213px] sm:w-[232px] sm:h-[247px] md:w-[264px] md:h-[281px]'
+              : 'w-[200px] h-[214px] sm:w-[240px] sm:h-[256px] md:w-[276px] md:h-[294px]'
         }`}>
         {/* Background Image Layer */}
         {backgroundImage && (

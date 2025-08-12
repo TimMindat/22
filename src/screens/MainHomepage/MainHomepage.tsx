@@ -58,9 +58,9 @@ export const MainHomepage = (): JSX.Element => {
 
 
       {/* CTA trio under hero (no section header) */}
-      <section className="py-16 relative bg-black/20 overflow-hidden">
-        <div className="container mx-auto px-4 text-center relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-16 max-w-5xl mx-auto">
+      <section className="py-12 sm:py-14 md:py-16 relative bg-black/20 overflow-hidden content-visibility-auto">
+        <div className="container mx-auto px-4 sm:px-5 text-center relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 md:gap-16 max-w-6xl mx-auto">
             {/* Join Collective */}
             <div className="group relative">
               <div className="relative bg-black/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500">
@@ -120,8 +120,8 @@ export const MainHomepage = (): JSX.Element => {
       </section>
 
       {/* Feature Content Section */}
-      <section className="py-16 relative bg-black/10">
-        <div className="container mx-auto px-4">
+      <section className="py-12 sm:py-14 md:py-16 relative bg-black/10 content-visibility-auto">
+        <div className="container mx-auto px-4 sm:px-5">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-white">Feature content</h2>
             <Link to="#" className="text-[#d4a574] hover:text-[#c49660] flex items-center">
@@ -131,12 +131,12 @@ export const MainHomepage = (): JSX.Element => {
                         </svg>
             </Link>
           </div>
-          <p className="text-gray-400 mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
+          <p className="text-gray-400 mb-6 sm:mb-10 md:mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
           
           {/* Grid to match mockup: honeycomb 5 then 4 with row offset (full-bleed) */}
-          <div className="relative full-bleed px-4 md:px-8 overflow-hidden">
+          <div className="relative full-bleed px-2 sm:px-4 md:px-8 overflow-hidden">
             {/* Row 1: 5 hexagons with edge ghosts bleeding out */}
-            <div className="flex justify-center items-center gap-4 lg:gap-5 mb-6 lg:mb-8 mx-[-110px] sm:mx-[-120px] md:mx-[-140px]">
+            <div className="flex justify-center items-center gap-1.5 sm:gap-3 lg:gap-5 mb-4 sm:mb-6 lg:mb-8 mx-[-64px] sm:mx-[-120px] md:mx-[-140px] overflow-x-auto sm:overflow-visible snap-x">
               <HexagonalCard ghost className="opacity-30" />
               <HexagonalCard 
                 title="Old City Jerusalem" 
@@ -172,7 +172,7 @@ export const MainHomepage = (): JSX.Element => {
             </div>
 
             {/* Row 2: 4 hexagons, horizontally offset for honeycomb with edge ghosts */}
-            <div className="flex justify-center items-center gap-4 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-8 mx-[-110px] sm:mx-[-120px] md:mx-[-140px]">
+            <div className="flex justify-center items-center gap-1.5 sm:gap-3 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-6 sm:translate-x-8 mx-[-64px] sm:mx-[-120px] md:mx-[-140px] overflow-x-auto sm:overflow-visible snap-x">
               <HexagonalCard ghost className="opacity-30" />
               <HexagonalCard 
                 title="Historic Architecture" 
@@ -206,8 +206,8 @@ export const MainHomepage = (): JSX.Element => {
         </section>
 
       {/* Collections Section */}
-      <section className="py-16 relative bg-black/20">
-        <div className="container mx-auto px-4">
+      <section className="py-12 sm:py-14 md:py-16 relative bg-black/20 content-visibility-auto">
+        <div className="container mx-auto px-4 sm:px-5">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-white">Collections</h2>
             <Link to="#" className="text-[#d4a574] hover:text-[#c49660] flex items-center">
@@ -217,9 +217,9 @@ export const MainHomepage = (): JSX.Element => {
               </svg>
             </Link>
           </div>
-          <p className="text-gray-400 mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
+          <p className="text-gray-400 mb-6 sm:mb-10 md:mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
           <div className="max-w-6xl mx-auto px-2">
-            <div className="flex justify-start items-center gap-6 md:gap-8 flex-nowrap overflow-x-auto hide-scrollbar px-1">
+            <div className="flex justify-start items-center gap-4 sm:gap-6 md:gap-8 flex-nowrap overflow-x-auto hide-scrollbar px-1 snap-x">
               <HexagonalCard articles="12 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?auto=format&fit=crop&w=800&q=80" />
               <HexagonalCard articles="24 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" />
               <HexagonalCard articles="8 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80" />
@@ -231,7 +231,7 @@ export const MainHomepage = (): JSX.Element => {
       </section>
 
       {/* Latest Content Section - 5-5-5-5-5-5 honeycomb with alternating offsets */}
-      <section className="py-16 relative bg-black/30">
+      <section className="py-16 relative bg-black/30 content-visibility-auto">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-white">Latest content</h2>

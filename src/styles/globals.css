@@ -9,12 +9,29 @@
   scroll-behavior: smooth;
 }
 
+/* Container utility for small screens */
+@media (max-width: 640px) {
+  .container { padding-left: 1rem; padding-right: 1rem; }
+}
+
 .snap-x {
   scroll-snap-type: x mandatory;
 }
 
 .snap-center {
   scroll-snap-align: center;
+}
+
+/* Hex honeycomb mobile helper: ensure rows can scroll without squashing hexagons */
+.honey-row {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Performance: avoid rendering offscreen sections until needed */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
 }
 
 /* Full-bleed helper: make child span entire viewport width inside a centered container */

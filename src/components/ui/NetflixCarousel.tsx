@@ -143,7 +143,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
   };
 
   return (
-    <section className="relative h-[90vh] min-h-[800px] overflow-hidden bg-[#171717]">
+    <section className="relative h-[80vh] sm:h-[85vh] md:h-[90vh] min-h-[640px] sm:min-h-[740px] md:min-h-[800px] overflow-hidden bg-[#171717] content-visibility-auto">
       {/* Background media layer matching active hexagon */}
       <div className="absolute inset-0 z-0">
         <div
@@ -256,7 +256,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
       {/* Carousel Container */}
       <div 
         ref={carouselRef}
-        className="absolute inset-0 flex items-end justify-center pb-20 sm:pb-24 overflow-hidden z-10"
+        className="absolute inset-0 flex items-end justify-center pb-12 sm:pb-16 md:pb-24 overflow-hidden z-10"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -299,8 +299,8 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         </AnimatePresence>
 
         {/* Hexagonal Carousel Items */}
-            <motion.div 
-          className="flex items-center justify-center gap-4 md:gap-6 w-full px-4"
+        <motion.div 
+          className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 w-full px-1 sm:px-2"
           layout
           transition={{
             layout: { duration: 0.6, ease: [0.23, 1, 0.32, 1] }
@@ -314,7 +314,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
               animate={{ 
                 opacity: item.position === 0 ? 1 : 0.85,
                 y: 0,
-                x: item.position * 8,
+                x: item.position * 4,
                 scale: 1.0,
                 zIndex: item.position === 0 ? 20 : 10,
                 rotateY: 0,

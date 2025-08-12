@@ -12,62 +12,40 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { 
-    name: "Coast", 
-    href: "/coast", 
+  {
+    name: "Coast",
+    href: "/coast",
     icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L3 7L12 12L21 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-        <path d="M3 17L12 22L21 17" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-        <path d="M3 12L12 17L21 12" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-      </svg>
-    )
+      <img src="https://i.ibb.co/7dVFt3F5/ripple.png" alt="Coast" className="w-5 h-5" loading="lazy" draggable={false} />
+    ),
   },
-  { 
-    name: "Hawsh", 
-    href: "#", 
+  {
+    name: "Harbour",
+    href: "#",
     icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
-        <path d="M12 1V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M21 12H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M12 15V23" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M3 12H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    )
+      <img src="https://i.ibb.co/cXC4TypY/lighthouse.png" alt="Harbour" className="w-5 h-5" loading="lazy" draggable={false} />
+    ),
   },
-  { 
-    name: "Azure", 
-    href: "#", 
+  {
+    name: "Azure",
+    href: "#",
     icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 6H21L19 15H5L3 6Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-        <path d="M8 6V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V6" stroke="currentColor" strokeWidth="2"/>
-        <path d="M3 6L1 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M21 6L23 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    )
+      <img src="https://i.ibb.co/k23gWvX3/cloud.png" alt="Azure" className="w-5 h-5" loading="lazy" draggable={false} />
+    ),
   },
-  { 
-  name: "Harbour", 
-  href: "#", 
-  icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 9L12 2L21 9V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-        <path d="M9 22V12H15V22" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-      </svg>
-    )
-  },
-  { 
-    name: "More", 
-    href: "#", 
+  {
+    name: "Hawsh",
+    href: "#",
     icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="1" stroke="currentColor" strokeWidth="2"/>
-        <circle cx="19" cy="12" r="1" stroke="currentColor" strokeWidth="2"/>
-        <circle cx="5" cy="12" r="1" stroke="currentColor" strokeWidth="2"/>
-      </svg>
-    )
+      <img src="https://i.ibb.co/zhjcF2p3/leaf.png" alt="Hawsh" className="w-5 h-5" loading="lazy" draggable={false} />
+    ),
+  },
+  {
+    name: "More",
+    href: "#",
+    icon: (
+      <img src="https://i.ibb.co/PvBmtB64/dots-vertical.png" alt="More" className="w-5 h-5" loading="lazy" draggable={false} />
+    ),
   },
 ];
 
@@ -119,8 +97,8 @@ const Navbar: React.FC = () => {
       }}
     >
       
-      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex items-center h-16 md:h-16">
+      <div className="w-full px-6 md:px-8 relative z-10">
+        <div className="flex items-center h-14 sm:h-16">
           {/* Mobile menu button - only visible on mobile */}
           <div className="md:hidden flex items-center">
             <button 
@@ -154,11 +132,7 @@ const Navbar: React.FC = () => {
           {/* Center logo - simplified */}
           <div className="hidden md:flex justify-center">
             <Link to="/" className="flex items-center">
-              <img 
-                src="https://i.imgur.com/bwdY3iU.png" 
-                alt="Logo" 
-                className="w-8 h-8"
-              />
+              <img src="https://i.ibb.co/6cRjBNZJ/Logo.png" alt="Logo" className="h-8 w-auto object-contain" loading="lazy" draggable={false} />
             </Link>
           </div>
           
