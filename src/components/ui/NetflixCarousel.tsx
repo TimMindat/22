@@ -143,7 +143,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
   };
 
   return (
-    <section className="relative h-[80vh] sm:h-[85vh] md:h-[90vh] min-h-[640px] sm:min-h-[740px] md:min-h-[800px] overflow-hidden bg-[#171717] content-visibility-auto">
+    <section className="relative h-[80vh] sm:h-[85vh] md:h-[90vh] min-h-[560px] xs:min-h-[620px] sm:min-h-[720px] md:min-h-[800px] overflow-hidden bg-[#171717] content-visibility-auto">
       {/* Background media layer matching active hexagon */}
       <div className="absolute inset-0 z-0">
         <div
@@ -180,7 +180,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
       </div>
       
       {/* Hero Title Overlay */}
-      <div className="absolute top-16 md:top-20 left-6 md:left-12 z-20 max-w-sm md:max-w-lg">
+      <div className="absolute top-16 md:top-20 left-4 xs:left-6 md:left-12 z-20 max-w-[85%] xs:max-w-sm md:max-w-lg">
         <motion.div
           className="backdrop-blur-sm bg-black/20 rounded-2xl p-6 md:p-8 border border-white/10"
           initial={{ opacity: 0.8, y: 5 }}
@@ -191,7 +191,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
           }}
         >
           <motion.h1 
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight"
+            className="text-2xl xs:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight"
             initial={{ opacity: 0.9, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
@@ -205,7 +205,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             <span className="text-[#C9A96E]">{currentContent.subtitle}</span>
           </motion.h1>
           <motion.p 
-            className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed"
+            className="text-sm xs:text-base md:text-lg text-gray-300 mb-6 md:mb-8 leading-relaxed"
             initial={{ opacity: 0.9, y: 2 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -214,7 +214,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             {currentContent.description}
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             initial={{ opacity: 0.95, y: 2 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -256,7 +256,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
       {/* Carousel Container */}
       <div 
         ref={carouselRef}
-        className="absolute inset-0 flex items-end justify-center pb-12 sm:pb-16 md:pb-24 overflow-hidden z-10"
+        className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-16 md:pb-24 overflow-hidden z-10"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

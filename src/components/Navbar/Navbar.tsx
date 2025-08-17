@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
       }}
     >
       
-      <div className="w-full px-6 md:px-8 relative z-10">
+      <div className="w-full px-4 xs:px-5 md:px-8 relative z-10">
         <div className="flex items-center h-14 sm:h-16">
           {/* Mobile menu button - only visible on mobile */}
           <div className="md:hidden flex items-center">
@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
           </div>
           
           {/* Right action items */}
-          <div className="flex-1 flex items-center justify-end space-x-4 pr-4">
+          <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-4 pr-2 sm:pr-4">
             {actionItems.slice(0,3).map((item) => (
               <Link
                 key={item.name}

@@ -122,9 +122,9 @@ export const MainHomepage = (): JSX.Element => {
       {/* Feature Content Section */}
       <section className="py-12 sm:py-14 md:py-16 relative bg-black/10 content-visibility-auto">
         <div className="container mx-auto px-4 sm:px-5">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-white">Feature content</h2>
-            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] flex items-center">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">Feature content</h2>
+            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] flex items-center self-start sm:self-auto">
               View more
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
                 <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -136,7 +136,7 @@ export const MainHomepage = (): JSX.Element => {
           {/* Grid to match mockup: honeycomb 5 then 4 with row offset (full-bleed) */}
           <div className="relative full-bleed px-2 sm:px-4 md:px-8 overflow-hidden">
             {/* Row 1: 5 hexagons with edge ghosts bleeding out */}
-            <div className="flex justify-center items-center gap-1.5 sm:gap-3 lg:gap-5 mb-4 sm:mb-6 lg:mb-8 mx-[-64px] sm:mx-[-120px] md:mx-[-140px] overflow-x-auto sm:overflow-visible snap-x">
+            <div className="flex justify-center items-center gap-1.5 sm:gap-3 lg:gap-5 mb-4 sm:mb-6 lg:mb-8 mx-[-24px] xs:mx-[-32px] sm:mx-[-80px] md:mx-[-120px] overflow-x-auto sm:overflow-visible snap-x">
               <HexagonalCard ghost className="opacity-30" />
               <HexagonalCard 
                 title="Old City Jerusalem" 
@@ -172,7 +172,7 @@ export const MainHomepage = (): JSX.Element => {
             </div>
 
             {/* Row 2: 4 hexagons, horizontally offset for honeycomb with edge ghosts */}
-            <div className="flex justify-center items-center gap-1.5 sm:gap-3 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-6 sm:translate-x-8 mx-[-64px] sm:mx-[-120px] md:mx-[-140px] overflow-x-auto sm:overflow-visible snap-x">
+            <div className="flex justify-center items-center gap-1.5 sm:gap-3 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-4 xs:translate-x-6 sm:translate-x-8 mx-[-24px] xs:mx-[-32px] sm:mx-[-80px] md:mx-[-120px] overflow-x-auto sm:overflow-visible snap-x">
               <HexagonalCard ghost className="opacity-30" />
               <HexagonalCard 
                 title="Historic Architecture" 
@@ -208,9 +208,9 @@ export const MainHomepage = (): JSX.Element => {
       {/* Collections Section */}
       <section className="py-12 sm:py-14 md:py-16 relative bg-black/20 content-visibility-auto">
         <div className="container mx-auto px-4 sm:px-5">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-white">Collections</h2>
-            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] flex items-center">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">Collections</h2>
+            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] flex items-center self-start sm:self-auto">
               View more
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
                 <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -233,9 +233,9 @@ export const MainHomepage = (): JSX.Element => {
       {/* Latest Content Section - 5-5-5-5-5-5 honeycomb with alternating offsets */}
       <section className="py-16 relative bg-black/30 content-visibility-auto">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-white">Latest content</h2>
-            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] flex items-center">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">Latest content</h2>
+            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] flex items-center self-start sm:self-auto">
               View more
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
                 <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -247,7 +247,7 @@ export const MainHomepage = (): JSX.Element => {
           {/* Modern Latest Content Grid (two rows: 5 then 4) */}
           <div className="relative full-bleed px-4 md:px-8 overflow-hidden">
             {/* Row 1: 5 hexagons with edge ghosts */}
-            <div className="flex justify-center items-center gap-4 lg:gap-5 mb-8 lg:mb-10 mx-[-110px] sm:mx-[-120px] md:mx-[-140px]">
+            <div className="flex justify-center items-center gap-2 sm:gap-4 lg:gap-5 mb-8 lg:mb-10 mx-[-24px] xs:mx-[-32px] sm:mx-[-80px] md:mx-[-120px] overflow-x-auto sm:overflow-visible snap-x">
               <HexagonalCard ghost className="opacity-30" />
               <HexagonalCard title="Gaza Seashore Stories" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
               <HexagonalCard title="Bethlehem Artisans" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
@@ -258,7 +258,7 @@ export const MainHomepage = (): JSX.Element => {
             </div>
 
             {/* Row 2: 4 hexagons, offset with edge ghosts */}
-            <div className="flex justify-center items-center gap-4 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-8 mx-[-110px] sm:mx-[-120px] md:mx-[-140px]">
+            <div className="flex justify-center items-center gap-2 sm:gap-4 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-6 mx-[-24px] xs:mx-[-32px] sm:mx-[-80px] md:mx-[-120px] overflow-x-auto sm:overflow-visible snap-x">
               <HexagonalCard ghost className="opacity-30" />
               <HexagonalCard title="Hebron Glasswork" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
               <HexagonalCard title="Jericho Oasis" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />

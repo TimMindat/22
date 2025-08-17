@@ -30,7 +30,7 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={`hexagonal-card relative shrink-0 ${ghost ? 'pointer-events-none select-none' : 'cursor-pointer'} group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#d4a574]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-xl ${className}`}
+      className={`hexagonal-card relative shrink-0 snap-center ${ghost ? 'pointer-events-none select-none' : 'cursor-pointer'} group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#d4a574]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-xl ${className}`}
       onClick={ghost ? undefined : onClick}
       onKeyDown={(e: React.KeyboardEvent) => {
         if ((e.key === 'Enter' || e.key === ' ') && onClick) {
@@ -45,10 +45,10 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
       {/* Hexagonal shape using clip-path */}
       <div className={`hexagon-container relative mx-auto ${
           variant === 'tall'
-            ? 'w-[180px] h-[300px] sm:w-[200px] sm:h-[330px] md:w-[220px] md:h-[360px]'
+            ? 'w-[160px] h-[268px] xs:w-[180px] xs:h-[300px] sm:w-[200px] sm:h-[330px] md:w-[220px] md:h-[360px]'
             : (variant === 'hero' || className?.includes('hero-hexagon'))
-              ? 'w-[200px] h-[213px] sm:w-[232px] sm:h-[247px] md:w-[264px] md:h-[281px]'
-              : 'w-[200px] h-[214px] sm:w-[240px] sm:h-[256px] md:w-[276px] md:h-[294px]'
+              ? 'w-[184px] h-[196px] xs:w-[200px] xs:h-[213px] sm:w-[232px] sm:h-[247px] md:w-[264px] md:h-[281px]'
+              : 'w-[176px] h-[188px] xs:w-[200px] xs:h-[214px] sm:w-[240px] sm:h-[256px] md:w-[276px] md:h-[294px]'
         }`}>
         {/* Background Image Layer */}
         {backgroundImage && (
@@ -128,7 +128,17 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
           )}
 
           {/* Content inside hexagon */}
-          <div className={`hexagon-content text-center max-w-[85%] relative ${variant === 'hero' || className?.includes('hero-hexagon') ? 'z-30 p-0 h-full flex items-end justify-center overflow-hidden' : 'z-10 p-12'} ${variant === 'tall' ? 'p-12' : variant !== 'hero' && !className?.includes('hero-hexagon') ? 'p-10' : ''}`}>
+          <div className={`hexagon-content text-center max-w-[85%] relative ${
+            variant === 'hero' || className?.includes('hero-hexagon')
+              ? 'z-30 p-0 h-full flex items-end justify-center overflow-hidden'
+              : 'z-10'
+          } ${
+            variant === 'tall'
+              ? 'p-6 xs:p-8 sm:p-10'
+              : variant !== 'hero' && !className?.includes('hero-hexagon')
+                ? 'p-6 xs:p-8 sm:p-10'
+                : ''
+          }`}>
             {ghost ? null : children ? children : variant === 'hero' || className?.includes('hero-hexagon') ? (
               <div className="relative w-full flex flex-col items-center justify-end pb-16 px-6 z-20">
                 <h3 

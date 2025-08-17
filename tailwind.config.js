@@ -5,6 +5,15 @@ export default {
     "components/**/*.{ts,tsx}",
   ],
   theme: {
+    screens: {
+      xxs: "320px",
+      xs: "480px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1440px",
+    },
     extend: {
       colors: {
         "primary-white": "var(--primary-white)",
@@ -74,7 +83,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
-    container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
+    container: { center: true, padding: "2rem", screens: { "2xl": "1440px" } },
   },
   plugins: [],
   darkMode: ["class"],

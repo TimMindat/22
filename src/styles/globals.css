@@ -386,6 +386,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Responsive media defaults */
+img, video, svg, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent horizontal scrolling across the app */
+html, body, #app {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 /* Enhanced Card Animations */
 .card-hover-effect {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -492,6 +504,11 @@ html {
   button, a {
     min-height: 44px;
     min-width: 44px;
+  }
+  /* Readable base text on small screens */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
   }
   
   /* Better spacing on mobile */
