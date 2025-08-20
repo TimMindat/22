@@ -337,97 +337,79 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         </motion.div>
       </div>
 
-      {/* Revamped Navigation Bar - Perfect Hexagon Integration */}
-      <div className="fixed bottom-4 xs:bottom-6 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 z-50 w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-3xl lg:max-w-4xl xl:max-w-5xl px-4 md:px-6 pointer-events-none">
+      {/* Ultra-Optimized Navigation Bar - Native Mobile & Desktop Excellence */}
+      <div className="fixed bottom-3 xs:bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-10 left-1/2 -translate-x-1/2 z-50 w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[480px] lg:max-w-[560px] xl:max-w-[640px] px-3 md:px-4 pointer-events-none">
         <motion.div 
-          className="relative flex items-center justify-center gap-3 xs:gap-4 sm:gap-5 md:gap-7 lg:gap-9 px-5 xs:px-6 sm:px-7 md:px-9 lg:px-11 py-5 xs:py-6 sm:py-7 md:py-6 lg:py-7 backdrop-blur-3xl bg-gradient-to-r from-black/60 via-black/50 to-black/60 xs:from-black/55 xs:via-black/45 xs:to-black/55 md:from-black/45 md:via-black/35 md:to-black/45 rounded-[1.75rem] xs:rounded-[2.25rem] md:rounded-[2.5rem] border border-white/35 xs:border-white/30 md:border-white/25 shadow-[0_20px_60px_rgba(0,0,0,0.6)] ultra-smooth-scroll no-scroll-jitter pointer-events-auto overflow-hidden"
-          initial={{ opacity: 0, y: 60, scale: 0.7, rotateX: 20 }}
-          animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+          className="relative flex items-center justify-between gap-2 xs:gap-3 sm:gap-4 md:gap-5 lg:gap-6 px-3 xs:px-4 sm:px-5 md:px-6 lg:px-7 py-3 xs:py-3.5 sm:py-4 md:py-4 lg:py-5 backdrop-blur-2xl bg-black/70 xs:bg-black/65 sm:bg-black/60 md:bg-black/50 lg:bg-black/45 rounded-full border border-white/40 xs:border-white/35 md:border-white/30 shadow-[0_12px_40px_rgba(0,0,0,0.8)] xs:shadow-[0_16px_50px_rgba(0,0,0,0.7)] md:shadow-[0_20px_60px_rgba(0,0,0,0.6)] ultra-smooth-scroll no-scroll-jitter pointer-events-auto"
+          initial={{ opacity: 0, y: 40, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ 
-            delay: 0.4, 
-            duration: 1.0, 
-            ease: [0.25, 0.1, 0.25, 1],
-            scale: { duration: 0.9 },
-            rotateX: { duration: 1.1 }
+            delay: 0.3, 
+            duration: 0.8, 
+            ease: [0.25, 0.1, 0.25, 1]
           }}
           whileHover={{
-            scale: 1.015,
-            y: -4,
-            boxShadow: "0 30px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 165, 116, 0.15)",
-            transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+            scale: 1.02,
+            y: -2,
+            boxShadow: "0 25px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 165, 116, 0.12)",
+            transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
           }}
           style={{
             willChange: 'transform, opacity',
             backfaceVisibility: 'hidden',
-            perspective: '1000px',
             contain: 'layout style paint'
           }}
         >
-          {/* Premium Gradient Overlay */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-[#d4a574]/8 via-transparent to-[#d4a574]/8 opacity-0"
-            whileHover={{ opacity: 1 }}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-          />
+          {/* Native Mobile Glass Effect */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/8 via-white/4 to-white/8 pointer-events-none" />
           
-          {/* Subtle Inner Glow */}
-          <div className="absolute inset-0 rounded-[1.75rem] xs:rounded-[2.25rem] md:rounded-[2.5rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] pointer-events-none" />
-          {/* Premium Navigation Arrow - Previous */}
+          {/* Premium Inner Border */}
+          <div className="absolute inset-[1px] rounded-full border border-white/15 pointer-events-none" />
+          {/* Native Mobile Navigation Button - Previous */}
           <motion.button
             onClick={prevSlide}
-            className="relative flex-shrink-0 w-11 h-11 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-13 md:h-13 lg:w-15 lg:h-15 rounded-full bg-gradient-to-br from-white/30 via-white/25 to-white/20 hover:from-white/40 hover:via-white/35 hover:to-white/30 active:from-white/50 active:via-white/45 active:to-white/40 flex items-center justify-center text-white border border-white/30 hover:border-white/40 mobile-touch-target gpu-accelerated shadow-[0_8px_25px_rgba(0,0,0,0.4)] backdrop-blur-sm overflow-hidden"
+            className="relative flex-shrink-0 w-9 h-9 xs:w-10 xs:h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:w-13 lg:h-13 rounded-full bg-white/25 hover:bg-white/35 active:bg-white/45 flex items-center justify-center text-white border border-white/30 hover:border-white/40 mobile-touch-target shadow-lg backdrop-blur-sm"
             aria-label="Previous story"
             whileHover={{ 
-              scale: 1.08,
-              y: -3,
-              boxShadow: "0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.1)",
-              transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 1.05,
+              backgroundColor: "rgba(255, 255, 255, 0.4)",
+              transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
             }}
             whileTap={{ 
-              scale: 0.92,
-              y: -1,
-              transition: { duration: 0.18, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 0.95,
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              transition: { duration: 0.1, ease: [0.25, 0.1, 0.25, 1] }
             }}
             onTap={() => {
-              // Premium haptic feedback
+              // Native haptic feedback
               if ('vibrate' in navigator) {
-                navigator.vibrate([80, 20, 50]);
+                navigator.vibrate(30);
               }
             }}
             style={{
-              willChange: 'transform, box-shadow',
+              willChange: 'transform, background-color',
               backfaceVisibility: 'hidden',
               contain: 'layout style paint',
               touchAction: 'manipulation'
             }}
           >
-            {/* Button Inner Glow */}
-            <motion.div 
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-0"
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-            
             <motion.svg 
-              width="18" 
-              height="18" 
+              width="14" 
+              height="14" 
               viewBox="0 0 24 24" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="relative z-10 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-5 md:h-5 lg:w-6 lg:h-6"
-              whileHover={{ x: -1.5, scale: 1.06 }}
-              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+              className="xs:w-4 xs:h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 lg:w-[22px] lg:h-[22px]"
+              whileHover={{ x: -1, scale: 1.02 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               style={{ willChange: 'transform' }}
             >
-              <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </motion.svg>
           </motion.button>
 
-          {/* Optimized Hexagon Integration - Smaller Perfect Fit */}
-          <div className="relative flex items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-3.5 lg:gap-4 xl:gap-4.5 overflow-hidden px-1.5 xs:px-2 md:px-2.5 ultra-smooth-scroll">
-            {/* Hexagon Container Background */}
-            <div className="absolute inset-y-0.5 left-0.5 right-0.5 bg-gradient-to-r from-transparent via-white/5 to-transparent rounded-full opacity-40 pointer-events-none" />
-            
+          {/* Ultra-Clear Hexagon Carousel - Optimal Visibility */}
+          <div className="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-2.5 md:gap-3 lg:gap-3.5 px-2 xs:px-3 sm:px-4 md:px-5 overflow-hidden">
             {items.map((item, index) => {
               const isActive = index === currentIndex;
               const distance = Math.abs(index - currentIndex);
@@ -441,86 +423,74 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                   className="cursor-pointer flex-shrink-0 relative mobile-touch-target group"
                   onClick={() => {
                     goToSlide(index);
-                    // Premium haptic feedback pattern
+                    // Native haptic feedback
                     if ('vibrate' in navigator) {
-                      navigator.vibrate([90, 30, 70, 20, 50]);
+                      navigator.vibrate(40);
                     }
                   }}
                   whileHover={{ 
-                    scale: isActive ? 1.2 : 1.3,
-                    y: isActive ? -3 : -4,
-                    rotateY: isActive ? 0 : 2,
-                    transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+                    scale: isActive ? 1.1 : 1.15,
+                    y: isActive ? -2 : -3,
+                    transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   whileTap={{ 
-                    scale: isActive ? 0.85 : 0.75,
-                    rotateY: 0,
-                    transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
+                    scale: isActive ? 0.9 : 0.85,
+                    transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   animate={{
-                    scale: isActive ? 1.15 : 0.9,
-                    opacity: isActive ? 1 : 0.85,
-                    y: isActive ? -4 : 0,
-                    rotateY: isActive ? 0 : 1,
+                    scale: isActive ? 1.05 : 0.85,
+                    opacity: isActive ? 1 : 0.7,
+                    y: isActive ? -2 : 0,
                   }}
                   transition={{ 
-                    duration: 0.55, 
-                    ease: [0.25, 0.1, 0.25, 1],
-                    scale: { duration: 0.5 },
-                    opacity: { duration: 0.45 },
-                    y: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] },
-                    rotateY: { duration: 0.5 }
+                    duration: 0.4, 
+                    ease: [0.25, 0.1, 0.25, 1]
                   }}
                   style={{ 
-                    minWidth: '32px', 
-                    minHeight: '32px',
+                    minWidth: '28px', 
+                    minHeight: '28px',
                     willChange: 'transform, opacity',
                     backfaceVisibility: 'hidden',
-                    perspective: '1000px',
                     contain: 'layout style paint',
                     touchAction: 'manipulation'
                   }}
                 >
-                  {/* Adjusted Active Indicator Ring - Smaller Hexagons */}
+                  {/* Clear Active Indicator - Native Style */}
                   {isActive && (
                     <motion.div
-                      className="absolute -inset-1 xs:-inset-1.5 sm:-inset-1.5 md:-inset-2 lg:-inset-2.5 xl:-inset-3 rounded-full border-[1.5px] xs:border-2 md:border-[2.5px] border-[#d4a574]/80 z-0 shadow-[0_0_15px_rgba(212,165,116,0.4)] backdrop-blur-sm"
-                      initial={{ scale: 0.8, opacity: 0, rotate: -12 }}
-                      animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                      exit={{ scale: 0.8, opacity: 0, rotate: 12 }}
+                      className="absolute -inset-1 xs:-inset-1.5 sm:-inset-2 md:-inset-2.5 rounded-full border-2 border-[#d4a574] z-0 shadow-[0_0_12px_rgba(212,165,116,0.6)]"
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.9, opacity: 0 }}
                       transition={{ 
-                        duration: 0.6, 
-                        ease: [0.25, 0.1, 0.25, 1],
-                        opacity: { duration: 0.4 }
+                        duration: 0.3, 
+                        ease: [0.25, 0.1, 0.25, 1]
                       }}
                     >
-                      {/* Premium Pulsing Glow */}
+                      {/* Simple Pulsing Glow */}
                       <motion.div
-                        className="absolute inset-0 rounded-full bg-gradient-to-r from-[#d4a574]/30 via-[#d4a574]/20 to-[#d4a574]/30 blur-sm"
+                        className="absolute inset-0 rounded-full bg-[#d4a574]/20 blur-sm"
                         animate={{ 
-                          scale: [1, 1.12, 1],
-                          opacity: [0.5, 0.8, 0.5]
+                          scale: [1, 1.05, 1],
+                          opacity: [0.6, 0.8, 0.6]
                         }}
                         transition={{ 
-                          duration: 2.5,
+                          duration: 2,
                           repeat: Infinity,
                           ease: "easeInOut"
                         }}
                       />
-                      
-                      {/* Inner Glow Ring */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[#d4a574]/10 to-transparent" />
                     </motion.div>
                   )}
                   
-                  {/* Much Smaller Hexagon Sizing - Perfect Fit */}
-                  <div className="relative z-10 group-hover:z-20">
+                  {/* Optimal Hexagon Sizing - Clear Visibility */}
+                  <div className="relative z-10">
                     <HexagonalCard
                       title={item.title}
                       variant="hero"
                       backgroundImage={item.image}
                       compact
-                      className="w-5 h-5 xs:w-6 xs:h-6 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 gpu-accelerated shadow-[0_2px_8px_rgba(0,0,0,0.3)] group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.4)]"
+                      className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 shadow-md group-hover:shadow-lg transition-shadow duration-200"
                     />
                   </div>
                   
@@ -533,54 +503,46 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             })}
           </div>
 
-          {/* Premium Navigation Arrow - Next */}
+          {/* Native Mobile Navigation Button - Next */}
           <motion.button
             onClick={nextSlide}
-            className="relative flex-shrink-0 w-11 h-11 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-13 md:h-13 lg:w-15 lg:h-15 rounded-full bg-gradient-to-br from-white/30 via-white/25 to-white/20 hover:from-white/40 hover:via-white/35 hover:to-white/30 active:from-white/50 active:via-white/45 active:to-white/40 flex items-center justify-center text-white border border-white/30 hover:border-white/40 mobile-touch-target gpu-accelerated shadow-[0_8px_25px_rgba(0,0,0,0.4)] backdrop-blur-sm overflow-hidden"
+            className="relative flex-shrink-0 w-9 h-9 xs:w-10 xs:h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:w-13 lg:h-13 rounded-full bg-white/25 hover:bg-white/35 active:bg-white/45 flex items-center justify-center text-white border border-white/30 hover:border-white/40 mobile-touch-target shadow-lg backdrop-blur-sm"
             aria-label="Next story"
             whileHover={{ 
-              scale: 1.08,
-              y: -3,
-              boxShadow: "0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.1)",
-              transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 1.05,
+              backgroundColor: "rgba(255, 255, 255, 0.4)",
+              transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
             }}
             whileTap={{ 
-              scale: 0.92,
-              y: -1,
-              transition: { duration: 0.18, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 0.95,
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              transition: { duration: 0.1, ease: [0.25, 0.1, 0.25, 1] }
             }}
             onTap={() => {
-              // Premium haptic feedback
+              // Native haptic feedback
               if ('vibrate' in navigator) {
-                navigator.vibrate([80, 20, 50]);
+                navigator.vibrate(30);
               }
             }}
             style={{
-              willChange: 'transform, box-shadow',
+              willChange: 'transform, background-color',
               backfaceVisibility: 'hidden',
               contain: 'layout style paint',
               touchAction: 'manipulation'
             }}
           >
-            {/* Button Inner Glow */}
-            <motion.div 
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-0"
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-            
             <motion.svg 
-              width="18" 
-              height="18" 
+              width="14" 
+              height="14" 
               viewBox="0 0 24 24" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="relative z-10 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-5 md:h-5 lg:w-6 lg:h-6"
-              whileHover={{ x: 1.5, scale: 1.06 }}
-              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+              className="xs:w-4 xs:h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 lg:w-[22px] lg:h-[22px]"
+              whileHover={{ x: 1, scale: 1.02 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               style={{ willChange: 'transform' }}
             >
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </motion.svg>
           </motion.button>
         </motion.div>
