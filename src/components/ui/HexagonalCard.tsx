@@ -55,7 +55,7 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
                   ? 'w-[96px] h-[104px] xs:w-[104px] xs:h-[112px] sm:w-[120px] sm:h-[128px] md:w-[264px] md:h-[281px]'
                   : 'w-[184px] h-[196px] xs:w-[200px] xs:h-[213px] sm:w-[232px] sm:h-[247px] md:w-[264px] md:h-[281px]')
               : (compact
-                  ? 'w-[96px] h-[104px] xs:w-[104px] xs:h-[112px] sm:w-[120px] sm:h-[128px] md:w-[276px] md:h-[294px]'
+                  ? 'w-[130px] h-[139px] xs:w-[140px] xs:h-[150px] sm:w-[160px] sm:h-[171px] md:w-[276px] md:h-[294px]'
                   : 'w-[176px] h-[188px] xs:w-[200px] xs:h-[214px] sm:w-[240px] sm:h-[256px] md:w-[276px] md:h-[294px]')
         }`}>
         {/* Background Image Layer */}
@@ -161,10 +161,10 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
               </div>
             ) : (
               <>
-                <h3 className={`${backgroundImage ? 'text-white' : 'text-slate-900'} font-medium leading-tight ${compact ? 'mb-1 xs:mb-2 sm:mb-3' : 'mb-3'} ${
+                <h3 className={`${backgroundImage ? 'text-white' : 'text-slate-900'} font-medium leading-tight ${compact ? 'mb-2 xs:mb-3 sm:mb-3' : 'mb-3'} ${
                   variant === 'tall' 
-                    ? (compact ? 'text-[clamp(11px,2.5vw,14px)] sm:text-[clamp(14px,1.8vw,20px)]' : 'text-[clamp(14px,1.8vw,20px)]')
-                    : (compact ? 'text-[clamp(10px,2.2vw,12px)] sm:text-[clamp(14px,1.8vw,18px)]' : 'text-[clamp(14px,1.8vw,18px)]')
+                    ? (compact ? 'text-[clamp(13px,3vw,16px)] sm:text-[clamp(14px,1.8vw,20px)]' : 'text-[clamp(14px,1.8vw,20px)]')
+                    : (compact ? 'text-[clamp(12px,2.8vw,15px)] sm:text-[clamp(14px,1.8vw,18px)]' : 'text-[clamp(14px,1.8vw,18px)]')
                 }`} style={{ textShadow: backgroundImage ? '0px 1px 2px rgba(0, 0, 0, 0.24)' : 'none' }}>
                   {title}
                 </h3>
@@ -188,8 +188,9 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
                     )}
                   </div>
                 )}
+                {/* Hide edition on mobile for compact hexagons, show on desktop */}
                 {(edition || articles) && (
-                  <div className={`text-white ${variant === 'tall' ? 'text-sm' : 'text-xs'} bg-black/60 border border-white/16 rounded-md px-3 py-1 inline-block`}>
+                  <div className={`${compact ? 'hidden sm:inline-block' : 'inline-block'} text-white ${variant === 'tall' ? 'text-sm' : 'text-xs'} bg-black/60 border border-white/16 rounded-md px-3 py-1`}>
                     {articles ? articles : edition}
                   </div>
                 )}

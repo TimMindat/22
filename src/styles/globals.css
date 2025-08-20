@@ -222,17 +222,26 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
   
-  /* Optimal grid spacing */
+  /* Optimal grid spacing for bigger hexagons */
   .mobile-hex-grid {
     gap: clamp(0.5rem, 2vw, 1rem);
     padding: clamp(1rem, 4vw, 1.5rem);
   }
   
-  /* Prevent horizontal overflow */
+  /* Prevent horizontal overflow and optimize for bigger hexagons */
   .mobile-hex-container {
     max-width: 100vw;
     overflow-x: hidden;
     contain: layout;
+    padding: clamp(0.75rem, 3vw, 1rem);
+  }
+
+  /* Bigger hexagon text optimization */
+  .mobile-hex-text {
+    font-size: clamp(12px, 2.8vw, 15px);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 
   /* Mobile-optimized Netflix Carousel */
