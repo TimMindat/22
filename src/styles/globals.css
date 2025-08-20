@@ -502,17 +502,40 @@
 
 /* Smooth Scrolling and Micro-Interactions System */
 
-/* Hardware-accelerated smooth scrolling */
+/* Hardware-accelerated smooth scrolling optimized for mobile */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* Account for fixed header */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  /* Optimize text rendering for mobile */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
 }
 
-/* Smooth scrolling container */
+/* Enhanced smooth scrolling container */
 .smooth-scroll {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  /* Mobile momentum scrolling */
+  scroll-snap-type: y proximity;
+  /* Prevent rubber band effect */
+  overscroll-behavior-y: contain;
+}
+
+/* Mobile-optimized scrolling performance */
+body {
+  /* Prevent horizontal scrolling issues on mobile */
+  overflow-x: hidden;
+  /* Enable momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+  /* Optimize for mobile performance */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Smooth scrolling momentum */
+  scroll-behavior: smooth;
 }
 
 /* 60fps optimized transitions */
@@ -637,16 +660,57 @@ html {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Scroll-triggered animations */
+/* Enhanced scroll-triggered animations for mobile */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform, opacity;
+  /* Mobile-optimized animation */
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .scroll-reveal.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  will-change: auto; /* Remove will-change after animation */
+}
+
+/* Mobile-specific scroll animations */
+@media (max-width: 768px) {
+  .scroll-reveal {
+    transform: translateY(30px) scale(0.97);
+    transition-duration: 0.5s;
+  }
+  
+  /* Reduce motion for better mobile performance */
+  .scroll-reveal.stagger-1 { transition-delay: 0.05s; }
+  .scroll-reveal.stagger-2 { transition-delay: 0.1s; }
+  .scroll-reveal.stagger-3 { transition-delay: 0.15s; }
+  .scroll-reveal.stagger-4 { transition-delay: 0.2s; }
+  .scroll-reveal.stagger-5 { transition-delay: 0.25s; }
+}
+
+/* Native mobile feel animations */
+.mobile-native {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+}
+
+/* Mobile momentum scrolling optimization */
+.mobile-scroll-container {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  /* Prevent bounce on iOS */
+  -webkit-overflow-scrolling: touch;
+  /* Enable hardware acceleration */
+  will-change: scroll-position;
 }
 
 /* Performance optimizations */

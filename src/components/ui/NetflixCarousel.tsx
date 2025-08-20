@@ -337,52 +337,53 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         </motion.div>
       </div>
 
-      {/* Mobile-Optimized Hexagon Carousel Navigation */}
-      <div className="absolute bottom-4 xs:bottom-6 sm:bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-30 w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-none px-4">
+      {/* Mobile-First Large Navigation Bar */}
+      <div className="absolute bottom-4 xs:bottom-6 sm:bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-30 w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg px-3">
         <motion.div 
-          className="flex items-center justify-center gap-2 xs:gap-3 md:gap-4 px-4 xs:px-5 sm:px-6 py-3 xs:py-4 backdrop-blur-xl bg-black/30 xs:bg-black/25 sm:bg-black/20 rounded-2xl xs:rounded-3xl border border-white/15 shadow-2xl"
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          className="flex items-center justify-center gap-3 xs:gap-4 sm:gap-5 md:gap-6 px-5 xs:px-6 sm:px-7 py-4 xs:py-5 sm:py-6 md:py-4 backdrop-blur-xl bg-black/40 xs:bg-black/35 sm:bg-black/30 md:bg-black/20 rounded-3xl xs:rounded-[1.5rem] border border-white/20 shadow-2xl"
+          initial={{ opacity: 0, y: 30, scale: 0.85 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ delay: 0.5, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          {/* Navigation Arrow - Previous (Mobile Optimized) */}
+          {/* Navigation Arrow - Previous (Larger Mobile) */}
           <motion.button
             onClick={prevSlide}
-            className="flex-shrink-0 w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 flex items-center justify-center text-white border border-white/10 mobile-touch-target gpu-accelerated"
+            className="flex-shrink-0 w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 rounded-full bg-white/15 hover:bg-white/25 active:bg-white/35 flex items-center justify-center text-white border border-white/15 mobile-touch-target gpu-accelerated shadow-lg"
             aria-label="Previous story"
             whileHover={{ 
               scale: 1.05,
-              backgroundColor: "rgba(255, 255, 255, 0.25)",
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              boxShadow: "0 8px 25px rgba(0, 0, 0, 0.3)",
               transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
             }}
             whileTap={{ 
-              scale: 0.92,
-              backgroundColor: "rgba(255, 255, 255, 0.35)",
+              scale: 0.9,
+              backgroundColor: "rgba(255, 255, 255, 0.4)",
               transition: { duration: 0.1 }
             }}
             onTap={() => {
               // Enhanced haptic feedback
               if ('vibrate' in navigator) {
-                navigator.vibrate(40);
+                navigator.vibrate(50);
               }
             }}
           >
             <motion.svg 
-              width="18" 
-              height="18" 
+              width="20" 
+              height="20" 
               viewBox="0 0 24 24" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="xs:w-5 xs:h-5 sm:w-6 sm:h-6"
-              whileHover={{ x: -1 }}
+              className="xs:w-6 xs:h-6 sm:w-7 sm:h-7 md:w-6 md:h-6"
+              whileHover={{ x: -2 }}
               transition={{ duration: 0.2 }}
             >
               <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </motion.svg>
           </motion.button>
 
-          {/* Mobile-Optimized Hexagon Carousel Items */}
-          <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2 overflow-x-auto scrollbar-hide px-1">
+          {/* Compact Hexagon Carousel Items for Large Mobile Bar */}
+          <div className="flex items-center gap-2 xs:gap-2.5 sm:gap-3 overflow-x-auto scrollbar-hide px-1">
             {items.map((item, index) => {
               const isActive = index === currentIndex;
               const distance = Math.abs(index - currentIndex);
@@ -398,21 +399,22 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                     goToSlide(index);
                     // Enhanced haptic feedback for hexagon selection
                     if ('vibrate' in navigator) {
-                      navigator.vibrate([50, 10, 30]);
+                      navigator.vibrate([60, 15, 40]);
                     }
                   }}
                   whileHover={{ 
-                    scale: isActive ? 1.08 : 1.15,
+                    scale: isActive ? 1.1 : 1.2,
+                    y: isActive ? -3 : -4,
                     transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   whileTap={{ 
-                    scale: isActive ? 0.95 : 0.85,
+                    scale: isActive ? 0.9 : 0.8,
                     transition: { duration: 0.15 }
                   }}
                   animate={{
-                    scale: isActive ? 1 : 0.75,
-                    opacity: isActive ? 1 : 0.65,
-                    y: isActive ? -2 : 0,
+                    scale: isActive ? 1 : 0.8,
+                    opacity: isActive ? 1 : 0.7,
+                    y: isActive ? -4 : 0,
                   }}
                   transition={{ 
                     duration: 0.4, 
@@ -421,30 +423,30 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                     opacity: { duration: 0.3 },
                     y: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
                   }}
-                  style={{ minWidth: '44px', minHeight: '44px' }} // Ensure touch target
+                  style={{ minWidth: '48px', minHeight: '48px' }} // Larger touch target for mobile
                 >
-                  {/* Active indicator ring with smooth animation */}
+                  {/* Enhanced active indicator ring */}
                   {isActive && (
                     <motion.div
-                      className="absolute -inset-1 xs:-inset-1.5 sm:-inset-2 rounded-full border-2 border-[#d4a574]/60 z-0"
-                      initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
+                      className="absolute -inset-2 xs:-inset-2.5 sm:-inset-3 rounded-full border-2 xs:border-[3px] border-[#d4a574]/70 z-0 shadow-lg shadow-[#d4a574]/30"
+                      initial={{ scale: 0.7, opacity: 0, rotate: -15 }}
                       animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                      exit={{ scale: 0.8, opacity: 0, rotate: 10 }}
+                      exit={{ scale: 0.7, opacity: 0, rotate: 15 }}
                       transition={{ 
-                        duration: 0.4, 
+                        duration: 0.5, 
                         ease: [0.25, 0.1, 0.25, 1],
-                        opacity: { duration: 0.25 }
+                        opacity: { duration: 0.3 }
                       }}
                     >
-                      {/* Pulsing glow effect */}
+                      {/* Enhanced pulsing glow effect */}
                       <motion.div
-                        className="absolute inset-0 rounded-full bg-[#d4a574]/20 blur-sm"
+                        className="absolute inset-0 rounded-full bg-[#d4a574]/25 blur-md"
                         animate={{ 
-                          scale: [1, 1.1, 1],
-                          opacity: [0.3, 0.6, 0.3]
+                          scale: [1, 1.15, 1],
+                          opacity: [0.4, 0.7, 0.4]
                         }}
                         transition={{ 
-                          duration: 2.5,
+                          duration: 2,
                           repeat: Infinity,
                           ease: "easeInOut"
                         }}
@@ -458,7 +460,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                       variant="hero"
                       backgroundImage={item.image}
                       compact
-                      className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 gpu-accelerated"
+                      className="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 gpu-accelerated shadow-lg"
                     />
                   </div>
                   
@@ -471,36 +473,37 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             })}
           </div>
 
-          {/* Navigation Arrow - Next (Mobile Optimized) */}
+          {/* Navigation Arrow - Next (Larger Mobile) */}
           <motion.button
             onClick={nextSlide}
-            className="flex-shrink-0 w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 flex items-center justify-center text-white border border-white/10 mobile-touch-target gpu-accelerated"
+            className="flex-shrink-0 w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 rounded-full bg-white/15 hover:bg-white/25 active:bg-white/35 flex items-center justify-center text-white border border-white/15 mobile-touch-target gpu-accelerated shadow-lg"
             aria-label="Next story"
             whileHover={{ 
               scale: 1.05,
-              backgroundColor: "rgba(255, 255, 255, 0.25)",
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              boxShadow: "0 8px 25px rgba(0, 0, 0, 0.3)",
               transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
             }}
             whileTap={{ 
-              scale: 0.92,
-              backgroundColor: "rgba(255, 255, 255, 0.35)",
+              scale: 0.9,
+              backgroundColor: "rgba(255, 255, 255, 0.4)",
               transition: { duration: 0.1 }
             }}
             onTap={() => {
               // Enhanced haptic feedback
               if ('vibrate' in navigator) {
-                navigator.vibrate(40);
+                navigator.vibrate(50);
               }
             }}
           >
             <motion.svg 
-              width="18" 
-              height="18" 
+              width="20" 
+              height="20" 
               viewBox="0 0 24 24" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="xs:w-5 xs:h-5 sm:w-6 sm:h-6"
-              whileHover={{ x: 1 }}
+              className="xs:w-6 xs:h-6 sm:w-7 sm:h-7 md:w-6 md:h-6"
+              whileHover={{ x: 2 }}
               transition={{ duration: 0.2 }}
             >
               <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
