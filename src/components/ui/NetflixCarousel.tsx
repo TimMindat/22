@@ -162,88 +162,227 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Simplified Background with Fluent Design */}
+      {/* Enhanced Background with Smooth Transitions */}
       <motion.div 
-        className="absolute inset-0"
+        className="absolute inset-0 overflow-hidden"
         key={currentIndex}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ 
+          duration: 1, 
+          ease: [0.25, 0.1, 0.25, 1],
+          scale: { duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }
+        }}
       >
-        <div
+        <motion.div
           className="absolute inset-0 bg-cover bg-center gpu-accelerated"
           style={{
             backgroundImage: `url(${items[currentIndex]?.image})`,
-            filter: 'brightness(0.4) saturate(1.2)',
-            transform: 'scale(1.02)',
+            filter: 'brightness(0.35) saturate(1.3) contrast(1.1)',
+          }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1.02 }}
+          transition={{ 
+            duration: 1.5, 
+            ease: [0.25, 0.1, 0.25, 1]
           }}
         />
-        {/* Clean gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-      </motion.div>
-      {/* Clean Fluent Content Card */}
-      <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 md:left-12 md:right-auto md:max-w-2xl z-20">
+        
+        {/* Enhanced gradient overlays with smooth transitions */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        />
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        />
+        
+        {/* Subtle animated overlay for depth */}
         <motion.div
-          className="backdrop-blur-xl bg-black/20 rounded-3xl p-6 md:p-8 border border-white/10 shadow-2xl"
+          className="absolute inset-0 bg-gradient-to-br from-[#d4a574]/5 via-transparent to-blue-500/5"
+          animate={{
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </motion.div>
+      {/* Enhanced Fluent Content Card with Smooth Animations */}
+      <div className="absolute inset-x-4 xs:inset-x-5 sm:inset-x-6 top-1/2 -translate-y-1/2 md:left-12 md:right-auto md:max-w-2xl z-20">
+        <motion.div
+          className="backdrop-blur-xl bg-black/25 xs:bg-black/20 rounded-2xl xs:rounded-3xl p-5 xs:p-6 md:p-8 border border-white/15 shadow-2xl gpu-accelerated"
           key={currentIndex}
-          initial={{ opacity: 0, y: 20, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          initial={{ opacity: 0, y: 30, scale: 0.92, rotateX: 5 }}
+          animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+          exit={{ opacity: 0, y: -20, scale: 0.95, rotateX: -5 }}
+          transition={{ 
+            duration: 0.7, 
+            ease: [0.25, 0.1, 0.25, 1],
+            scale: { duration: 0.6 },
+            rotateX: { duration: 0.8 }
+          }}
         >
           <motion.h1 
-            className="text-white mb-4 font-bold"
-            style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
+            className="text-white mb-3 xs:mb-4 font-bold leading-tight"
+            style={{ fontSize: 'clamp(1.25rem, 4vw, 2.75rem)' }}
+            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ 
+              delay: 0.15, 
+              duration: 0.6, 
+              ease: [0.25, 0.1, 0.25, 1] 
+            }}
           >
-            {currentContent.title}<br />
-            <span className="text-[#d4a574]">{currentContent.subtitle}</span>
+            <motion.span
+              key={currentContent.title}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              {currentContent.title}
+            </motion.span>
+            <br />
+            <motion.span 
+              className="text-[#d4a574]"
+              key={currentContent.subtitle}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.4 }}
+            >
+              {currentContent.subtitle}
+            </motion.span>
           </motion.h1>
           
           <motion.p 
-            className="text-gray-300 mb-6 leading-relaxed"
-            style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.125rem)' }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-gray-300 mb-5 xs:mb-6 leading-relaxed"
+            style={{ fontSize: 'clamp(0.85rem, 2.5vw, 1.125rem)' }}
+            key={currentContent.description}
+            initial={{ opacity: 0, y: 15, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ 
+              delay: 0.25, 
+              duration: 0.6, 
+              ease: [0.25, 0.1, 0.25, 1] 
+            }}
           >
             {currentContent.description}
           </motion.p>
           
           <motion.div
-            className="flex gap-4"
-            initial={{ opacity: 0, y: 10 }}
+            className="flex flex-col xs:flex-row gap-3 xs:gap-4"
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            transition={{ 
+              delay: 0.35, 
+              duration: 0.6, 
+              ease: [0.25, 0.1, 0.25, 1] 
+            }}
           >
-            <button className="btn-smooth bg-[#d4a574] hover:bg-[#c49660] text-black px-6 py-3 rounded-full font-semibold mobile-touch-target">
-              View Content
-            </button>
-            <button className="btn-smooth bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full font-semibold border border-white/20 mobile-touch-target">
+            <motion.button 
+              className="btn-smooth bg-[#d4a574] hover:bg-[#c49660] text-black px-5 xs:px-6 py-3 xs:py-3.5 rounded-full font-semibold mobile-touch-target shadow-lg hover:shadow-xl hover:shadow-[#d4a574]/25"
+              whileHover={{ 
+                scale: 1.02,
+                y: -1,
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ 
+                scale: 0.98,
+                y: 0,
+                transition: { duration: 0.1 }
+              }}
+              style={{ fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)' }}
+            >
+              <span className="flex items-center gap-2">
+                View Content
+                <motion.svg 
+                  width="16" 
+                  height="16" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  xmlns="http://www.w3.org/2000/svg"
+                  whileHover={{ x: 2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </motion.svg>
+              </span>
+            </motion.button>
+            
+            <motion.button 
+              className="btn-smooth bg-white/15 hover:bg-white/25 text-white px-5 xs:px-6 py-3 xs:py-3.5 rounded-full font-semibold border border-white/25 hover:border-white/35 mobile-touch-target"
+              whileHover={{ 
+                scale: 1.02,
+                y: -1,
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ 
+                scale: 0.98,
+                y: 0,
+                transition: { duration: 0.1 }
+              }}
+              style={{ fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)' }}
+            >
               Learn More
-            </button>
+            </motion.button>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Clean Hexagon Carousel */}
-      <div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-30">
-        <div className="flex items-center gap-3 md:gap-4 px-6 py-4 backdrop-blur-xl bg-black/20 rounded-full border border-white/10">
-          {/* Navigation Arrow - Previous */}
-          <button
+      {/* Mobile-Optimized Hexagon Carousel Navigation */}
+      <div className="absolute bottom-4 xs:bottom-6 sm:bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-30 w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-none px-4">
+        <motion.div 
+          className="flex items-center justify-center gap-2 xs:gap-3 md:gap-4 px-4 xs:px-5 sm:px-6 py-3 xs:py-4 backdrop-blur-xl bg-black/30 xs:bg-black/25 sm:bg-black/20 rounded-2xl xs:rounded-3xl border border-white/15 shadow-2xl"
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          {/* Navigation Arrow - Previous (Mobile Optimized) */}
+          <motion.button
             onClick={prevSlide}
-            className="hover-lift w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white mobile-touch-target smooth-transition"
+            className="flex-shrink-0 w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 flex items-center justify-center text-white border border-white/10 mobile-touch-target gpu-accelerated"
             aria-label="Previous story"
+            whileHover={{ 
+              scale: 1.05,
+              backgroundColor: "rgba(255, 255, 255, 0.25)",
+              transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
+            }}
+            whileTap={{ 
+              scale: 0.92,
+              backgroundColor: "rgba(255, 255, 255, 0.35)",
+              transition: { duration: 0.1 }
+            }}
+            onTap={() => {
+              // Enhanced haptic feedback
+              if ('vibrate' in navigator) {
+                navigator.vibrate(40);
+              }
+            }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+            <motion.svg 
+              width="18" 
+              height="18" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="xs:w-5 xs:h-5 sm:w-6 sm:h-6"
+              whileHover={{ x: -1 }}
+              transition={{ duration: 0.2 }}
+            >
+              <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </motion.svg>
+          </motion.button>
 
-          {/* Hexagon Carousel Items */}
-          <div className="flex items-center gap-2">
+          {/* Mobile-Optimized Hexagon Carousel Items */}
+          <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2 overflow-x-auto scrollbar-hide px-1">
             {items.map((item, index) => {
               const isActive = index === currentIndex;
               const distance = Math.abs(index - currentIndex);
@@ -254,69 +393,221 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
               return (
                 <motion.div
                   key={item.id}
-                  className="cursor-pointer mobile-touch-target"
-                  onClick={() => goToSlide(index)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  animate={{
-                    scale: isActive ? 1 : 0.7,
-                    opacity: isActive ? 1 : 0.6,
+                  className="cursor-pointer flex-shrink-0 relative"
+                  onClick={() => {
+                    goToSlide(index);
+                    // Enhanced haptic feedback for hexagon selection
+                    if ('vibrate' in navigator) {
+                      navigator.vibrate([50, 10, 30]);
+                    }
                   }}
-                  transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                  whileHover={{ 
+                    scale: isActive ? 1.08 : 1.15,
+                    transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
+                  }}
+                  whileTap={{ 
+                    scale: isActive ? 0.95 : 0.85,
+                    transition: { duration: 0.15 }
+                  }}
+                  animate={{
+                    scale: isActive ? 1 : 0.75,
+                    opacity: isActive ? 1 : 0.65,
+                    y: isActive ? -2 : 0,
+                  }}
+                  transition={{ 
+                    duration: 0.4, 
+                    ease: [0.25, 0.1, 0.25, 1],
+                    scale: { duration: 0.35 },
+                    opacity: { duration: 0.3 },
+                    y: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+                  }}
+                  style={{ minWidth: '44px', minHeight: '44px' }} // Ensure touch target
                 >
-                  <HexagonalCard
-                    title={item.title}
-                    variant="hero"
-                    backgroundImage={item.image}
-                    compact
-                    className={`w-12 h-12 ${isActive ? 'ring-2 ring-[#d4a574]/50 ring-offset-2 ring-offset-black/50' : ''}`}
-                  />
+                  {/* Active indicator ring with smooth animation */}
+                  {isActive && (
+                    <motion.div
+                      className="absolute -inset-1 xs:-inset-1.5 sm:-inset-2 rounded-full border-2 border-[#d4a574]/60 z-0"
+                      initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
+                      animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                      exit={{ scale: 0.8, opacity: 0, rotate: 10 }}
+                      transition={{ 
+                        duration: 0.4, 
+                        ease: [0.25, 0.1, 0.25, 1],
+                        opacity: { duration: 0.25 }
+                      }}
+                    >
+                      {/* Pulsing glow effect */}
+                      <motion.div
+                        className="absolute inset-0 rounded-full bg-[#d4a574]/20 blur-sm"
+                        animate={{ 
+                          scale: [1, 1.1, 1],
+                          opacity: [0.3, 0.6, 0.3]
+                        }}
+                        transition={{ 
+                          duration: 2.5,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    </motion.div>
+                  )}
+                  
+                  <div className="relative z-10">
+                    <HexagonalCard
+                      title={item.title}
+                      variant="hero"
+                      backgroundImage={item.image}
+                      compact
+                      className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 gpu-accelerated"
+                    />
+                  </div>
+                  
+                  {/* Accessibility label */}
+                  <span className="sr-only">
+                    {isActive ? `Currently viewing ${item.title}` : `Switch to ${item.title}`}
+                  </span>
                 </motion.div>
               );
             })}
           </div>
 
-          {/* Navigation Arrow - Next */}
-          <button
+          {/* Navigation Arrow - Next (Mobile Optimized) */}
+          <motion.button
             onClick={nextSlide}
-            className="hover-lift w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white mobile-touch-target smooth-transition"
+            className="flex-shrink-0 w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 flex items-center justify-center text-white border border-white/10 mobile-touch-target gpu-accelerated"
             aria-label="Next story"
+            whileHover={{ 
+              scale: 1.05,
+              backgroundColor: "rgba(255, 255, 255, 0.25)",
+              transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
+            }}
+            whileTap={{ 
+              scale: 0.92,
+              backgroundColor: "rgba(255, 255, 255, 0.35)",
+              transition: { duration: 0.1 }
+            }}
+            onTap={() => {
+              // Enhanced haptic feedback
+              if ('vibrate' in navigator) {
+                navigator.vibrate(40);
+              }
+            }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
+            <motion.svg 
+              width="18" 
+              height="18" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="xs:w-5 xs:h-5 sm:w-6 sm:h-6"
+              whileHover={{ x: 1 }}
+              transition={{ duration: 0.2 }}
+            >
+              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </motion.svg>
+          </motion.button>
+        </motion.div>
       </div>
 
-      {/* Simple Autoplay Indicator */}
-      <div className="absolute top-4 right-4 z-20">
-        <button
-          onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-          className={`w-10 h-10 rounded-full flex items-center justify-center mobile-touch-target smooth-transition ${
-            isAutoPlaying ? 'bg-[#d4a574]/20 text-[#d4a574]' : 'bg-white/10 text-white/60'
+      {/* Mobile-Optimized Autoplay Indicator */}
+      <motion.div 
+        className="absolute top-4 xs:top-5 sm:top-6 right-4 xs:right-5 sm:right-6 z-20"
+        initial={{ opacity: 0, scale: 0.8, y: -10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      >
+        <motion.button
+          onClick={() => {
+            setIsAutoPlaying(!isAutoPlaying);
+            // Haptic feedback for autoplay toggle
+            if ('vibrate' in navigator) {
+              navigator.vibrate(25);
+            }
+          }}
+          className={`w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 rounded-full flex items-center justify-center mobile-touch-target backdrop-blur-md border gpu-accelerated ${
+            isAutoPlaying 
+              ? 'bg-[#d4a574]/25 text-[#d4a574] border-[#d4a574]/30 shadow-lg shadow-[#d4a574]/20' 
+              : 'bg-white/15 text-white/70 border-white/20 hover:bg-white/25 hover:text-white/90'
           }`}
           aria-label={`${isAutoPlaying ? 'Pause' : 'Play'} auto-navigation`}
+          whileHover={{ 
+            scale: 1.05,
+            transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
+          }}
+          whileTap={{ 
+            scale: 0.92,
+            transition: { duration: 0.1 }
+          }}
         >
-          {isAutoPlaying ? (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
-              <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
-            </svg>
-          ) : (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="5,3 19,12 5,21" fill="currentColor"/>
-            </svg>
+          <motion.div
+            key={isAutoPlaying ? 'pause' : 'play'}
+            initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            exit={{ scale: 0.8, opacity: 0, rotate: 10 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            {isAutoPlaying ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="xs:w-[18px] xs:h-[18px] sm:w-5 sm:h-5">
+                <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+                <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="xs:w-[18px] xs:h-[18px] sm:w-5 sm:h-5 ml-0.5">
+                <polygon points="5,3 19,12 5,21" fill="currentColor"/>
+              </svg>
+            )}
+          </motion.div>
+          
+          {/* Autoplay progress ring */}
+          {isAutoPlaying && (
+            <motion.svg 
+              className="absolute inset-0 w-full h-full -rotate-90"
+              viewBox="0 0 44 44"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
+            >
+              <motion.circle
+                cx="22"
+                cy="22"
+                r="20"
+                fill="none"
+                stroke="#d4a574"
+                strokeWidth="2"
+                strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ 
+                  duration: 5, // Match autoplay interval
+                  ease: 'linear',
+                  repeat: Infinity
+                }}
+              />
+            </motion.svg>
           )}
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
-      {/* Progress Indicator */}
-      <div className="absolute top-4 left-4 z-20">
-        <div className="text-white/60 text-sm font-medium">
-          {currentIndex + 1} / {items.length}
+      {/* Mobile-Optimized Progress Indicator */}
+      <motion.div 
+        className="absolute top-4 xs:top-5 sm:top-6 left-4 xs:left-5 sm:left-6 z-20"
+        initial={{ opacity: 0, scale: 0.8, y: -10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      >
+        <div className="backdrop-blur-md bg-black/25 rounded-full px-3 xs:px-4 py-2 xs:py-2.5 border border-white/15 shadow-lg">
+          <motion.div 
+            className="text-white/80 font-medium"
+            style={{ fontSize: 'clamp(12px, 2.5vw, 14px)' }}
+            key={currentIndex}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            {currentIndex + 1} / {items.length}
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
