@@ -337,24 +337,24 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         </motion.div>
       </div>
 
-      {/* Responsive Navigation Bar - Mobile Compact, Desktop Wide */}
-      <div className="fixed bottom-4 xs:bottom-6 sm:bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-50 w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-5xl px-3 md:px-6 pointer-events-none">
+      {/* Revamped Navigation Bar - Perfect Hexagon Integration */}
+      <div className="fixed bottom-4 xs:bottom-6 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 z-50 w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-3xl lg:max-w-4xl xl:max-w-5xl px-4 md:px-6 pointer-events-none">
         <motion.div 
-          className="flex items-center justify-center gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-8 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 py-4 xs:py-5 sm:py-6 md:py-5 lg:py-6 backdrop-blur-2xl bg-black/55 xs:bg-black/50 sm:bg-black/45 md:bg-black/35 lg:bg-black/30 rounded-[1.5rem] xs:rounded-[2rem] sm:rounded-[2.5rem] md:rounded-[2rem] border border-white/30 xs:border-white/25 md:border-white/20 shadow-2xl ultra-smooth-scroll no-scroll-jitter pointer-events-auto"
-          initial={{ opacity: 0, y: 50, scale: 0.75, rotateX: 15 }}
+          className="relative flex items-center justify-center gap-3 xs:gap-4 sm:gap-5 md:gap-7 lg:gap-9 px-5 xs:px-6 sm:px-7 md:px-9 lg:px-11 py-5 xs:py-6 sm:py-7 md:py-6 lg:py-7 backdrop-blur-3xl bg-gradient-to-r from-black/60 via-black/50 to-black/60 xs:from-black/55 xs:via-black/45 xs:to-black/55 md:from-black/45 md:via-black/35 md:to-black/45 rounded-[1.75rem] xs:rounded-[2.25rem] md:rounded-[2.5rem] border border-white/35 xs:border-white/30 md:border-white/25 shadow-[0_20px_60px_rgba(0,0,0,0.6)] ultra-smooth-scroll no-scroll-jitter pointer-events-auto overflow-hidden"
+          initial={{ opacity: 0, y: 60, scale: 0.7, rotateX: 20 }}
           animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
           transition={{ 
-            delay: 0.5, 
-            duration: 0.9, 
+            delay: 0.4, 
+            duration: 1.0, 
             ease: [0.25, 0.1, 0.25, 1],
-            scale: { duration: 0.8 },
-            rotateX: { duration: 1.0 }
+            scale: { duration: 0.9 },
+            rotateX: { duration: 1.1 }
           }}
           whileHover={{
-            scale: 1.01,
-            y: -3,
-            boxShadow: "0 25px 50px rgba(0, 0, 0, 0.5)",
-            transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
+            scale: 1.015,
+            y: -4,
+            boxShadow: "0 30px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 165, 116, 0.15)",
+            transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
           }}
           style={{
             willChange: 'transform, opacity',
@@ -363,53 +363,71 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             contain: 'layout style paint'
           }}
         >
-          {/* Responsive Navigation Arrow - Previous */}
+          {/* Premium Gradient Overlay */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-[#d4a574]/8 via-transparent to-[#d4a574]/8 opacity-0"
+            whileHover={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          />
+          
+          {/* Subtle Inner Glow */}
+          <div className="absolute inset-0 rounded-[1.75rem] xs:rounded-[2.25rem] md:rounded-[2.5rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] pointer-events-none" />
+          {/* Premium Navigation Arrow - Previous */}
           <motion.button
             onClick={prevSlide}
-            className="flex-shrink-0 w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-white/25 hover:bg-white/35 active:bg-white/45 flex items-center justify-center text-white border border-white/25 mobile-touch-target gpu-accelerated shadow-xl backdrop-blur-sm"
+            className="relative flex-shrink-0 w-11 h-11 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-13 md:h-13 lg:w-15 lg:h-15 rounded-full bg-gradient-to-br from-white/30 via-white/25 to-white/20 hover:from-white/40 hover:via-white/35 hover:to-white/30 active:from-white/50 active:via-white/45 active:to-white/40 flex items-center justify-center text-white border border-white/30 hover:border-white/40 mobile-touch-target gpu-accelerated shadow-[0_8px_25px_rgba(0,0,0,0.4)] backdrop-blur-sm overflow-hidden"
             aria-label="Previous story"
             whileHover={{ 
-              scale: 1.06,
-              backgroundColor: "rgba(255, 255, 255, 0.4)",
-              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.5)",
-              y: -2,
-              transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 1.08,
+              y: -3,
+              boxShadow: "0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.1)",
+              transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
             }}
             whileTap={{ 
-              scale: 0.9,
-              backgroundColor: "rgba(255, 255, 255, 0.55)",
-              transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 0.92,
+              y: -1,
+              transition: { duration: 0.18, ease: [0.25, 0.1, 0.25, 1] }
             }}
             onTap={() => {
-              // Enhanced haptic feedback
+              // Premium haptic feedback
               if ('vibrate' in navigator) {
-                navigator.vibrate([70, 15, 45]);
+                navigator.vibrate([80, 20, 50]);
               }
             }}
             style={{
-              willChange: 'transform, background-color, box-shadow',
+              willChange: 'transform, box-shadow',
               backfaceVisibility: 'hidden',
               contain: 'layout style paint',
               touchAction: 'manipulation'
             }}
           >
+            {/* Button Inner Glow */}
+            <motion.div 
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-0"
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
+            
             <motion.svg 
-              width="20" 
-              height="20" 
+              width="18" 
+              height="18" 
               viewBox="0 0 24 24" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="xs:w-6 xs:h-6 sm:w-7 sm:h-7 md:w-6 md:h-6 lg:w-7 lg:h-7"
-              whileHover={{ x: -2, scale: 1.08 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="relative z-10 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-5 md:h-5 lg:w-6 lg:h-6"
+              whileHover={{ x: -1.5, scale: 1.06 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
               style={{ willChange: 'transform' }}
             >
               <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </motion.svg>
           </motion.button>
 
-          {/* Responsive Hexagon Carousel Items - Mobile Compact, Desktop Spacious */}
-          <div className="flex items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 overflow-x-auto scrollbar-hide px-1 xs:px-2 md:px-3 ultra-smooth-scroll">
+          {/* Perfect Hexagon Integration - Cohesive Design */}
+          <div className="relative flex items-center gap-2.5 xs:gap-3 sm:gap-3.5 md:gap-4.5 lg:gap-5.5 overflow-hidden px-2 xs:px-2.5 md:px-3 ultra-smooth-scroll">
+            {/* Hexagon Container Background */}
+            <div className="absolute inset-y-1 left-1 right-1 bg-gradient-to-r from-transparent via-white/5 to-transparent rounded-full opacity-50 pointer-events-none" />
+            
             {items.map((item, index) => {
               const isActive = index === currentIndex;
               const distance = Math.abs(index - currentIndex);
@@ -420,42 +438,42 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
               return (
                 <motion.div
                   key={item.id}
-                  className="cursor-pointer flex-shrink-0 relative mobile-touch-target"
+                  className="cursor-pointer flex-shrink-0 relative mobile-touch-target group"
                   onClick={() => {
                     goToSlide(index);
-                    // Enhanced haptic feedback
+                    // Premium haptic feedback pattern
                     if ('vibrate' in navigator) {
-                      navigator.vibrate([80, 25, 60, 15, 40]);
+                      navigator.vibrate([90, 30, 70, 20, 50]);
                     }
                   }}
                   whileHover={{ 
-                    scale: isActive ? 1.12 : 1.22,
-                    y: isActive ? -3 : -5,
-                    rotateY: isActive ? 0 : 3,
-                    transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
+                    scale: isActive ? 1.15 : 1.25,
+                    y: isActive ? -4 : -6,
+                    rotateY: isActive ? 0 : 2,
+                    transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   whileTap={{ 
-                    scale: isActive ? 0.88 : 0.78,
+                    scale: isActive ? 0.9 : 0.8,
                     rotateY: 0,
-                    transition: { duration: 0.18, ease: [0.25, 0.1, 0.25, 1] }
+                    transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   animate={{
-                    scale: isActive ? 1.08 : 0.85,
-                    opacity: isActive ? 1 : 0.78,
-                    y: isActive ? -5 : 0,
-                    rotateY: isActive ? 0 : 1.5,
+                    scale: isActive ? 1.1 : 0.88,
+                    opacity: isActive ? 1 : 0.82,
+                    y: isActive ? -6 : 0,
+                    rotateY: isActive ? 0 : 1,
                   }}
                   transition={{ 
-                    duration: 0.5, 
+                    duration: 0.55, 
                     ease: [0.25, 0.1, 0.25, 1],
-                    scale: { duration: 0.45 },
-                    opacity: { duration: 0.4 },
-                    y: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
-                    rotateY: { duration: 0.45 }
+                    scale: { duration: 0.5 },
+                    opacity: { duration: 0.45 },
+                    y: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] },
+                    rotateY: { duration: 0.5 }
                   }}
                   style={{ 
-                    minWidth: '48px', 
-                    minHeight: '48px',
+                    minWidth: '44px', 
+                    minHeight: '44px',
                     willChange: 'transform, opacity',
                     backfaceVisibility: 'hidden',
                     perspective: '1000px',
@@ -463,42 +481,46 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                     touchAction: 'manipulation'
                   }}
                 >
-                  {/* Enhanced active indicator ring */}
+                  {/* Premium Active Indicator Ring */}
                   {isActive && (
                     <motion.div
-                      className="absolute -inset-2 xs:-inset-2.5 sm:-inset-3 rounded-full border-2 xs:border-[3px] border-[#d4a574]/70 z-0 shadow-lg shadow-[#d4a574]/30"
-                      initial={{ scale: 0.7, opacity: 0, rotate: -15 }}
+                      className="absolute -inset-1.5 xs:-inset-2 sm:-inset-2.5 md:-inset-3 rounded-full border-2 xs:border-[2.5px] md:border-3 border-[#d4a574]/80 z-0 shadow-[0_0_20px_rgba(212,165,116,0.4)] backdrop-blur-sm"
+                      initial={{ scale: 0.8, opacity: 0, rotate: -12 }}
                       animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                      exit={{ scale: 0.7, opacity: 0, rotate: 15 }}
+                      exit={{ scale: 0.8, opacity: 0, rotate: 12 }}
                       transition={{ 
-                        duration: 0.5, 
+                        duration: 0.6, 
                         ease: [0.25, 0.1, 0.25, 1],
-                        opacity: { duration: 0.3 }
+                        opacity: { duration: 0.4 }
                       }}
                     >
-                      {/* Enhanced pulsing glow effect */}
+                      {/* Premium Pulsing Glow */}
                       <motion.div
-                        className="absolute inset-0 rounded-full bg-[#d4a574]/25 blur-md"
+                        className="absolute inset-0 rounded-full bg-gradient-to-r from-[#d4a574]/30 via-[#d4a574]/20 to-[#d4a574]/30 blur-sm"
                         animate={{ 
-                          scale: [1, 1.15, 1],
-                          opacity: [0.4, 0.7, 0.4]
+                          scale: [1, 1.12, 1],
+                          opacity: [0.5, 0.8, 0.5]
                         }}
                         transition={{ 
-                          duration: 2,
+                          duration: 2.5,
                           repeat: Infinity,
                           ease: "easeInOut"
                         }}
                       />
+                      
+                      {/* Inner Glow Ring */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[#d4a574]/10 to-transparent" />
                     </motion.div>
                   )}
                   
-                  <div className="relative z-10">
+                  {/* Perfect Hexagon Sizing */}
+                  <div className="relative z-10 group-hover:z-20">
                     <HexagonalCard
                       title={item.title}
                       variant="hero"
                       backgroundImage={item.image}
                       compact
-                      className="w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 md:w-11 md:h-11 lg:w-13 lg:h-13 gpu-accelerated shadow-lg"
+                      className="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 gpu-accelerated shadow-[0_4px_15px_rgba(0,0,0,0.3)] group-hover:shadow-[0_8px_25px_rgba(0,0,0,0.4)]"
                     />
                   </div>
                   
@@ -511,45 +533,51 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             })}
           </div>
 
-          {/* Responsive Navigation Arrow - Next */}
+          {/* Premium Navigation Arrow - Next */}
           <motion.button
             onClick={nextSlide}
-            className="flex-shrink-0 w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-white/25 hover:bg-white/35 active:bg-white/45 flex items-center justify-center text-white border border-white/25 mobile-touch-target gpu-accelerated shadow-xl backdrop-blur-sm"
+            className="relative flex-shrink-0 w-11 h-11 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-13 md:h-13 lg:w-15 lg:h-15 rounded-full bg-gradient-to-br from-white/30 via-white/25 to-white/20 hover:from-white/40 hover:via-white/35 hover:to-white/30 active:from-white/50 active:via-white/45 active:to-white/40 flex items-center justify-center text-white border border-white/30 hover:border-white/40 mobile-touch-target gpu-accelerated shadow-[0_8px_25px_rgba(0,0,0,0.4)] backdrop-blur-sm overflow-hidden"
             aria-label="Next story"
             whileHover={{ 
-              scale: 1.06,
-              backgroundColor: "rgba(255, 255, 255, 0.4)",
-              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.5)",
-              y: -2,
-              transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 1.08,
+              y: -3,
+              boxShadow: "0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.1)",
+              transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
             }}
             whileTap={{ 
-              scale: 0.9,
-              backgroundColor: "rgba(255, 255, 255, 0.55)",
-              transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 0.92,
+              y: -1,
+              transition: { duration: 0.18, ease: [0.25, 0.1, 0.25, 1] }
             }}
             onTap={() => {
-              // Enhanced haptic feedback
+              // Premium haptic feedback
               if ('vibrate' in navigator) {
-                navigator.vibrate([70, 15, 45]);
+                navigator.vibrate([80, 20, 50]);
               }
             }}
             style={{
-              willChange: 'transform, background-color, box-shadow',
+              willChange: 'transform, box-shadow',
               backfaceVisibility: 'hidden',
               contain: 'layout style paint',
               touchAction: 'manipulation'
             }}
           >
+            {/* Button Inner Glow */}
+            <motion.div 
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-0"
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
+            
             <motion.svg 
-              width="20" 
-              height="20" 
+              width="18" 
+              height="18" 
               viewBox="0 0 24 24" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="xs:w-6 xs:h-6 sm:w-7 sm:h-7 md:w-6 md:h-6 lg:w-7 lg:h-7"
-              whileHover={{ x: 2, scale: 1.08 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="relative z-10 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-5 md:h-5 lg:w-6 lg:h-6"
+              whileHover={{ x: 1.5, scale: 1.06 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
               style={{ willChange: 'transform' }}
             >
               <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -558,36 +586,51 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         </motion.div>
       </div>
 
-      {/* Mobile-Optimized Autoplay Indicator */}
+      {/* Repositioned Autoplay Indicator - Below Navbar */}
       <motion.div 
-        className="absolute top-4 xs:top-5 sm:top-6 right-4 xs:right-5 sm:right-6 z-20"
-        initial={{ opacity: 0, scale: 0.8, y: -10 }}
+        className="absolute top-16 xs:top-18 sm:top-20 md:top-16 lg:top-18 right-4 xs:right-5 sm:right-6 z-20"
+        initial={{ opacity: 0, scale: 0.8, y: -15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        transition={{ delay: 0.35, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <motion.button
           onClick={() => {
             setIsAutoPlaying(!isAutoPlaying);
-            // Haptic feedback for autoplay toggle
+            // Enhanced haptic feedback for premium feel
             if ('vibrate' in navigator) {
-              navigator.vibrate(25);
+              navigator.vibrate(35);
             }
           }}
-          className={`w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 rounded-full flex items-center justify-center mobile-touch-target backdrop-blur-md border gpu-accelerated ${
+          className={`relative w-12 h-12 xs:w-13 xs:h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mobile-touch-target backdrop-blur-xl border gpu-accelerated shadow-[0_8px_25px_rgba(0,0,0,0.3)] overflow-hidden ${
             isAutoPlaying 
-              ? 'bg-[#d4a574]/25 text-[#d4a574] border-[#d4a574]/30 shadow-lg shadow-[#d4a574]/20' 
-              : 'bg-white/15 text-white/70 border-white/20 hover:bg-white/25 hover:text-white/90'
+              ? 'bg-gradient-to-br from-[#d4a574]/30 via-[#d4a574]/25 to-[#d4a574]/20 text-[#d4a574] border-[#d4a574]/40 shadow-[0_0_25px_rgba(212,165,116,0.3)]' 
+              : 'bg-gradient-to-br from-white/25 via-white/20 to-white/15 text-white/80 border-white/30 hover:from-white/35 hover:via-white/30 hover:to-white/25 hover:text-white/95'
           }`}
           aria-label={`${isAutoPlaying ? 'Pause' : 'Play'} auto-navigation`}
           whileHover={{ 
-            scale: 1.05,
-            transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
+            scale: 1.08,
+            y: -2,
+            boxShadow: isAutoPlaying 
+              ? "0 12px 35px rgba(212, 165, 116, 0.4), 0 0 30px rgba(212, 165, 116, 0.2)"
+              : "0 12px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.1)",
+            transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
           }}
           whileTap={{ 
-            scale: 0.92,
-            transition: { duration: 0.1 }
+            scale: 0.94,
+            y: 0,
+            transition: { duration: 0.15 }
           }}
         >
+          {/* Button Inner Glow */}
+          <motion.div 
+            className={`absolute inset-0 rounded-full opacity-0 ${
+              isAutoPlaying 
+                ? 'bg-gradient-to-br from-[#d4a574]/20 to-transparent'
+                : 'bg-gradient-to-br from-white/15 to-transparent'
+            }`}
+            whileHover={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
           <motion.div
             key={isAutoPlaying ? 'pause' : 'play'}
             initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
@@ -637,23 +680,28 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         </motion.button>
       </motion.div>
 
-      {/* Mobile-Optimized Progress Indicator */}
+      {/* Repositioned Progress Indicator - Below Navbar */}
       <motion.div 
-        className="absolute top-4 xs:top-5 sm:top-6 left-4 xs:left-5 sm:left-6 z-20"
-        initial={{ opacity: 0, scale: 0.8, y: -10 }}
+        className="absolute top-16 xs:top-18 sm:top-20 md:top-16 lg:top-18 left-4 xs:left-5 sm:left-6 z-20"
+        initial={{ opacity: 0, scale: 0.8, y: -15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        transition={{ delay: 0.45, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <div className="backdrop-blur-md bg-black/25 rounded-full px-3 xs:px-4 py-2 xs:py-2.5 border border-white/15 shadow-lg">
+        <div className="backdrop-blur-xl bg-gradient-to-r from-black/35 via-black/30 to-black/25 rounded-full px-4 xs:px-5 py-2.5 xs:py-3 border border-white/20 shadow-[0_8px_25px_rgba(0,0,0,0.3)] overflow-hidden relative">
+          {/* Inner Glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 rounded-full pointer-events-none" />
+          
           <motion.div 
-            className="text-white/80 font-medium"
-            style={{ fontSize: 'clamp(12px, 2.5vw, 14px)' }}
+            className="relative z-10 text-white/85 font-semibold tracking-wide"
+            style={{ fontSize: 'clamp(13px, 2.8vw, 15px)' }}
             key={currentIndex}
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ opacity: 0, y: 8, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {currentIndex + 1} / {items.length}
+            <span className="text-[#d4a574]">{currentIndex + 1}</span>
+            <span className="text-white/60 mx-1">/</span>
+            <span className="text-white/75">{items.length}</span>
           </motion.div>
         </div>
       </motion.div>
