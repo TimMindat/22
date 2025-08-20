@@ -32,7 +32,7 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={`hexagonal-card relative shrink-0 snap-center ${ghost ? 'pointer-events-none select-none' : 'cursor-pointer'} group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#d4a574]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-xl ${className}`}
+      className={`hexagonal-card relative shrink-0 snap-center ${ghost ? 'pointer-events-none select-none' : 'cursor-pointer'} group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#d4a574]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-xl hover-lift smooth-transition gpu-accelerated ${className}`}
       onClick={ghost ? undefined : onClick}
       onKeyDown={(e: React.KeyboardEvent) => {
         if ((e.key === 'Enter' || e.key === ' ') && onClick) {
@@ -43,6 +43,14 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
       tabIndex={onClick && !ghost ? 0 : -1}
       role={onClick && !ghost ? "button" : undefined}
       aria-label={onClick && !ghost ? `Select ${title}` : undefined}
+      whileHover={{ 
+        scale: ghost ? 1 : 1.02,
+        transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
+      }}
+      whileTap={{ 
+        scale: ghost ? 1 : 0.98,
+        transition: { duration: 0.1 }
+      }}
     >
       {/* Hexagonal shape using clip-path */}
       <div className={`hexagon-container relative mx-auto ${

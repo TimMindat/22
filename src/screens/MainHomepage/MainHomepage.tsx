@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState, useRef } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import HexagonalCard from "../../components/ui/HexagonalCard";
 import HoneycombGrid from "../../components/ui/HoneycombGrid";
@@ -19,6 +19,31 @@ const MobileLoader = () => (
 
 export const MainHomepage = (): JSX.Element => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  
+  // Scroll-triggered animations
+  useEffect(() => {
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    };
+
+    observerRef.current = new IntersectionObserver(observerCallback, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe all scroll-reveal elements
+    const scrollElements = document.querySelectorAll('.scroll-reveal');
+    scrollElements.forEach((el) => observerRef.current?.observe(el));
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, []);
   
   // Preload critical resources
   useEffect(() => {
@@ -89,13 +114,13 @@ export const MainHomepage = (): JSX.Element => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] text-white overflow-x-hidden touch-pan-y">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] text-white overflow-x-hidden smooth-scroll gpu-accelerated">
       {/* Navbar with mobile optimization */}
       <Navbar />
 
       {/* Netflix-Style Hero Carousel with Suspense and preload optimization */}
       <Suspense fallback={<MobileLoader />}>
-        <div className="preload-image">
+        <div className="preload-image gpu-accelerated">
           <NetflixCarousel items={carouselItems} />
         </div>
       </Suspense>
@@ -104,13 +129,13 @@ export const MainHomepage = (): JSX.Element => {
 
 
 
-      {/* Mobile-optimized CTA trio with fluid grid system */}
-      <section className="py-8 xs:py-10 sm:py-12 md:py-16 relative bg-black/30 overflow-hidden content-visibility-auto">
+      {/* Mobile-optimized CTA trio with fluid grid system and smooth animations */}
+      <section className="py-8 xs:py-10 sm:py-12 md:py-16 relative bg-black/30 overflow-hidden content-visibility-auto section-smooth scroll-reveal">
         <div className="fluid-container text-center relative">
           <div className="fluid-grid max-w-6xl mx-auto" style={{'--grid-min-size': '280px'}}>
-            {/* Join Collective - Mobile Optimized */}
-            <div className="group relative mobile-touch-target">
-              <div className="relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 transition-all duration-300 hover:bg-black/50">
+            {/* Join Collective - Mobile Optimized with micro-interactions */}
+            <div className="group relative mobile-touch-target scroll-reveal stagger-1">
+              <div className="card-smooth relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 hover:bg-black/50 gpu-accelerated">
                 <div className="w-16 h-16 xs:w-20 xs:h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-4 xs:mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-xl">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -118,16 +143,16 @@ export const MainHomepage = (): JSX.Element => {
                 </div>
                 <h3 className="text-lg xs:text-xl font-semibold text-white mb-2 xs:mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Join Collective</h3>
                 <p className="text-gray-400 mb-4 xs:mb-6 text-sm leading-relaxed">Connect with like-minded individuals and build lasting relationships.</p>
-                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] active:bg-[#b8935a] text-black px-6 xs:px-8 py-3 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden w-full xs:w-auto mobile-touch-target">
+                <button className="btn-smooth group/btn relative bg-[#d4a574] hover:bg-[#c49660] active:bg-[#b8935a] text-black px-6 xs:px-8 py-3 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black w-full xs:w-auto mobile-touch-target gpu-accelerated">
                   <span className="relative z-10">Join now</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 smooth-transition-fast"></div>
                 </button>
               </div>
             </div>
 
-            {/* Send Gift - Mobile Optimized */}
-            <div className="group relative mobile-touch-target">
-              <div className="relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 transition-all duration-300 hover:bg-black/50">
+            {/* Send Gift - Mobile Optimized with smooth interactions */}
+            <div className="group relative mobile-touch-target scroll-reveal stagger-2">
+              <div className="card-smooth relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 hover:bg-black/50 gpu-accelerated">
                 <div className="w-16 h-16 xs:w-20 xs:h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-4 xs:mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-xl">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="3" y="8" width="18" height="4" rx="1" stroke="white" strokeWidth="2"/>
@@ -138,16 +163,16 @@ export const MainHomepage = (): JSX.Element => {
                 </div>
                 <h3 className="text-lg xs:text-xl font-semibold text-white mb-2 xs:mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Send Gift</h3>
                 <p className="text-gray-400 mb-4 xs:mb-6 text-sm leading-relaxed">Share meaningful gifts and support community initiatives.</p>
-                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] active:bg-[#b8935a] text-black px-6 xs:px-8 py-3 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden w-full xs:w-auto mobile-touch-target">
+                <button className="btn-smooth group/btn relative bg-[#d4a574] hover:bg-[#c49660] active:bg-[#b8935a] text-black px-6 xs:px-8 py-3 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black w-full xs:w-auto mobile-touch-target gpu-accelerated">
                   <span className="relative z-10">Send now</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 smooth-transition-fast"></div>
                 </button>
               </div>
             </div>
                     
-            {/* Share Story - Mobile Optimized */}
-            <div className="group relative mobile-touch-target">
-              <div className="relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 transition-all duration-300 hover:bg-black/50">
+            {/* Share Story - Mobile Optimized with smooth interactions */}
+            <div className="group relative mobile-touch-target scroll-reveal stagger-3">
+              <div className="card-smooth relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 hover:bg-black/50 gpu-accelerated">
                 <div className="w-16 h-16 xs:w-20 xs:h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-4 xs:mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-xl">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="white" strokeWidth="2"/>
@@ -156,9 +181,9 @@ export const MainHomepage = (): JSX.Element => {
                 </div>
                 <h3 className="text-lg xs:text-xl font-semibold text-white mb-2 xs:mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Share Story</h3>
                 <p className="text-gray-400 mb-4 xs:mb-6 text-sm leading-relaxed">Tell your story and inspire others with your experiences.</p>
-                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] active:bg-[#b8935a] text-black px-6 xs:px-8 py-3 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden w-full xs:w-auto mobile-touch-target">
+                <button className="btn-smooth group/btn relative bg-[#d4a574] hover:bg-[#c49660] active:bg-[#b8935a] text-black px-6 xs:px-8 py-3 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black w-full xs:w-auto mobile-touch-target gpu-accelerated">
                   <span className="relative z-10">Share with us</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 smooth-transition-fast"></div>
                 </button>
               </div>
             </div>
@@ -166,21 +191,22 @@ export const MainHomepage = (): JSX.Element => {
         </div>
       </section>
 
-      {/* Mobile-Optimized Feature Content Section with fluid design */}
-      <section className="py-8 xs:py-10 sm:py-12 md:py-16 relative bg-black/20 content-visibility-auto">
+      {/* Mobile-Optimized Feature Content Section with smooth animations */}
+      <section className="py-8 xs:py-10 sm:py-12 md:py-16 relative bg-black/20 content-visibility-auto section-smooth scroll-reveal">
         <div className="fluid-container">
-          <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-2 xs:gap-3 mb-6 xs:mb-8">
+          <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-2 xs:gap-3 mb-6 xs:mb-8 scroll-reveal stagger-1">
             <h2 className="fluid-heading text-white">Feature content</h2>
-            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] active:text-[#b8935a] flex items-center self-start xs:self-auto mobile-touch-target transition-colors duration-200 touch-device hover-device">
+            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] active:text-[#b8935a] flex items-center self-start xs:self-auto mobile-touch-target smooth-transition touch-device hover-device micro-hover">
               <span className="fluid-text">View more</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1 smooth-transition">
                 <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
           </div>
-          <p className="text-gray-400 mb-6 sm:mb-10 md:mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
+          <p className="text-gray-400 mb-6 sm:mb-10 md:mb-12 scroll-reveal stagger-2">Discover curated stories and experiences from our community.</p>
           
-          <HoneycombGrid
+          <div className="scroll-reveal stagger-3">
+            <HoneycombGrid
             rows={[
               [
                 { title: 'Old City Jerusalem', author: true, date: true, backgroundImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg/960px-Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg' },
@@ -199,6 +225,7 @@ export const MainHomepage = (): JSX.Element => {
             ariaLabelRow1="Feature content row 1"
             ariaLabelRow2="Feature content row 2"
           />
+          </div>
           </div>
         </section>
 
