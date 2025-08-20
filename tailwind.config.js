@@ -6,13 +6,12 @@ export default {
   ],
   theme: {
     screens: {
-      xxs: "320px",
-      xs: "480px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1440px",
+      xxs: "320px", // helper for very small devices
+      xs: "480px", // ≥480px
+      sm: "481px", // ≥481px (tablet portrait)
+      md: "768px", // ≥768px
+      lg: "1024px", // ≥1024px
+      xl: "1440px", // ≥1440px
     },
     extend: {
       colors: {
@@ -83,7 +82,16 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
-    container: { center: true, padding: "2rem", screens: { "2xl": "1440px" } },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1rem", // 16px mobile
+        sm: "1.5rem",    // 24px tablet
+        lg: "2rem",      // 32px desktop
+        xl: "3rem"       // 48px large desktop
+      },
+      screens: { xl: "1440px" }
+    },
   },
   plugins: [],
   darkMode: ["class"],

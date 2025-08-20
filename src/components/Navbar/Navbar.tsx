@@ -85,6 +85,57 @@ const Navbar: React.FC = () => {
   
   // Add state for mobile menu
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocusedRef = useRef<Element | null>(null);
+
+  // Accessibility: trap focus inside the mobile menu when open and restore focus on close
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!mobileMenuOpen) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setMobileMenuOpen(false);
+        (menuButtonRef.current as HTMLButtonElement | null)?.focus();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const container = mobileMenuRef.current;
+      if (!container) return;
+      const focusables = container.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex="0"], [role="button"]'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    if (mobileMenuOpen) {
+      previouslyFocusedRef.current = document.activeElement;
+      document.addEventListener("keydown", handleKeyDown);
+      // focus first focusable element in the mobile menu shortly after mount
+      setTimeout(() => {
+        const first = mobileMenuRef.current?.querySelector<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex="0"], [role="button"]'
+        );
+        first?.focus();
+      }, 50);
+    } else {
+      document.removeEventListener("keydown", handleKeyDown);
+      if (previouslyFocusedRef.current instanceof HTMLElement) {
+        previouslyFocusedRef.current.focus();
+      }
+    }
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
   
   return (
     <motion.header 
@@ -97,14 +148,17 @@ const Navbar: React.FC = () => {
       }}
     >
       
-      <div className="w-full px-4 xs:px-5 md:px-8 relative z-10">
+      <div className="w-full px-4 xs:px-5 md:px-8 relative z-10 safe-area-top touch-pan-y">
         <div className="flex items-center h-14 sm:h-16">
           {/* Mobile menu button - only visible on mobile */}
           <div className="md:hidden flex items-center">
             <button 
+              ref={menuButtonRef}
               className="flex items-center justify-center p-2 rounded-md text-white hover:bg-white/10 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle mobile menu"
+              aria-controls="mobile-menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -161,7 +215,7 @@ const Navbar: React.FC = () => {
             >
               <span className="relative z-10">Sign up</span>
             </Link>
-            <button className="hidden md:inline-flex items-center justify-center w-8 h-8 bg-[#333333] rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white/40">
+            <button className="hidden md:inline-flex items-center justify-center w-8 h-8 bg-[#333333] rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Open menu">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
@@ -174,6 +228,10 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
+            ref={mobileMenuRef}
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
             className="md:hidden fixed inset-0 z-40 bg-black/95 pt-20"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "100vh" }}

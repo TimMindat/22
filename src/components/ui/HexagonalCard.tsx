@@ -13,6 +13,7 @@ interface HexagonalCardProps {
   variant?: 'default' | 'tall' | 'hero'; // New hero variant
   backgroundImage?: string; // New prop for background images
   ghost?: boolean; // decorative, non-interactive, low-emphasis card for edge dummies
+  compact?: boolean; // mobile-optimized smaller footprint for dense grids
 }
 
 export const HexagonalCard: React.FC<HexagonalCardProps> = ({
@@ -26,7 +27,8 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
   children,
   variant = 'default',
   backgroundImage,
-  ghost = false
+  ghost = false,
+  compact = false
 }) => {
   return (
     <motion.div
@@ -45,10 +47,16 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
       {/* Hexagonal shape using clip-path */}
       <div className={`hexagon-container relative mx-auto ${
           variant === 'tall'
-            ? 'w-[160px] h-[268px] xs:w-[180px] xs:h-[300px] sm:w-[200px] sm:h-[330px] md:w-[220px] md:h-[360px]'
+            ? (compact
+                ? 'w-[120px] h-[210px] xs:w-[132px] xs:h-[230px] sm:w-[160px] sm:h-[268px] md:w-[220px] md:h-[360px]'
+                : 'w-[160px] h-[268px] xs:w-[180px] xs:h-[300px] sm:w-[200px] sm:h-[330px] md:w-[220px] md:h-[360px]')
             : (variant === 'hero' || className?.includes('hero-hexagon'))
-              ? 'w-[184px] h-[196px] xs:w-[200px] xs:h-[213px] sm:w-[232px] sm:h-[247px] md:w-[264px] md:h-[281px]'
-              : 'w-[176px] h-[188px] xs:w-[200px] xs:h-[214px] sm:w-[240px] sm:h-[256px] md:w-[276px] md:h-[294px]'
+              ? (compact
+                  ? 'w-[96px] h-[104px] xs:w-[104px] xs:h-[112px] sm:w-[120px] sm:h-[128px] md:w-[264px] md:h-[281px]'
+                  : 'w-[184px] h-[196px] xs:w-[200px] xs:h-[213px] sm:w-[232px] sm:h-[247px] md:w-[264px] md:h-[281px]')
+              : (compact
+                  ? 'w-[96px] h-[104px] xs:w-[104px] xs:h-[112px] sm:w-[120px] sm:h-[128px] md:w-[276px] md:h-[294px]'
+                  : 'w-[176px] h-[188px] xs:w-[200px] xs:h-[214px] sm:w-[240px] sm:h-[256px] md:w-[276px] md:h-[294px]')
         }`}>
         {/* Background Image Layer */}
         {backgroundImage && (
@@ -121,6 +129,7 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="absolute inset-0 m-auto text-white/80"
+                aria-hidden="true"
               >
                 <path d="M12 6l2 2-2 2-2-2 2-2Zm0 6l2 2-2 2-2-2 2-2Zm6-6l2 2-2 2-2-2 2-2Zm-12 0l2 2-2 2-2-2 2-2Z" stroke="currentColor" strokeWidth="1.5"/>
               </svg>
@@ -142,7 +151,7 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
             {ghost ? null : children ? children : variant === 'hero' || className?.includes('hero-hexagon') ? (
               <div className="relative w-full flex flex-col items-center justify-end pb-16 px-6 z-20">
                 <h3 
-                  className="text-white font-medium leading-tight text-lg md:text-xl text-center"
+                  className="text-white font-medium leading-tight text-[clamp(14px,1.8vw,18px)] md:text-xl text-center"
                   style={{
                     textShadow: '0px 1px 2px rgba(0, 0, 0, 0.24)'
                   }}
@@ -152,7 +161,7 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
               </div>
             ) : (
               <>
-                <h3 className={`${backgroundImage ? 'text-white' : 'text-slate-900'} font-medium leading-tight mb-3 ${variant === 'tall' ? 'text-xl' : 'text-lg'}`} style={{ textShadow: backgroundImage ? '0px 1px 2px rgba(0, 0, 0, 0.24)' : 'none' }}>
+                <h3 className={`${backgroundImage ? 'text-white' : 'text-slate-900'} font-medium leading-tight mb-3 ${variant === 'tall' ? 'text-[clamp(14px,1.8vw,20px)]' : 'text-[clamp(14px,1.8vw,18px)]'}`} style={{ textShadow: backgroundImage ? '0px 1px 2px rgba(0, 0, 0, 0.24)' : 'none' }}>
                   {title}
                 </h3>
                 {(author || date) && (

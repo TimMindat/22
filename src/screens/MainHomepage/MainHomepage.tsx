@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import HexagonalCard from "../../components/ui/HexagonalCard";
+import HoneycombGrid from "../../components/ui/HoneycombGrid";
 import NetflixCarousel from "../../components/ui/NetflixCarousel";
 
 // Component data can be added here as needed
@@ -60,7 +61,7 @@ export const MainHomepage = (): JSX.Element => {
       {/* CTA trio under hero (no section header) */}
       <section className="py-12 sm:py-14 md:py-16 relative bg-black/20 overflow-hidden content-visibility-auto">
         <div className="container mx-auto px-4 sm:px-5 text-center relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 md:gap-16 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-10 md:gap-12 max-w-6xl mx-auto">
             {/* Join Collective */}
             <div className="group relative">
               <div className="relative bg-black/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500">
@@ -133,75 +134,25 @@ export const MainHomepage = (): JSX.Element => {
           </div>
           <p className="text-gray-400 mb-6 sm:mb-10 md:mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
           
-          {/* Grid to match mockup: honeycomb 5 then 4 with row offset (full-bleed) */}
-          <div className="relative full-bleed px-2 sm:px-4 md:px-8 overflow-hidden">
-            {/* Row 1: 5 hexagons with edge ghosts bleeding out */}
-            <div className="flex justify-center items-center gap-1.5 sm:gap-3 lg:gap-5 mb-4 sm:mb-6 lg:mb-8 mx-[-24px] xs:mx-[-32px] sm:mx-[-80px] md:mx-[-120px] overflow-x-auto sm:overflow-visible snap-x">
-              <HexagonalCard ghost className="opacity-30" />
-              <HexagonalCard 
-                title="Old City Jerusalem" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg/960px-Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg"
-              />
-              <HexagonalCard 
-                title="Olive Trees Heritage" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Traditional Arts" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Cultural Stories" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Seafaring Memory" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard ghost className="opacity-30" />
-            </div>
-
-            {/* Row 2: 4 hexagons, horizontally offset for honeycomb with edge ghosts */}
-            <div className="flex justify-center items-center gap-1.5 sm:gap-3 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-4 xs:translate-x-6 sm:translate-x-8 mx-[-24px] xs:mx-[-32px] sm:mx-[-80px] md:mx-[-120px] overflow-x-auto sm:overflow-visible snap-x">
-              <HexagonalCard ghost className="opacity-30" />
-              <HexagonalCard 
-                title="Historic Architecture" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Mediterranean Coast" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Desert Landscapes" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard 
-                title="Ancient Paths" 
-                author="true" 
-                date="true" 
-                backgroundImage="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              />
-              <HexagonalCard ghost className="opacity-30" />
-            </div>
-            
-          </div>
+          <HoneycombGrid
+            rows={[
+              [
+                { title: 'Old City Jerusalem', author: true, date: true, backgroundImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg/960px-Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg' },
+                { title: 'Olive Trees Heritage', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Traditional Arts', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Cultural Stories', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Seafaring Memory', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+              ],
+              [
+                { title: 'Historic Architecture', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Mediterranean Coast', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Desert Landscapes', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Ancient Paths', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+              ],
+            ]}
+            ariaLabelRow1="Feature content row 1"
+            ariaLabelRow2="Feature content row 2"
+          />
           </div>
         </section>
 
@@ -219,7 +170,7 @@ export const MainHomepage = (): JSX.Element => {
           </div>
           <p className="text-gray-400 mb-6 sm:mb-10 md:mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
           <div className="max-w-6xl mx-auto px-2">
-            <div className="flex justify-start items-center gap-4 sm:gap-6 md:gap-8 flex-nowrap overflow-x-auto hide-scrollbar px-1 snap-x">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
               <HexagonalCard articles="12 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?auto=format&fit=crop&w=800&q=80" />
               <HexagonalCard articles="24 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" />
               <HexagonalCard articles="8 articles" variant="tall" backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80" />
@@ -244,33 +195,29 @@ export const MainHomepage = (): JSX.Element => {
               </div>
           <p className="text-gray-400 mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
           
-          {/* Modern Latest Content Grid (two rows: 5 then 4) */}
-          <div className="relative full-bleed px-4 md:px-8 overflow-hidden">
-            {/* Row 1: 5 hexagons with edge ghosts */}
-            <div className="flex justify-center items-center gap-2 sm:gap-4 lg:gap-5 mb-8 lg:mb-10 mx-[-24px] xs:mx-[-32px] sm:mx-[-80px] md:mx-[-120px] overflow-x-auto sm:overflow-visible snap-x">
-              <HexagonalCard ghost className="opacity-30" />
-              <HexagonalCard title="Gaza Seashore Stories" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
-              <HexagonalCard title="Bethlehem Artisans" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
-              <HexagonalCard title="Ramallah Youth" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
-              <HexagonalCard title="Nablus Heritage" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
-              <HexagonalCard title="Al-Quds Stories" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
-              <HexagonalCard ghost className="opacity-30" />
-            </div>
-
-            {/* Row 2: 4 hexagons, offset with edge ghosts */}
-            <div className="flex justify-center items-center gap-2 sm:gap-4 lg:gap-5 md:translate-x-14 sm:translate-x-10 translate-x-6 mx-[-24px] xs:mx-[-32px] sm:mx-[-80px] md:mx-[-120px] overflow-x-auto sm:overflow-visible snap-x">
-              <HexagonalCard ghost className="opacity-30" />
-              <HexagonalCard title="Hebron Glasswork" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
-              <HexagonalCard title="Jericho Oasis" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
-              <HexagonalCard title="Jerusalem Quarters" author="true" date="true" backgroundImage="https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
-              <HexagonalCard ghost className="opacity-30" />
-            </div>
-          </div>
+          <HoneycombGrid
+            rows={[
+              [
+                { title: 'Gaza Seashore Stories', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Bethlehem Artisans', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Ramallah Youth', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Nablus Heritage', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Al-Quds Stories', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+              ],
+              [
+                { title: 'Hebron Glasswork', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Jericho Oasis', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { title: 'Jerusalem Quarters', author: true, date: true, backgroundImage: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+              ],
+            ]}
+            ariaLabelRow1="Latest content row 1"
+            ariaLabelRow2="Latest content row 2"
+          />
           </div>
         </section>
 
         {/* Share Your Story Section - simplified */}
-        <section className="py-24 text-center relative overflow-hidden">
+        <section className="py-24 text-center relative overflow-hidden safe-area-bottom">
           <div className="container mx-auto px-4 relative z-10">
             <div className="w-16 h-16 bg-white/10 rounded-xl mx-auto mb-6 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -280,7 +227,7 @@ export const MainHomepage = (): JSX.Element => {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Share your story</h2>
             <p className="text-gray-400 mb-8 max-w-2xl mx-auto">Every story matters. Help us preserve the collective memory by contributing your personal experiences, testimonies, or knowledge of historical events.</p>
-            <button className="group relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
+            <button className="group relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden w-full xs:w-auto max-w-sm mx-auto">
               <span className="relative z-10">Contribute Now!</span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
