@@ -716,36 +716,71 @@ html {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Enhanced scroll-triggered animations for mobile */
+/* Ultra-smooth instant scroll animations for mobile native feel */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(40px) scale(0.95);
-  transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform: translateY(20px) scale(0.98);
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   will-change: transform, opacity;
   /* Mobile-optimized animation */
   backface-visibility: hidden;
   perspective: 1000px;
+  contain: layout style paint;
 }
 
 .scroll-reveal.revealed {
   opacity: 1;
   transform: translateY(0) scale(1);
-  will-change: auto; /* Remove will-change after animation */
 }
 
-/* Mobile-specific scroll animations */
+/* Instant reveal for native mobile feel */
+.scroll-reveal.instant-reveal {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  transition: none !important;
+}
+
+/* Mobile-specific ultra-smooth animations */
 @media (max-width: 768px) {
   .scroll-reveal {
-    transform: translateY(30px) scale(0.97);
-    transition-duration: 0.5s;
+    transform: translateY(15px) scale(0.99);
+    transition-duration: 0.3s;
+    /* Instant mobile animations */
+    transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
   }
   
-  /* Reduce motion for better mobile performance */
-  .scroll-reveal.stagger-1 { transition-delay: 0.05s; }
-  .scroll-reveal.stagger-2 { transition-delay: 0.1s; }
-  .scroll-reveal.stagger-3 { transition-delay: 0.15s; }
-  .scroll-reveal.stagger-4 { transition-delay: 0.2s; }
-  .scroll-reveal.stagger-5 { transition-delay: 0.25s; }
+  /* Minimal stagger delays for instant feel */
+  .scroll-reveal.stagger-1 { transition-delay: 0.02s; }
+  .scroll-reveal.stagger-2 { transition-delay: 0.04s; }
+  .scroll-reveal.stagger-3 { transition-delay: 0.06s; }
+  .scroll-reveal.stagger-4 { transition-delay: 0.08s; }
+  .scroll-reveal.stagger-5 { transition-delay: 0.1s; }
+}
+
+/* Instant mobile performance mode */
+@media (max-width: 480px) {
+  .scroll-reveal {
+    transform: translateY(10px) scale(0.995);
+    transition-duration: 0.25s;
+  }
+  
+  /* Even faster for small mobile screens */
+  .scroll-reveal.stagger-1,
+  .scroll-reveal.stagger-2,
+  .scroll-reveal.stagger-3,
+  .scroll-reveal.stagger-4,
+  .scroll-reveal.stagger-5 { 
+    transition-delay: 0.01s; 
+  }
+}
+
+/* Reduced motion accessibility with instant reveals */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 
 /* Native mobile feel animations */

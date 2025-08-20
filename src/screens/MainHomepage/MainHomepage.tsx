@@ -21,48 +21,73 @@ export const MainHomepage = (): JSX.Element => {
   const [isLoaded, setIsLoaded] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
   
-  // Enhanced scroll-triggered animations for mobile performance
+  // Ultra-smooth instant scroll animations for mobile
   useEffect(() => {
+    let animationFrameId: number;
+    
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      // Use requestAnimationFrame for smooth 60fps animations
-      requestAnimationFrame(() => {
+      // Cancel previous animation frame to prevent stacking
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      
+      // Use requestAnimationFrame for 60fps smooth animations
+      animationFrameId = requestAnimationFrame(() => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            // Add native mobile momentum
+            // Instantly show elements for native feel
+            entry.target.classList.add('revealed', 'instant-reveal');
+            // Subtle haptic feedback for mobile native feel
             if ('vibrate' in navigator && entry.target.classList.contains('mobile-feedback')) {
-              navigator.vibrate(15);
+              navigator.vibrate(8);
             }
-          } else if (entry.boundingClientRect.top > window.innerHeight) {
-            // Reset animation when element scrolls out of view upwards
-            entry.target.classList.remove('revealed');
+          } else if (entry.boundingClientRect.top > window.innerHeight * 1.2) {
+            // Reset animation when element scrolls well out of view
+            entry.target.classList.remove('revealed', 'instant-reveal');
           }
         });
       });
     };
 
-    // Optimized observer settings for mobile performance
+    // Ultra-optimized observer settings for instant mobile performance
     observerRef.current = new IntersectionObserver(observerCallback, {
-      threshold: [0.05, 0.15, 0.25], // Multiple thresholds for smoother animations
-      rootMargin: '0px 0px -30px 0px', // Reduced margin for earlier triggers on mobile
-      // Enable passive scrolling for better performance
+      threshold: [0.02, 0.08, 0.15], // Lower thresholds for instant reveals
+      rootMargin: '50px 0px 0px 0px', // Earlier triggers for smoother experience
+      // Passive scrolling optimization
     });
 
-    // Observe all scroll-reveal elements with debounced discovery
+    // Instantly observe all scroll-reveal elements
     const scrollElements = document.querySelectorAll('.scroll-reveal');
-    scrollElements.forEach((el) => {
+    scrollElements.forEach((el, index) => {
       if (observerRef.current) {
         observerRef.current.observe(el);
-        // Add GPU acceleration to all observed elements
-        (el as HTMLElement).style.willChange = 'transform, opacity';
+        // Pre-optimize elements for instant animations
+        const element = el as HTMLElement;
+        element.style.willChange = 'transform, opacity';
+        element.style.backfaceVisibility = 'hidden';
+        element.style.perspective = '1000px';
+        element.style.contain = 'layout style paint';
+        
+        // Add instant reveal class for immediate animations
+        if (index === 0) {
+          // First element shows immediately for better perceived performance
+          element.classList.add('instant-reveal');
+        }
       }
     });
 
     return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
       observerRef.current?.disconnect();
-      // Clean up will-change properties
+      // Clean up performance optimizations
       scrollElements.forEach((el) => {
-        (el as HTMLElement).style.willChange = 'auto';
+        const element = el as HTMLElement;
+        element.style.willChange = 'auto';
+        element.style.backfaceVisibility = '';
+        element.style.perspective = '';
+        element.style.contain = '';
       });
     };
   }, []);

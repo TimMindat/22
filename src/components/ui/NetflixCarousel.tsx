@@ -337,24 +337,24 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         </motion.div>
       </div>
 
-      {/* Mobile-Native Navigation Bar with Ultra-Smooth Performance */}
-      <div className="fixed bottom-4 xs:bottom-6 sm:bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-50 w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg px-3 pointer-events-none">
+      {/* Responsive Navigation Bar - Mobile Compact, Desktop Wide */}
+      <div className="fixed bottom-4 xs:bottom-6 sm:bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-50 w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-5xl px-3 md:px-6 pointer-events-none">
         <motion.div 
-          className="flex items-center justify-center gap-3 xs:gap-4 sm:gap-5 md:gap-6 px-5 xs:px-6 sm:px-7 py-5 xs:py-6 sm:py-7 md:py-5 backdrop-blur-2xl bg-black/50 xs:bg-black/45 sm:bg-black/40 md:bg-black/30 rounded-[2rem] xs:rounded-[2.5rem] border border-white/25 shadow-2xl ultra-smooth-scroll no-scroll-jitter pointer-events-auto"
-          initial={{ opacity: 0, y: 40, scale: 0.8, rotateX: 10 }}
+          className="flex items-center justify-center gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-8 px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 py-4 xs:py-5 sm:py-6 md:py-5 lg:py-6 backdrop-blur-2xl bg-black/55 xs:bg-black/50 sm:bg-black/45 md:bg-black/35 lg:bg-black/30 rounded-[1.5rem] xs:rounded-[2rem] sm:rounded-[2.5rem] md:rounded-[2rem] border border-white/30 xs:border-white/25 md:border-white/20 shadow-2xl ultra-smooth-scroll no-scroll-jitter pointer-events-auto"
+          initial={{ opacity: 0, y: 50, scale: 0.75, rotateX: 15 }}
           animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
           transition={{ 
-            delay: 0.6, 
-            duration: 0.8, 
+            delay: 0.5, 
+            duration: 0.9, 
             ease: [0.25, 0.1, 0.25, 1],
-            scale: { duration: 0.7 },
-            rotateX: { duration: 0.9 }
+            scale: { duration: 0.8 },
+            rotateX: { duration: 1.0 }
           }}
           whileHover={{
-            scale: 1.02,
-            y: -2,
-            boxShadow: "0 20px 40px rgba(0, 0, 0, 0.4)",
-            transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
+            scale: 1.01,
+            y: -3,
+            boxShadow: "0 25px 50px rgba(0, 0, 0, 0.5)",
+            transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
           }}
           style={{
             willChange: 'transform, opacity',
@@ -363,27 +363,27 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             contain: 'layout style paint'
           }}
         >
-          {/* Navigation Arrow - Previous (Mobile-Native) */}
+          {/* Responsive Navigation Arrow - Previous */}
           <motion.button
             onClick={prevSlide}
-            className="flex-shrink-0 w-13 h-13 xs:w-15 xs:h-15 sm:w-17 sm:h-17 md:w-15 md:h-15 rounded-full bg-white/20 hover:bg-white/30 active:bg-white/40 flex items-center justify-center text-white border border-white/20 mobile-touch-target gpu-accelerated shadow-xl backdrop-blur-sm"
+            className="flex-shrink-0 w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-white/25 hover:bg-white/35 active:bg-white/45 flex items-center justify-center text-white border border-white/25 mobile-touch-target gpu-accelerated shadow-xl backdrop-blur-sm"
             aria-label="Previous story"
             whileHover={{ 
-              scale: 1.08,
-              backgroundColor: "rgba(255, 255, 255, 0.35)",
-              boxShadow: "0 12px 30px rgba(0, 0, 0, 0.4)",
-              y: -1,
-              transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 1.06,
+              backgroundColor: "rgba(255, 255, 255, 0.4)",
+              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.5)",
+              y: -2,
+              transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
             }}
             whileTap={{ 
-              scale: 0.88,
-              backgroundColor: "rgba(255, 255, 255, 0.5)",
-              transition: { duration: 0.12, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 0.9,
+              backgroundColor: "rgba(255, 255, 255, 0.55)",
+              transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
             }}
             onTap={() => {
-              // Native-feel haptic feedback
+              // Enhanced haptic feedback
               if ('vibrate' in navigator) {
-                navigator.vibrate([60, 10, 40]);
+                navigator.vibrate([70, 15, 45]);
               }
             }}
             style={{
@@ -394,22 +394,22 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             }}
           >
             <motion.svg 
-              width="22" 
-              height="22" 
+              width="20" 
+              height="20" 
               viewBox="0 0 24 24" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="xs:w-7 xs:h-7 sm:w-8 sm:h-8 md:w-7 md:h-7"
-              whileHover={{ x: -3, scale: 1.1 }}
-              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+              className="xs:w-6 xs:h-6 sm:w-7 sm:h-7 md:w-6 md:h-6 lg:w-7 lg:h-7"
+              whileHover={{ x: -2, scale: 1.08 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               style={{ willChange: 'transform' }}
             >
               <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </motion.svg>
           </motion.button>
 
-          {/* Mobile-Native Hexagon Carousel Items */}
-          <div className="flex items-center gap-2.5 xs:gap-3 sm:gap-3.5 overflow-x-auto scrollbar-hide px-2 ultra-smooth-scroll">
+          {/* Responsive Hexagon Carousel Items - Mobile Compact, Desktop Spacious */}
+          <div className="flex items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 overflow-x-auto scrollbar-hide px-1 xs:px-2 md:px-3 ultra-smooth-scroll">
             {items.map((item, index) => {
               const isActive = index === currentIndex;
               const distance = Math.abs(index - currentIndex);
@@ -423,39 +423,39 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                   className="cursor-pointer flex-shrink-0 relative mobile-touch-target"
                   onClick={() => {
                     goToSlide(index);
-                    // Native-feel haptic feedback for hexagon selection
+                    // Enhanced haptic feedback
                     if ('vibrate' in navigator) {
-                      navigator.vibrate([70, 20, 50, 10, 30]);
+                      navigator.vibrate([80, 25, 60, 15, 40]);
                     }
                   }}
                   whileHover={{ 
-                    scale: isActive ? 1.15 : 1.25,
-                    y: isActive ? -4 : -6,
-                    rotateY: isActive ? 0 : 5,
-                    transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
+                    scale: isActive ? 1.12 : 1.22,
+                    y: isActive ? -3 : -5,
+                    rotateY: isActive ? 0 : 3,
+                    transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   whileTap={{ 
-                    scale: isActive ? 0.85 : 0.75,
+                    scale: isActive ? 0.88 : 0.78,
                     rotateY: 0,
-                    transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+                    transition: { duration: 0.18, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   animate={{
-                    scale: isActive ? 1.05 : 0.82,
-                    opacity: isActive ? 1 : 0.75,
-                    y: isActive ? -6 : 0,
-                    rotateY: isActive ? 0 : 2,
+                    scale: isActive ? 1.08 : 0.85,
+                    opacity: isActive ? 1 : 0.78,
+                    y: isActive ? -5 : 0,
+                    rotateY: isActive ? 0 : 1.5,
                   }}
                   transition={{ 
-                    duration: 0.45, 
+                    duration: 0.5, 
                     ease: [0.25, 0.1, 0.25, 1],
-                    scale: { duration: 0.4 },
-                    opacity: { duration: 0.35 },
-                    y: { duration: 0.45, ease: [0.25, 0.1, 0.25, 1] },
-                    rotateY: { duration: 0.4 }
+                    scale: { duration: 0.45 },
+                    opacity: { duration: 0.4 },
+                    y: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
+                    rotateY: { duration: 0.45 }
                   }}
                   style={{ 
-                    minWidth: '52px', 
-                    minHeight: '52px',
+                    minWidth: '48px', 
+                    minHeight: '48px',
                     willChange: 'transform, opacity',
                     backfaceVisibility: 'hidden',
                     perspective: '1000px',
@@ -498,7 +498,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                       variant="hero"
                       backgroundImage={item.image}
                       compact
-                      className="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 gpu-accelerated shadow-lg"
+                      className="w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 md:w-11 md:h-11 lg:w-13 lg:h-13 gpu-accelerated shadow-lg"
                     />
                   </div>
                   
@@ -511,27 +511,27 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             })}
           </div>
 
-          {/* Navigation Arrow - Next (Mobile-Native) */}
+          {/* Responsive Navigation Arrow - Next */}
           <motion.button
             onClick={nextSlide}
-            className="flex-shrink-0 w-13 h-13 xs:w-15 xs:h-15 sm:w-17 sm:h-17 md:w-15 md:h-15 rounded-full bg-white/20 hover:bg-white/30 active:bg-white/40 flex items-center justify-center text-white border border-white/20 mobile-touch-target gpu-accelerated shadow-xl backdrop-blur-sm"
+            className="flex-shrink-0 w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-white/25 hover:bg-white/35 active:bg-white/45 flex items-center justify-center text-white border border-white/25 mobile-touch-target gpu-accelerated shadow-xl backdrop-blur-sm"
             aria-label="Next story"
             whileHover={{ 
-              scale: 1.08,
-              backgroundColor: "rgba(255, 255, 255, 0.35)",
-              boxShadow: "0 12px 30px rgba(0, 0, 0, 0.4)",
-              y: -1,
-              transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 1.06,
+              backgroundColor: "rgba(255, 255, 255, 0.4)",
+              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.5)",
+              y: -2,
+              transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
             }}
             whileTap={{ 
-              scale: 0.88,
-              backgroundColor: "rgba(255, 255, 255, 0.5)",
-              transition: { duration: 0.12, ease: [0.25, 0.1, 0.25, 1] }
+              scale: 0.9,
+              backgroundColor: "rgba(255, 255, 255, 0.55)",
+              transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
             }}
             onTap={() => {
-              // Native-feel haptic feedback
+              // Enhanced haptic feedback
               if ('vibrate' in navigator) {
-                navigator.vibrate([60, 10, 40]);
+                navigator.vibrate([70, 15, 45]);
               }
             }}
             style={{
@@ -542,14 +542,14 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             }}
           >
             <motion.svg 
-              width="22" 
-              height="22" 
+              width="20" 
+              height="20" 
               viewBox="0 0 24 24" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="xs:w-7 xs:h-7 sm:w-8 sm:h-8 md:w-7 md:h-7"
-              whileHover={{ x: 3, scale: 1.1 }}
-              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+              className="xs:w-6 xs:h-6 sm:w-7 sm:h-7 md:w-6 md:h-6 lg:w-7 lg:h-7"
+              whileHover={{ x: 2, scale: 1.08 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               style={{ willChange: 'transform' }}
             >
               <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
