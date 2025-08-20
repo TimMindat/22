@@ -284,6 +284,40 @@
     line-height: 1.4;
     letter-spacing: 0.01em;
   }
+
+  /* Mobile performance optimizations */
+  .mobile-performance {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform: translateZ(0);
+  }
+
+  /* Native mobile scrolling */
+  .native-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .text-gray-400 {
+      color: #ffffff !important;
+    }
+    
+    .border-white\/10 {
+      border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+  }
 }
 
 /* Navbar gradient animation */

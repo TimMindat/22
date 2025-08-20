@@ -29,12 +29,12 @@ export const HoneycombGrid: React.FC<HoneycombGridProps> = ({ rows, ariaLabelRow
     <div className="relative w-full overflow-hidden">
       {/* Mobile-first optimized layout (xxs to sm) */}
       <div className="md:hidden">
-        {/* Ultra-small screens: 3×2 grid with optimal spacing */}
+        {/* Ultra-small screens: 3×2 grid with optimal spacing and no cutoff */}
         <div className="xxs:block xs:block sm:hidden">
-          <div className="mobile-hex-container container mx-auto">
-            {/* Row 1: 3 hexagons */}
+          <div className="mobile-hex-container px-4 xs:px-6 py-4">
+            {/* Row 1: 3 hexagons with proper spacing */}
             <div 
-              className="mobile-hex-grid grid grid-cols-3 justify-items-center"
+              className="grid grid-cols-3 gap-3 xs:gap-4 justify-items-center mb-4"
               aria-label={ariaLabelRow1 || 'Feature content row 1 (mobile)'}
             >
               {row1.slice(0, 3).map((item, idx) => (
@@ -45,14 +45,14 @@ export const HoneycombGrid: React.FC<HoneycombGridProps> = ({ rows, ariaLabelRow
                   title={item.title} 
                   author={item.author ? 'true' : undefined} 
                   date={item.date ? 'true' : undefined}
-                  className="honeycomb-mobile w-full max-w-[100px] xxs:max-w-[110px] mx-auto"
+                  className="honeycomb-mobile w-full max-w-[90px] xs:max-w-[100px] mx-auto"
                 />
               ))}
             </div>
             
-            {/* Row 2: 2 hexagons centered */}
+            {/* Row 2: 2 hexagons centered with proper spacing */}
             <div 
-              className="mobile-hex-grid grid grid-cols-2 justify-items-center max-w-[260px] mx-auto mt-4"
+              className="grid grid-cols-2 gap-4 xs:gap-6 justify-items-center max-w-[220px] xs:max-w-[240px] mx-auto"
               aria-label={ariaLabelRow2 || 'Feature content row 2 (mobile)'}
             >
               {row2.slice(0, 2).map((item, idx) => (
@@ -63,7 +63,7 @@ export const HoneycombGrid: React.FC<HoneycombGridProps> = ({ rows, ariaLabelRow
                   title={item.title} 
                   author={item.author ? 'true' : undefined} 
                   date={item.date ? 'true' : undefined}
-                  className="honeycomb-mobile w-full max-w-[110px] xxs:max-w-[120px] mx-auto"
+                  className="honeycomb-mobile w-full max-w-[100px] xs:max-w-[110px] mx-auto"
                 />
               ))}
             </div>

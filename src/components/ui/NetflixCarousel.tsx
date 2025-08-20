@@ -143,7 +143,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
   };
 
   return (
-    <section className="relative h-screen max-h-screen min-h-[100dvh] overflow-hidden bg-[#171717] content-visibility-auto touch-pan-y safe-area-top safe-area-bottom">
+    <section className="relative h-[100dvh] xs:h-[110dvh] sm:h-[100dvh] md:h-[90vh] max-h-screen overflow-hidden bg-[#171717] content-visibility-auto touch-pan-y safe-area-top safe-area-bottom">
       {/* Mobile-optimized background media layer */}
       <div className="absolute inset-0 z-0">
         <div

@@ -1,12 +1,54 @@
 import { Link } from "react-router-dom";
+import { lazy, Suspense, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import HexagonalCard from "../../components/ui/HexagonalCard";
 import HoneycombGrid from "../../components/ui/HoneycombGrid";
-import NetflixCarousel from "../../components/ui/NetflixCarousel";
 
-// Component data can be added here as needed
+// Lazy load heavy components for better performance
+const NetflixCarousel = lazy(() => import("../../components/ui/NetflixCarousel"));
+
+// Mobile-optimized loading component
+const MobileLoader = () => (
+  <div className="h-[100dvh] bg-[#171717] flex items-center justify-center">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-12 h-12 border-4 border-[#d4a574]/30 border-t-[#d4a574] rounded-full animate-spin"></div>
+      <p className="text-white/70 text-sm">Loading stories...</p>
+    </div>
+  </div>
+);
 
 export const MainHomepage = (): JSX.Element => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  // Preload critical resources
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imageUrls = [
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1544966503-7cc5ac882d2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg/960px-Dome_of_the_Rock_seen_from_the_Mount_of_Olives_%2812395649153%29_%28cropped%29.jpg"
+      ];
+      
+      const promises = imageUrls.map(url => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = url;
+        });
+      });
+      
+      try {
+        await Promise.all(promises);
+        setIsLoaded(true);
+      } catch (error) {
+        console.warn('Some images failed to preload:', error);
+        setIsLoaded(true); // Continue anyway
+      }
+    };
+    
+    preloadImages();
+  }, []);
   // Carousel items data
   const carouselItems = [
   {
@@ -47,72 +89,74 @@ export const MainHomepage = (): JSX.Element => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] text-white overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] text-white overflow-x-hidden touch-pan-y">
       {/* Navbar */}
       <Navbar />
 
-      {/* Netflix-Style Hero Carousel */}
-      <NetflixCarousel items={carouselItems} />
+      {/* Netflix-Style Hero Carousel with Suspense */}
+      <Suspense fallback={<MobileLoader />}>
+        <NetflixCarousel items={carouselItems} />
+      </Suspense>
 
 
 
 
 
-      {/* CTA trio under hero (no section header) */}
-      <section className="py-12 sm:py-14 md:py-16 relative bg-black/20 overflow-hidden content-visibility-auto">
-        <div className="container mx-auto px-4 sm:px-5 text-center relative">
-          <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-10 md:gap-12 max-w-6xl mx-auto">
-            {/* Join Collective */}
-            <div className="group relative">
-              <div className="relative bg-black/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-6 mx-auto group-hover:rotate-12 transition-transform duration-500 shadow-lg">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Mobile-optimized CTA trio under hero */}
+      <section className="py-8 xs:py-10 sm:py-12 md:py-16 relative bg-black/30 overflow-hidden content-visibility-auto">
+        <div className="container mx-auto px-4 xs:px-5 sm:px-6 text-center relative">
+          <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto">
+            {/* Join Collective - Mobile Optimized */}
+            <div className="group relative mobile-touch-target">
+              <div className="relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 transition-all duration-300 hover:bg-black/50">
+                <div className="w-16 h-16 xs:w-20 xs:h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-4 xs:mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Join Collective</h3>
-                <p className="text-gray-400 mb-6 text-sm leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
+                <h3 className="text-lg xs:text-xl font-semibold text-white mb-2 xs:mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Join Collective</h3>
+                <p className="text-gray-400 mb-4 xs:mb-6 text-sm leading-relaxed">Connect with like-minded individuals and build lasting relationships.</p>
+                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] active:bg-[#b8935a] text-black px-6 xs:px-8 py-3 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden w-full xs:w-auto mobile-touch-target">
                   <span className="relative z-10">Join now</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200"></div>
                 </button>
               </div>
             </div>
 
-            {/* Send Gift */}
-            <div className="group relative">
-              <div className="relative bg-black/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-6 mx-auto group-hover:rotate-12 transition-transform duration-500 shadow-lg">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Send Gift - Mobile Optimized */}
+            <div className="group relative mobile-touch-target">
+              <div className="relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 transition-all duration-300 hover:bg-black/50">
+                <div className="w-16 h-16 xs:w-20 xs:h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-4 xs:mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="3" y="8" width="18" height="4" rx="1" stroke="white" strokeWidth="2"/>
                     <path d="M12 8V21" stroke="white" strokeWidth="2"/>
                     <path d="M19 12V20a2 2 0 01-2 2H7a2 2 0 01-2-2v-8" stroke="white" strokeWidth="2"/>
                     <path d="M7.5 8a2.5 2.5 0 010-5C11 3 12 7 12 7s1-4 4.5-4a2.5 2.5 0 010 5" stroke="white" strokeWidth="2"/>
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Send Gift</h3>
-                <p className="text-gray-400 mb-6 text-sm leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
+                <h3 className="text-lg xs:text-xl font-semibold text-white mb-2 xs:mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Send Gift</h3>
+                <p className="text-gray-400 mb-4 xs:mb-6 text-sm leading-relaxed">Share meaningful gifts and support community initiatives.</p>
+                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] active:bg-[#b8935a] text-black px-6 xs:px-8 py-3 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden w-full xs:w-auto mobile-touch-target">
                   <span className="relative z-10">Send now</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200"></div>
                 </button>
               </div>
             </div>
                     
-            {/* Share Story */}
-            <div className="group relative">
-              <div className="relative bg-black/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#d4a574]/30 transition-all duration-500">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-6 mx-auto group-hover:rotate-12 transition-transform duration-500 shadow-lg">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Share Story - Mobile Optimized */}
+            <div className="group relative mobile-touch-target">
+              <div className="relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 transition-all duration-300 hover:bg-black/50">
+                <div className="w-16 h-16 xs:w-20 xs:h-20 bg-gradient-to-br from-[#d4a574] to-[#c49660] rounded-full flex items-center justify-center mb-4 xs:mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="white" strokeWidth="2"/>
                     <path d="M6.5 2H20v20L13 17H6.5a2.5 2.5 0 010-5" stroke="white" strokeWidth="2"/>
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Share Story</h3>
-                <p className="text-gray-400 mb-6 text-sm leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden">
+                <h3 className="text-lg xs:text-xl font-semibold text-white mb-2 xs:mb-3 group-hover:text-[#d4a574] transition-colors duration-300">Share Story</h3>
+                <p className="text-gray-400 mb-4 xs:mb-6 text-sm leading-relaxed">Tell your story and inspire others with your experiences.</p>
+                <button className="group/btn relative bg-[#d4a574] hover:bg-[#c49660] active:bg-[#b8935a] text-black px-6 xs:px-8 py-3 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#d4a574] focus:ring-offset-2 focus:ring-offset-black overflow-hidden w-full xs:w-auto mobile-touch-target">
                   <span className="relative z-10">Share with us</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#c49660] to-[#d4a574] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200"></div>
                 </button>
               </div>
             </div>
@@ -120,16 +164,16 @@ export const MainHomepage = (): JSX.Element => {
         </div>
       </section>
 
-      {/* Feature Content Section */}
-      <section className="py-12 sm:py-14 md:py-16 relative bg-black/10 content-visibility-auto">
-        <div className="container mx-auto px-4 sm:px-5">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">Feature content</h2>
-            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] flex items-center self-start sm:self-auto">
-              View more
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
+            {/* Mobile-Optimized Feature Content Section */}
+      <section className="py-8 xs:py-10 sm:py-12 md:py-16 relative bg-black/20 content-visibility-auto">
+        <div className="container mx-auto px-4 xs:px-5 sm:px-6">
+          <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-2 xs:gap-3 mb-6 xs:mb-8">
+            <h2 className="text-xl xs:text-2xl sm:text-3xl font-bold text-white">Feature content</h2>
+            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] active:text-[#b8935a] flex items-center self-start xs:self-auto mobile-touch-target transition-colors duration-200">
+              <span className="text-sm xs:text-base">View more</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
                 <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+              </svg>
             </Link>
           </div>
           <p className="text-gray-400 mb-6 sm:mb-10 md:mb-12">Lorem ipsum dolor sit amet adipiscing elit.</p>
