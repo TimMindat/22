@@ -423,10 +423,10 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             </motion.svg>
           </motion.button>
 
-          {/* Perfect Hexagon Integration - Cohesive Design */}
-          <div className="relative flex items-center gap-2.5 xs:gap-3 sm:gap-3.5 md:gap-4.5 lg:gap-5.5 overflow-hidden px-2 xs:px-2.5 md:px-3 ultra-smooth-scroll">
+          {/* Optimized Hexagon Integration - Smaller Perfect Fit */}
+          <div className="relative flex items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-3.5 lg:gap-4 xl:gap-4.5 overflow-hidden px-1.5 xs:px-2 md:px-2.5 ultra-smooth-scroll">
             {/* Hexagon Container Background */}
-            <div className="absolute inset-y-1 left-1 right-1 bg-gradient-to-r from-transparent via-white/5 to-transparent rounded-full opacity-50 pointer-events-none" />
+            <div className="absolute inset-y-0.5 left-0.5 right-0.5 bg-gradient-to-r from-transparent via-white/5 to-transparent rounded-full opacity-40 pointer-events-none" />
             
             {items.map((item, index) => {
               const isActive = index === currentIndex;
@@ -447,20 +447,20 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                     }
                   }}
                   whileHover={{ 
-                    scale: isActive ? 1.15 : 1.25,
-                    y: isActive ? -4 : -6,
+                    scale: isActive ? 1.2 : 1.3,
+                    y: isActive ? -3 : -4,
                     rotateY: isActive ? 0 : 2,
                     transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   whileTap={{ 
-                    scale: isActive ? 0.9 : 0.8,
+                    scale: isActive ? 0.85 : 0.75,
                     rotateY: 0,
                     transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   animate={{
-                    scale: isActive ? 1.1 : 0.88,
-                    opacity: isActive ? 1 : 0.82,
-                    y: isActive ? -6 : 0,
+                    scale: isActive ? 1.15 : 0.9,
+                    opacity: isActive ? 1 : 0.85,
+                    y: isActive ? -4 : 0,
                     rotateY: isActive ? 0 : 1,
                   }}
                   transition={{ 
@@ -472,8 +472,8 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                     rotateY: { duration: 0.5 }
                   }}
                   style={{ 
-                    minWidth: '44px', 
-                    minHeight: '44px',
+                    minWidth: '32px', 
+                    minHeight: '32px',
                     willChange: 'transform, opacity',
                     backfaceVisibility: 'hidden',
                     perspective: '1000px',
@@ -481,10 +481,10 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                     touchAction: 'manipulation'
                   }}
                 >
-                  {/* Premium Active Indicator Ring */}
+                  {/* Adjusted Active Indicator Ring - Smaller Hexagons */}
                   {isActive && (
                     <motion.div
-                      className="absolute -inset-1.5 xs:-inset-2 sm:-inset-2.5 md:-inset-3 rounded-full border-2 xs:border-[2.5px] md:border-3 border-[#d4a574]/80 z-0 shadow-[0_0_20px_rgba(212,165,116,0.4)] backdrop-blur-sm"
+                      className="absolute -inset-1 xs:-inset-1.5 sm:-inset-1.5 md:-inset-2 lg:-inset-2.5 xl:-inset-3 rounded-full border-[1.5px] xs:border-2 md:border-[2.5px] border-[#d4a574]/80 z-0 shadow-[0_0_15px_rgba(212,165,116,0.4)] backdrop-blur-sm"
                       initial={{ scale: 0.8, opacity: 0, rotate: -12 }}
                       animate={{ scale: 1, opacity: 1, rotate: 0 }}
                       exit={{ scale: 0.8, opacity: 0, rotate: 12 }}
@@ -513,14 +513,14 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
                     </motion.div>
                   )}
                   
-                  {/* Perfect Hexagon Sizing */}
+                  {/* Much Smaller Hexagon Sizing - Perfect Fit */}
                   <div className="relative z-10 group-hover:z-20">
                     <HexagonalCard
                       title={item.title}
                       variant="hero"
                       backgroundImage={item.image}
                       compact
-                      className="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 gpu-accelerated shadow-[0_4px_15px_rgba(0,0,0,0.3)] group-hover:shadow-[0_8px_25px_rgba(0,0,0,0.4)]"
+                      className="w-5 h-5 xs:w-6 xs:h-6 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 gpu-accelerated shadow-[0_2px_8px_rgba(0,0,0,0.3)] group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.4)]"
                     />
                   </div>
                   
