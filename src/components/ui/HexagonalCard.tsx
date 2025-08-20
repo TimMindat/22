@@ -161,24 +161,29 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
               </div>
             ) : (
               <>
-                <h3 className={`${backgroundImage ? 'text-white' : 'text-slate-900'} font-medium leading-tight mb-3 ${variant === 'tall' ? 'text-[clamp(14px,1.8vw,20px)]' : 'text-[clamp(14px,1.8vw,18px)]'}`} style={{ textShadow: backgroundImage ? '0px 1px 2px rgba(0, 0, 0, 0.24)' : 'none' }}>
+                <h3 className={`${backgroundImage ? 'text-white' : 'text-slate-900'} font-medium leading-tight ${compact ? 'mb-1 xs:mb-2 sm:mb-3' : 'mb-3'} ${
+                  variant === 'tall' 
+                    ? (compact ? 'text-[clamp(11px,2.5vw,14px)] sm:text-[clamp(14px,1.8vw,20px)]' : 'text-[clamp(14px,1.8vw,20px)]')
+                    : (compact ? 'text-[clamp(10px,2.2vw,12px)] sm:text-[clamp(14px,1.8vw,18px)]' : 'text-[clamp(14px,1.8vw,18px)]')
+                }`} style={{ textShadow: backgroundImage ? '0px 1px 2px rgba(0, 0, 0, 0.24)' : 'none' }}>
                   {title}
                 </h3>
+                {/* Hide author/date on mobile for compact hexagons, show on desktop */}
                 {(author || date) && (
-                  <div className="flex items-center justify-center space-x-3 text-sm mb-3">
+                  <div className={`${compact ? 'hidden sm:flex' : 'flex'} items-center justify-center space-x-2 xs:space-x-3 text-xs xs:text-sm mb-2 xs:mb-3`}>
                     {author && (
-                      <div className="flex items-center bg-white/15 text-white/90 rounded-full px-2 py-1">
-                        <span className="inline-block w-3 h-3 rounded-full bg-[#C9A96E] mr-1.5"></span>
-                        <span>Author</span>
+                      <div className="flex items-center bg-white/15 text-white/90 rounded-full px-1.5 xs:px-2 py-0.5 xs:py-1">
+                        <span className="inline-block w-2 h-2 xs:w-3 xs:h-3 rounded-full bg-[#C9A96E] mr-1 xs:mr-1.5"></span>
+                        <span className="text-xs xs:text-sm">Author</span>
                       </div>
                     )}
                     {date && (
-                      <div className="flex items-center bg-white/15 text-white/90 rounded-full px-2 py-1">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-1.5">
+                      <div className="flex items-center bg-white/15 text-white/90 rounded-full px-1.5 xs:px-2 py-0.5 xs:py-1">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-1 xs:mr-1.5">
                           <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/>
                           <path d="M3 9H21" stroke="currentColor" strokeWidth="1.5"/>
                         </svg>
-                        <span>Date</span>
+                        <span className="text-xs xs:text-sm">Date</span>
                       </div>
                     )}
                   </div>

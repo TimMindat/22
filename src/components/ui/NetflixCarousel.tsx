@@ -180,28 +180,28 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         }} />
       </div>
       
-      {/* Mobile-optimized Hero Title Overlay */}
-      <div className="absolute top-8 xs:top-12 sm:top-16 md:top-20 left-4 xs:left-6 md:left-12 z-20 right-4 xs:right-6 md:right-auto md:max-w-lg">
+      {/* Mobile-centered Hero Title Overlay */}
+      <div className="absolute inset-x-4 xs:inset-x-6 sm:inset-x-8 top-1/2 -translate-y-1/2 md:top-20 md:translate-y-0 md:left-12 md:right-auto md:max-w-lg z-20 flex items-center justify-center md:block">
         <motion.div
-          className="backdrop-blur-sm bg-black/30 xs:bg-black/25 rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 border border-white/15 mobile-text-optimize"
-          initial={{ opacity: 0.8, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="backdrop-blur-md bg-black/40 xs:bg-black/35 sm:bg-black/30 rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 border border-white/20 mobile-text-optimize max-w-sm xs:max-w-md sm:max-w-lg md:max-w-none w-full"
+          initial={{ opacity: 0.8, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ 
-            duration: 0.8, 
+            duration: 0.6, 
             ease: [0.25, 0.46, 0.45, 0.94]
           }}
         >
           <motion.h1 
-            className="hero-title text-white mb-3 xs:mb-4 leading-tight font-bold"
+            className="hero-title text-white mb-2 xs:mb-3 sm:mb-4 leading-tight font-bold text-center md:text-left"
             style={{ 
-              fontSize: 'clamp(1.5rem, 6vw, 3.5rem)',
+              fontSize: 'clamp(1.25rem, 5vw, 3.5rem)',
               lineHeight: 'clamp(1.1, 1.2, 1.3)'
             }}
             initial={{ opacity: 0.9, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
               delay: 0.1,
-              duration: 0.7, 
+              duration: 0.5, 
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
             key={currentContent.title}
@@ -210,30 +210,29 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             <span className="text-[#C9A96E]">{currentContent.subtitle}</span>
           </motion.h1>
           <motion.p 
-            className="text-gray-300 mb-4 xs:mb-5 sm:mb-6 md:mb-8 leading-relaxed"
+            className="text-gray-300 mb-3 xs:mb-4 sm:mb-5 md:mb-6 leading-relaxed text-center md:text-left"
             style={{ 
-              fontSize: 'clamp(0.875rem, 3.5vw, 1.125rem)',
-              lineHeight: '1.5'
+              fontSize: 'clamp(0.8rem, 3vw, 1.125rem)',
+              lineHeight: '1.4'
             }}
             initial={{ opacity: 0.9, y: 2 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ delay: 0.15, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             key={currentContent.description}
           >
             {currentContent.description}
           </motion.p>
           <motion.div
-            className="flex flex-col xxs:flex-col xs:flex-row gap-3 xs:gap-4"
+            className="flex flex-col xs:flex-row gap-2 xs:gap-3 justify-center md:justify-start"
             initial={{ opacity: 0.95, y: 2 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ delay: 0.2, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <motion.button 
-              className="group relative bg-[#C9A96E] hover:bg-[#bf9a59] active:bg-[#b8935a] text-black font-bold py-3 xs:py-4 px-6 xs:px-8 rounded-lg xs:rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#C9A96E]/25 focus:outline-none focus:ring-4 focus:ring-[#C9A96E]/50 focus:ring-offset-2 focus:ring-offset-black overflow-hidden w-full xs:w-auto min-h-[48px] mobile-touch-target"
+              className="group relative bg-[#C9A96E] hover:bg-[#bf9a59] active:bg-[#b8935a] text-black font-bold py-2.5 xs:py-3 sm:py-4 px-5 xs:px-6 sm:px-8 rounded-lg xs:rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-[#C9A96E]/20 focus:outline-none focus:ring-2 focus:ring-[#C9A96E]/50 focus:ring-offset-1 focus:ring-offset-black overflow-hidden w-full xs:w-auto min-h-[44px] mobile-touch-target"
               whileHover={{ 
-                scale: 1.01,
-                y: -1,
-                transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
+                scale: 1.02,
+                transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
               }}
               whileTap={{ 
                 scale: 0.98,
@@ -242,28 +241,32 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
               aria-label="View content"
             >
               <span className="relative z-10 flex items-center justify-center">
-                <span style={{ fontSize: 'clamp(0.875rem, 4vw, 1rem)' }}>View content</span>
+                <span style={{ fontSize: 'clamp(0.8rem, 3.5vw, 0.95rem)' }}>View content</span>
                 <motion.svg 
-                  width="18" 
-                  height="18" 
+                  width="16" 
+                  height="16" 
                   viewBox="0 0 24 24" 
                   fill="none" 
                   xmlns="http://www.w3.org/2000/svg" 
-                  className="ml-2"
-                  whileHover={{ x: 2 }}
-                  transition={{ duration: 0.25 }}
+                  className="ml-1.5"
+                  whileHover={{ x: 1 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </motion.svg>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#bf9a59] to-[#C9A96E] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#bf9a59] to-[#C9A96E] opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             </motion.button>
             <motion.button 
-              className="group relative bg-white/15 hover:bg-white/25 active:bg-white/30 text-white font-semibold py-3 xs:py-4 px-6 xs:px-8 rounded-lg xs:rounded-xl transition-all duration-300 border border-white/20 focus:outline-none focus:ring-4 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-black overflow-hidden w-full xs:w-auto min-h-[48px] mobile-touch-target"
+              className="group relative bg-white/15 hover:bg-white/25 active:bg-white/30 text-white font-semibold py-2.5 xs:py-3 sm:py-4 px-5 xs:px-6 sm:px-8 rounded-lg xs:rounded-xl transition-all duration-200 border border-white/25 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-1 focus:ring-offset-black overflow-hidden w-full xs:w-auto min-h-[44px] mobile-touch-target"
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
               whileTap={{ scale: 0.98 }}
               aria-label="Learn more"
             >
-              <span className="relative z-10" style={{ fontSize: 'clamp(0.875rem, 4vw, 1rem)' }}>Learn more</span>
+              <span className="relative z-10" style={{ fontSize: 'clamp(0.8rem, 3.5vw, 0.95rem)' }}>Learn more</span>
             </motion.button>
           </motion.div>
         </motion.div>
