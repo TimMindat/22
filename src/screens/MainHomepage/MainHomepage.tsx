@@ -90,22 +90,24 @@ export const MainHomepage = (): JSX.Element => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] text-white overflow-x-hidden touch-pan-y">
-      {/* Navbar */}
+      {/* Navbar with mobile optimization */}
       <Navbar />
 
-      {/* Netflix-Style Hero Carousel with Suspense */}
+      {/* Netflix-Style Hero Carousel with Suspense and preload optimization */}
       <Suspense fallback={<MobileLoader />}>
-        <NetflixCarousel items={carouselItems} />
+        <div className="preload-image">
+          <NetflixCarousel items={carouselItems} />
+        </div>
       </Suspense>
 
 
 
 
 
-      {/* Mobile-optimized CTA trio under hero */}
+      {/* Mobile-optimized CTA trio with fluid grid system */}
       <section className="py-8 xs:py-10 sm:py-12 md:py-16 relative bg-black/30 overflow-hidden content-visibility-auto">
-        <div className="container mx-auto px-4 xs:px-5 sm:px-6 text-center relative">
-          <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto">
+        <div className="fluid-container text-center relative">
+          <div className="fluid-grid max-w-6xl mx-auto" style={{'--grid-min-size': '280px'}}>
             {/* Join Collective - Mobile Optimized */}
             <div className="group relative mobile-touch-target">
               <div className="relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 transition-all duration-300 hover:bg-black/50">
@@ -164,13 +166,13 @@ export const MainHomepage = (): JSX.Element => {
         </div>
       </section>
 
-            {/* Mobile-Optimized Feature Content Section */}
+      {/* Mobile-Optimized Feature Content Section with fluid design */}
       <section className="py-8 xs:py-10 sm:py-12 md:py-16 relative bg-black/20 content-visibility-auto">
-        <div className="container mx-auto px-4 xs:px-5 sm:px-6">
+        <div className="fluid-container">
           <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-2 xs:gap-3 mb-6 xs:mb-8">
-            <h2 className="text-xl xs:text-2xl sm:text-3xl font-bold text-white">Feature content</h2>
-            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] active:text-[#b8935a] flex items-center self-start xs:self-auto mobile-touch-target transition-colors duration-200">
-              <span className="text-sm xs:text-base">View more</span>
+            <h2 className="fluid-heading text-white">Feature content</h2>
+            <Link to="#" className="text-[#d4a574] hover:text-[#c49660] active:text-[#b8935a] flex items-center self-start xs:self-auto mobile-touch-target transition-colors duration-200 touch-device hover-device">
+              <span className="fluid-text">View more</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
                 <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>

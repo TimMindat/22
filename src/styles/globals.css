@@ -298,6 +298,47 @@
   input, textarea, select {
     font-size: 16px !important;
   }
+
+  /* Speed optimizations for mobile */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Optimize font rendering */
+  body {
+    font-display: swap;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Critical resource hints */
+  .preload-image {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+  }
+
+  /* Reduce layout shifts */
+  .aspect-ratio-box {
+    position: relative;
+    width: 100%;
+    height: 0;
+  }
+
+  .aspect-ratio-box::before {
+    content: '';
+    display: block;
+    padding-bottom: var(--aspect-ratio, 56.25%);
+  }
+
+  .aspect-ratio-box > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 /* Improved spacing for mobile */
@@ -345,6 +386,117 @@
     .border-white\/10 {
       border-color: rgba(255, 255, 255, 0.3) !important;
     }
+  }
+}
+
+/* Comprehensive Media Queries for Different Device Characteristics */
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .mobile-portrait {
+    font-size: clamp(0.875rem, 4vw, 1rem);
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .mobile-landscape {
+    font-size: clamp(1rem, 3vw, 1.125rem);
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .tablet-portrait {
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  .desktop-small {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    padding: 0 2.5rem;
+  }
+  
+  .desktop-large {
+    font-size: clamp(1.5rem, 1.5vw, 2rem);
+  }
+}
+
+/* High DPI/Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Orientation-based styles */
+@media (orientation: portrait) {
+  .portrait-only {
+    display: block;
+  }
+  
+  .landscape-only {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) {
+  .portrait-only {
+    display: none;
+  }
+  
+  .landscape-only {
+    display: block;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .touch-device {
+    -webkit-tap-highlight-color: rgba(212, 165, 116, 0.3);
+    touch-action: manipulation;
+  }
+  
+  /* Larger touch targets for touch devices */
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Mouse/trackpad device optimizations */
+@media (hover: hover) and (pointer: fine) {
+  .hover-device {
+    transition: all 0.2s ease;
+  }
+  
+  .hover-device:hover {
+    transform: translateY(-1px);
   }
 }
 
@@ -526,10 +678,61 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Responsive media defaults */
-img, video, svg, canvas {
+/* Comprehensive Flexible Media System */
+img, video, svg, canvas, iframe, embed, object {
   max-width: 100%;
   height: auto;
+  display: block;
+}
+
+/* Responsive images with aspect ratio preservation */
+img {
+  aspect-ratio: attr(width) / attr(height);
+  object-fit: cover;
+  loading: lazy;
+}
+
+/* Video responsive container */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe,
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Fluid grid system */
+.fluid-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+}
+
+.fluid-grid {
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+
+/* Flexible typography system */
+.fluid-text {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.fluid-heading {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  line-height: 1.2;
 }
 
 /* Prevent horizontal scrolling across the app */
