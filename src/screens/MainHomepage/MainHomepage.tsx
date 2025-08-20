@@ -136,7 +136,7 @@ export const MainHomepage = (): JSX.Element => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] text-white overflow-x-hidden smooth-scroll gpu-accelerated mobile-native mobile-scroll-container">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] text-white overflow-x-hidden ultra-smooth-scroll gpu-accelerated mobile-native no-scroll-jitter">
       {/* Navbar with mobile optimization */}
       <Navbar />
 

@@ -502,7 +502,7 @@
 
 /* Smooth Scrolling and Micro-Interactions System */
 
-/* Hardware-accelerated smooth scrolling optimized for mobile */
+/* Hardware-accelerated smooth scrolling optimized for mobile and Chromium */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* Account for fixed header */
@@ -512,6 +512,13 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
+  /* Chromium-specific optimizations */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Force hardware acceleration */
+  will-change: scroll-position;
+  /* Prevent layout shifts during scroll */
+  contain: layout style paint;
 }
 
 /* Enhanced smooth scrolling container */
@@ -525,7 +532,7 @@ html {
   overscroll-behavior-y: contain;
 }
 
-/* Mobile-optimized scrolling performance */
+/* Mobile-optimized scrolling performance with background fix */
 body {
   /* Prevent horizontal scrolling issues on mobile */
   overflow-x: hidden;
@@ -536,6 +543,55 @@ body {
   backface-visibility: hidden;
   /* Smooth scrolling momentum */
   scroll-behavior: smooth;
+  /* Fix white background flash during fast scrolling */
+  background-color: #0a0a0a;
+  background-attachment: fixed;
+  /* Prevent background color changes during scroll */
+  -webkit-background-size: cover;
+  background-size: cover;
+  /* Chromium optimization */
+  contain: layout style paint;
+}
+
+/* Root element background fix */
+html {
+  background-color: #0a0a0a;
+  /* Prevent white flash on page load */
+  -webkit-background-size: cover;
+  background-size: cover;
+  /* Chromium-specific optimizations */
+  contain: layout style;
+}
+
+/* Fix for Chromium rendering issues */
+* {
+  /* Prevent background color inheritance issues */
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+/* Chromium scroll performance optimization */
+@supports (scrollbar-width: thin) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #d4a574 #1a1a1a;
+  }
+}
+
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d4a574;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c49660;
+  }
 }
 
 /* 60fps optimized transitions */
@@ -711,6 +767,57 @@ body {
   -webkit-overflow-scrolling: touch;
   /* Enable hardware acceleration */
   will-change: scroll-position;
+  /* Chromium mobile optimizations */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  /* Mobile-native scroll snap */
+  scroll-snap-type: y proximity;
+  /* Optimize for 60fps scrolling */
+  contain: layout style paint;
+}
+
+/* Chromium Android optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  .mobile-scroll-container {
+    /* Android Chrome specific optimizations */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* Prevent scrolling jank */
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+  }
+}
+
+/* Ultra-smooth scrolling for mobile */
+.ultra-smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  /* Force compositing layer */
+  will-change: scroll-position, transform;
+  /* Prevent scroll jank */
+  contain: layout style paint;
+  /* Mobile-native momentum */
+  scroll-snap-type: y proximity;
+  /* Chromium optimizations */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Fix scroll jitter on fast scrolling */
+.no-scroll-jitter {
+  /* Prevent background color flashing */
+  background-color: #0a0a0a !important;
+  /* Force GPU layer */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Prevent layout shifts */
+  contain: layout style paint;
+  /* Optimize rendering */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* Performance optimizations */
