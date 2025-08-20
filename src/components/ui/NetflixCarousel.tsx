@@ -337,10 +337,10 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
         </motion.div>
       </div>
 
-      {/* Ultra-Optimized Navigation Bar - Native Mobile & Desktop Excellence */}
-      <div className="fixed bottom-3 xs:bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-10 left-1/2 -translate-x-1/2 z-50 w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[480px] lg:max-w-[560px] xl:max-w-[640px] px-3 md:px-4 pointer-events-none">
+      {/* Horizontal Hexagon Navigation Bar - Like Image Layout */}
+      <div className="fixed bottom-3 xs:bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-10 left-1/2 -translate-x-1/2 z-50 w-full max-w-[320px] xs:max-w-[380px] sm:max-w-[480px] md:max-w-[600px] lg:max-w-[720px] xl:max-w-[840px] px-3 md:px-4 pointer-events-none">
         <motion.div 
-          className="relative flex items-center justify-between gap-2 xs:gap-3 sm:gap-4 md:gap-5 lg:gap-6 px-3 xs:px-4 sm:px-5 md:px-6 lg:px-7 py-3 xs:py-3.5 sm:py-4 md:py-4 lg:py-5 backdrop-blur-2xl bg-black/70 xs:bg-black/65 sm:bg-black/60 md:bg-black/50 lg:bg-black/45 rounded-full border border-white/40 xs:border-white/35 md:border-white/30 shadow-[0_12px_40px_rgba(0,0,0,0.8)] xs:shadow-[0_16px_50px_rgba(0,0,0,0.7)] md:shadow-[0_20px_60px_rgba(0,0,0,0.6)] ultra-smooth-scroll no-scroll-jitter pointer-events-auto"
+          className="relative flex items-center justify-center gap-1 xs:gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 px-2 xs:px-3 sm:px-4 md:px-5 lg:px-6 py-2 xs:py-2.5 sm:py-3 md:py-3.5 lg:py-4 backdrop-blur-2xl bg-black/75 xs:bg-black/70 sm:bg-black/65 md:bg-black/60 lg:bg-black/55 rounded-full border border-white/40 xs:border-white/35 md:border-white/30 shadow-[0_12px_40px_rgba(0,0,0,0.8)] xs:shadow-[0_16px_50px_rgba(0,0,0,0.7)] md:shadow-[0_20px_60px_rgba(0,0,0,0.6)] ultra-smooth-scroll no-scroll-jitter pointer-events-auto overflow-x-auto scrollbar-hide"
           initial={{ opacity: 0, y: 40, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ 
@@ -349,7 +349,7 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
             ease: [0.25, 0.1, 0.25, 1]
           }}
           whileHover={{
-            scale: 1.02,
+            scale: 1.01,
             y: -2,
             boxShadow: "0 25px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 165, 116, 0.12)",
             transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
@@ -365,186 +365,95 @@ export const NetflixCarousel: React.FC<NetflixCarouselProps> = ({ items }) => {
           
           {/* Premium Inner Border */}
           <div className="absolute inset-[1px] rounded-full border border-white/15 pointer-events-none" />
-          {/* Native Mobile Navigation Button - Previous */}
-          <motion.button
-            onClick={prevSlide}
-            className="relative flex-shrink-0 w-9 h-9 xs:w-10 xs:h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:w-13 lg:h-13 rounded-full bg-white/25 hover:bg-white/35 active:bg-white/45 flex items-center justify-center text-white border border-white/30 hover:border-white/40 mobile-touch-target shadow-lg backdrop-blur-sm"
-            aria-label="Previous story"
-            whileHover={{ 
-              scale: 1.05,
-              backgroundColor: "rgba(255, 255, 255, 0.4)",
-              transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
-            }}
-            whileTap={{ 
-              scale: 0.95,
-              backgroundColor: "rgba(255, 255, 255, 0.5)",
-              transition: { duration: 0.1, ease: [0.25, 0.1, 0.25, 1] }
-            }}
-            onTap={() => {
-              // Native haptic feedback
-              if ('vibrate' in navigator) {
-                navigator.vibrate(30);
-              }
-            }}
-            style={{
-              willChange: 'transform, background-color',
-              backfaceVisibility: 'hidden',
-              contain: 'layout style paint',
-              touchAction: 'manipulation'
-            }}
-          >
-            <motion.svg 
-              width="14" 
-              height="14" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              className="xs:w-4 xs:h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 lg:w-[22px] lg:h-[22px]"
-              whileHover={{ x: -1, scale: 1.02 }}
-              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-              style={{ willChange: 'transform' }}
-            >
-              <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </motion.svg>
-          </motion.button>
 
-          {/* Ultra-Clear Hexagon Carousel - Optimal Visibility */}
-          <div className="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-2.5 md:gap-3 lg:gap-3.5 px-2 xs:px-3 sm:px-4 md:px-5 overflow-hidden">
-            {items.map((item, index) => {
-              const isActive = index === currentIndex;
-              const distance = Math.abs(index - currentIndex);
-              const isVisible = distance <= 2; // Show 5 items max (current + 2 on each side)
-              
-              if (!isVisible) return null;
-              
-              return (
-                <motion.div
-                  key={item.id}
-                  className="cursor-pointer flex-shrink-0 relative mobile-touch-target group"
-                  onClick={() => {
-                    goToSlide(index);
-                    // Native haptic feedback
-                    if ('vibrate' in navigator) {
-                      navigator.vibrate(40);
-                    }
-                  }}
-                  whileHover={{ 
-                    scale: isActive ? 1.1 : 1.15,
-                    y: isActive ? -2 : -3,
-                    transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
-                  }}
-                  whileTap={{ 
-                    scale: isActive ? 0.9 : 0.85,
-                    transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
-                  }}
-                  animate={{
-                    scale: isActive ? 1.05 : 0.85,
-                    opacity: isActive ? 1 : 0.7,
-                    y: isActive ? -2 : 0,
-                  }}
-                  transition={{ 
-                    duration: 0.4, 
-                    ease: [0.25, 0.1, 0.25, 1]
-                  }}
-                  style={{ 
-                    minWidth: '28px', 
-                    minHeight: '28px',
-                    willChange: 'transform, opacity',
-                    backfaceVisibility: 'hidden',
-                    contain: 'layout style paint',
-                    touchAction: 'manipulation'
-                  }}
-                >
-                  {/* Clear Active Indicator - Native Style */}
-                  {isActive && (
+          {/* All Hexagons Displayed Horizontally */}
+          {items.map((item, index) => {
+            const isActive = index === currentIndex;
+            
+            return (
+              <motion.div
+                key={item.id}
+                className="cursor-pointer flex-shrink-0 relative mobile-touch-target group"
+                onClick={() => {
+                  goToSlide(index);
+                  // Native haptic feedback
+                  if ('vibrate' in navigator) {
+                    navigator.vibrate(40);
+                  }
+                }}
+                whileHover={{ 
+                  scale: isActive ? 1.08 : 1.12,
+                  y: isActive ? -2 : -3,
+                  transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                whileTap={{ 
+                  scale: isActive ? 0.92 : 0.88,
+                  transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                animate={{
+                  scale: isActive ? 1.02 : 0.88,
+                  opacity: isActive ? 1 : 0.75,
+                  y: isActive ? -2 : 0,
+                }}
+                transition={{ 
+                  duration: 0.4, 
+                  ease: [0.25, 0.1, 0.25, 1]
+                }}
+                style={{ 
+                  minWidth: '28px', 
+                  minHeight: '28px',
+                  willChange: 'transform, opacity',
+                  backfaceVisibility: 'hidden',
+                  contain: 'layout style paint',
+                  touchAction: 'manipulation'
+                }}
+              >
+                {/* Active Indicator Ring */}
+                {isActive && (
+                  <motion.div
+                    className="absolute -inset-0.5 xs:-inset-1 sm:-inset-1.5 md:-inset-2 rounded-full border-2 border-[#d4a574] z-0 shadow-[0_0_12px_rgba(212,165,116,0.6)]"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{ 
+                      duration: 0.3, 
+                      ease: [0.25, 0.1, 0.25, 1]
+                    }}
+                  >
+                    {/* Simple Pulsing Glow */}
                     <motion.div
-                      className="absolute -inset-1 xs:-inset-1.5 sm:-inset-2 md:-inset-2.5 rounded-full border-2 border-[#d4a574] z-0 shadow-[0_0_12px_rgba(212,165,116,0.6)]"
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.9, opacity: 0 }}
-                      transition={{ 
-                        duration: 0.3, 
-                        ease: [0.25, 0.1, 0.25, 1]
+                      className="absolute inset-0 rounded-full bg-[#d4a574]/20 blur-sm"
+                      animate={{ 
+                        scale: [1, 1.05, 1],
+                        opacity: [0.6, 0.8, 0.6]
                       }}
-                    >
-                      {/* Simple Pulsing Glow */}
-                      <motion.div
-                        className="absolute inset-0 rounded-full bg-[#d4a574]/20 blur-sm"
-                        animate={{ 
-                          scale: [1, 1.05, 1],
-                          opacity: [0.6, 0.8, 0.6]
-                        }}
-                        transition={{ 
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      />
-                    </motion.div>
-                  )}
-                  
-                  {/* Optimal Hexagon Sizing - Clear Visibility */}
-                  <div className="relative z-10">
-                    <HexagonalCard
-                      title={item.title}
-                      variant="hero"
-                      backgroundImage={item.image}
-                      compact
-                      className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 shadow-md group-hover:shadow-lg transition-shadow duration-200"
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
                     />
-                  </div>
-                  
-                  {/* Accessibility label */}
-                  <span className="sr-only">
-                    {isActive ? `Currently viewing ${item.title}` : `Switch to ${item.title}`}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Native Mobile Navigation Button - Next */}
-          <motion.button
-            onClick={nextSlide}
-            className="relative flex-shrink-0 w-9 h-9 xs:w-10 xs:h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:w-13 lg:h-13 rounded-full bg-white/25 hover:bg-white/35 active:bg-white/45 flex items-center justify-center text-white border border-white/30 hover:border-white/40 mobile-touch-target shadow-lg backdrop-blur-sm"
-            aria-label="Next story"
-            whileHover={{ 
-              scale: 1.05,
-              backgroundColor: "rgba(255, 255, 255, 0.4)",
-              transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
-            }}
-            whileTap={{ 
-              scale: 0.95,
-              backgroundColor: "rgba(255, 255, 255, 0.5)",
-              transition: { duration: 0.1, ease: [0.25, 0.1, 0.25, 1] }
-            }}
-            onTap={() => {
-              // Native haptic feedback
-              if ('vibrate' in navigator) {
-                navigator.vibrate(30);
-              }
-            }}
-            style={{
-              willChange: 'transform, background-color',
-              backfaceVisibility: 'hidden',
-              contain: 'layout style paint',
-              touchAction: 'manipulation'
-            }}
-          >
-            <motion.svg 
-              width="14" 
-              height="14" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              className="xs:w-4 xs:h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 lg:w-[22px] lg:h-[22px]"
-              whileHover={{ x: 1, scale: 1.02 }}
-              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-              style={{ willChange: 'transform' }}
-            >
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </motion.svg>
-          </motion.button>
+                  </motion.div>
+                )}
+                
+                {/* Optimized Hexagon Sizing for Horizontal Layout */}
+                <div className="relative z-10">
+                  <HexagonalCard
+                    title={item.title}
+                    variant="hero"
+                    backgroundImage={item.image}
+                    compact
+                    className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 shadow-md group-hover:shadow-lg transition-shadow duration-200"
+                  />
+                </div>
+                
+                {/* Accessibility label */}
+                <span className="sr-only">
+                  {isActive ? `Currently viewing ${item.title}` : `Switch to ${item.title}`}
+                </span>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
 
