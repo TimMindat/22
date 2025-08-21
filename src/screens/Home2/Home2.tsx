@@ -27,6 +27,7 @@ export const Home2 = (): JSX.Element => {
           position: 'relative',
           clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
           background: hasContent ? `url(/imgS.png)` : '#404040',
+          filter: hasContent ? 'grayscale(100%)' : 'none',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           border: '1px solid #333333',
@@ -90,7 +91,7 @@ export const Home2 = (): JSX.Element => {
   const hexesPerRowLg = 6; // lg+ screens
 
   return (
-    <div className="min-h-screen bg-[#0e0e0e] text-white overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#0D0D0D] via-[#111111] to-[#0B0B0B] text-white overflow-x-hidden">
       {/* Top bar matching design */}
       <header
         className="fixed top-0 left-0 w-full z-50"
@@ -124,7 +125,7 @@ export const Home2 = (): JSX.Element => {
               </Link>
               <Link
                 to="/signup"
-                className="inline-flex items-center bg-[#C9A96E] hover:bg-[#bf9a59] active:bg-[#b38f4c] text-black text-sm font-medium rounded px-3 py-1.5"
+                className="inline-flex items-center bg-[#D4A05B] hover:bg-[#c49650] active:bg-[#b38645] text-black text-sm font-medium rounded px-3 py-1.5"
               >
                 Sign up
               </Link>
@@ -143,7 +144,7 @@ export const Home2 = (): JSX.Element => {
             </p>
             <Link
               to="#"
-              className="inline-flex items-center justify-center bg-[#C9A96E] hover:bg-[#bf9a59] active:bg-[#b38f4c] text-black text-sm font-medium rounded-md px-4 py-2 transition-colors"
+              className="inline-flex items-center justify-center bg-[#D4A05B] hover:bg-[#c49650] active:bg-[#b38645] text-black text-sm font-medium rounded-md px-4 py-2 transition-colors"
             >
               Call to Action
             </Link>
@@ -226,22 +227,114 @@ export const Home2 = (): JSX.Element => {
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeInHexGrid 1.5s ease-out;
           }
-          
+
           .hex-row {
             display: flex;
             justify-content: center;
             align-items: center;
+            opacity: 0;
+            animation: fadeInHexRow 0.8s ease-out forwards;
           }
-          
+
+          .hex-row:nth-child(1) { animation-delay: 0.1s; }
+          .hex-row:nth-child(2) { animation-delay: 0.2s; }
+          .hex-row:nth-child(3) { animation-delay: 0.3s; }
+          .hex-row:nth-child(4) { animation-delay: 0.4s; }
+          .hex-row:nth-child(5) { animation-delay: 0.5s; }
+          .hex-row:nth-child(6) { animation-delay: 0.6s; }
+
           .hex-row-offset {
             margin-left: 105px; /* Half hexagon width + margin */
+          }
+
+          .hexagon-container {
+            opacity: 0;
+            animation: fadeInHex 0.6s ease-out forwards;
+          }
+
+          .hexagon-container:nth-child(odd) { animation-delay: 0.1s; }
+          .hexagon-container:nth-child(even) { animation-delay: 0.2s; }
+
+          @keyframes fadeInHexGrid {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes fadeInHexRow {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes fadeInHex {
+            from {
+              opacity: 0;
+              transform: scale(0.8);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+
+          /* Mobile responsiveness for hexagon grid */
+          @media (max-width: 767px) {
+            .honeycomb-grid {
+              padding: 20px;
+            }
+
+            .hex-row {
+              flex-direction: column;
+              gap: 10px;
+            }
+
+            .hex-row-offset {
+              margin-left: 0;
+            }
+
+            .hexagon-container {
+              width: 120px !important;
+              height: 104px !important;
+              margin: 0 0 -26px 0 !important;
+            }
+
+            .hex-row {
+              animation-delay: 0s;
+            }
+
+            .hexagon-container {
+              animation-delay: 0s;
+            }
+          }
+
+          @media (max-width: 640px) {
+            .hexagon-container {
+              width: 100px !important;
+              height: 87px !important;
+              margin: 0 0 -22px 0 !important;
+            }
           }
         `}</style>
       </section>
 
       {/* Share your story */}
-      <section className="py-20 text-center relative overflow-hidden">
+      <section className="py-20 text-center relative overflow-hidden" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundSize: '60px 52px'
+      }}>
         <div className="container mx-auto px-4 relative z-10">
           <div className="w-14 h-14 bg-white/5 rounded-xl mx-auto mb-6 flex items-center justify-center border border-white/10">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -253,7 +346,7 @@ export const Home2 = (): JSX.Element => {
           <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto mb-6">
             Every story matters. Help us preserve the collective memory by contributing your personal experiences, testimonies, or knowledge of historical events.
           </p>
-          <Link to="/contribute" className="inline-flex items-center justify-center bg-[#C9A96E] hover:bg-[#bf9a59] text-black font-medium rounded-md px-5 py-2">
+          <Link to="/contribute" className="inline-flex items-center justify-center bg-[#D4A05B] hover:bg-[#c49650] text-black font-medium rounded-md px-5 py-2">
             Contribute Now!
           </Link>
         </div>
@@ -274,7 +367,7 @@ export const Home2 = (): JSX.Element => {
       </section>
 
       {/* Footer (reusing current site's footer layout) */}
-      <footer className="bg-[#0a0a0a] text-white/70 py-16 mt-4 border-t border-white/10 relative overflow-hidden">
+      <footer className="bg-[#0D0D0D] text-[#A0A0A0] py-16 mt-4 border-t border-white/10 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             {/* Logo and description */}
