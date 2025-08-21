@@ -7,24 +7,82 @@ export const Home2 = (): JSX.Element => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // Reusable hero hexagon with title and articles pill
-  const HeroHex = ({ title = "Insert card title here" }: { title?: string }) => (
-    <HexagonalCard 
-      variant="hero" 
-      compact 
-      backgroundImage="/imgS.png"
-      borderStyle="neutral"
+  // Perfect hexagonal card matching your exact image
+  const HexCard = ({ hasContent = false, hasArticles = false }: { hasContent?: boolean, hasArticles?: boolean }) => (
+    <div 
+      className="hexagon-container"
+      style={{
+        width: '200px',
+        height: '173px', // sqrt(3)/2 * width for perfect hexagon proportions
+        margin: '0 5px -43px 5px', // Negative bottom margin for tessellation
+        position: 'relative',
+      }}
     >
-      <div className="relative w-full flex flex-col items-center justify-end pb-8 md:pb-16 px-4 z-20">
-        <h3 
-          className="text-white font-medium leading-tight text-[clamp(12px,2.6vw,16px)] md:text-[18px] text-center"
-          style={{ textShadow: '0px 1px 2px rgba(0, 0, 0, 0.24)' }}
+      {/* Perfect hexagon shape */}
+      <div 
+        className="hexagon"
+        style={{
+          width: '200px',
+          height: '173px',
+          position: 'relative',
+          clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+          background: hasContent ? `url(/imgS.png)` : '#404040',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          border: '1px solid #333333',
+        }}
+      />
+      
+      {/* Content overlay for hexagons with content */}
+      {hasContent && (
+        <div 
+          className="absolute inset-0 flex flex-col justify-end items-center p-4"
+          style={{
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+          }}
         >
-          {title}
-        </h3>
-        <span className="mt-2 md:mt-3 text-[10px] md:text-xs text-white bg-black/60 border border-white/20 rounded px-2 py-0.5">12 articles</span>
-      </div>
-    </HexagonalCard>
+          {/* Dark gradient overlay */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.8) 100%)',
+            }}
+          />
+          
+          <div className="relative z-10 text-center text-white">
+            {/* Card title */}
+            <h3 
+              className="text-white font-medium mb-2"
+              style={{
+                fontFamily: 'IBM Plex Sans',
+                fontSize: '16px',
+                lineHeight: '1.2',
+                textShadow: '0px 1px 2px rgba(0, 0, 0, 0.7)',
+              }}
+            >
+              Insert card title here
+            </h3>
+            
+            {/* 12 articles label */}
+            {hasArticles && (
+              <div 
+                className="inline-block px-3 py-1 text-xs text-white"
+                style={{
+                  background: 'rgba(0, 0, 0, 0.6)',
+                  backdropFilter: 'blur(4px)',
+                  borderRadius: '12px',
+                  fontFamily: 'Inter',
+                  fontSize: '11px',
+                  fontWeight: '500',
+                }}
+              >
+                12 articles
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
   );
 
   const rows = useMemo(() => Array.from({ length: 10 }).map((_, i) => i), []);
@@ -92,57 +150,94 @@ export const Home2 = (): JSX.Element => {
           </div>
         </div>
 
-        {/* Honeycomb background */}
-        <div 
-          className="absolute inset-0 -z-10 overflow-hidden"
-          style={{
-            background: 'radial-gradient(1200px 400px at 50% 0%, rgba(217, 180, 104, 0.08) 0%, rgba(217, 180, 104, 0) 60%)'
-          }}
-        >
+        {/* Perfect Honeycomb Background - EXACTLY like your image */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="honeycomb-grid" style={{ paddingTop: '50px' }}>
+            {/* Row 1 */}
+            <div className="hex-row">
+              <HexCard />
+              <HexCard />
+              <HexCard hasContent hasArticles />
+              <HexCard hasContent hasArticles />
+              <HexCard />
+              <HexCard />
+            </div>
+            
+            {/* Row 2 - offset */}
+            <div className="hex-row hex-row-offset">
+              <HexCard />
+              <HexCard hasContent hasArticles />
+              <HexCard hasContent hasArticles />
+              <HexCard hasContent hasArticles />
+              <HexCard />
+            </div>
+            
+            {/* Row 3 */}
+            <div className="hex-row">
+              <HexCard />
+              <HexCard hasContent hasArticles />
+              <HexCard hasContent hasArticles />
+              <HexCard hasContent hasArticles />
+              <HexCard hasContent hasArticles />
+              <HexCard />
+            </div>
+            
+            {/* Row 4 - offset */}
+            <div className="hex-row hex-row-offset">
+              <HexCard hasContent hasArticles />
+              <HexCard hasContent hasArticles />
+              <HexCard hasContent hasArticles />
+              <HexCard hasContent hasArticles />
+              <HexCard />
+            </div>
+            
+            {/* Row 5 */}
+            <div className="hex-row">
+              <HexCard />
+              <HexCard />
+              <HexCard />
+              <HexCard />
+              <HexCard />
+              <HexCard />
+            </div>
+            
+            {/* Row 6 - offset */}
+            <div className="hex-row hex-row-offset">
+              <HexCard />
+              <HexCard />
+              <HexCard />
+              <HexCard />
+            </div>
+          </div>
+          
+          {/* Bottom fade effect */}
           <div 
-            className="absolute left-1/2 -translate-x-1/2 top-10 md:top-6 w-[1400px] max-w-none pointer-events-none"
-            style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 72%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 72%, transparent 100%)' }}
-          >
-            {rows.map((row) => (
-              <div
-                key={`row-${row}`}
-                className={`flex justify-center items-center gap-2 sm:gap-3 md:gap-5 mb-1.5 sm:mb-2 md:mb-4 ${row % 2 === 1 ? 'translate-x-6 sm:translate-x-10 md:translate-x-16' : ''}`}
-              >
-                {/* Ghost edge */}
-                <HexagonalCard ghost className="opacity-30 shrink-0" />
-                {Array.from({ length: hexesPerRowLg }).map((_, idx) => (
-                  <HexagonalCard
-                    key={`hex-${row}-${idx}`}
-                    variant="hero"
-                    compact
-                    backgroundImage="/imgS.png"
-                    borderStyle="neutral"
-                    articles="12 articles"
-                  >
-                    <div className="relative w-full flex flex-col items-center justify-end pb-8 md:pb-16 px-4 z-20">
-                      <h3 
-                        className="text-white font-medium leading-tight text-[clamp(12px,2.6vw,16px)] md:text-[18px] text-center"
-                        style={{ textShadow: '0px 1px 2px rgba(0, 0, 0, 0.24)' }}
-                      >
-                        Insert card title here
-                      </h3>
-                    </div>
-                  </HexagonalCard>
-                ))}
-                {/* Ghost edge */}
-                <HexagonalCard ghost className="opacity-30 shrink-0" />
-              </div>
-            ))}
-          </div>
-
-          {/* Beam fade under last visible row */}
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-[-80px] w-[1200px] h-[280px] pointer-events-none opacity-60">
-            <div className="absolute bottom-0 left-[8%] w-56 h-56 bg-gradient-to-b from-white/20 to-transparent blur-[30px] rounded-full" />
-            <div className="absolute bottom-0 left-[32%] w-56 h-56 bg-gradient-to-b from-white/20 to-transparent blur-[30px] rounded-full" />
-            <div className="absolute bottom-0 left-[56%] w-56 h-56 bg-gradient-to-b from-white/20 to-transparent blur-[30px] rounded-full" />
-            <div className="absolute bottom-0 left-[78%] w-56 h-56 bg-gradient-to-b from-white/20 to-transparent blur-[30px] rounded-full" />
-          </div>
+            className="absolute bottom-0 left-0 right-0 pointer-events-none"
+            style={{
+              height: '300px',
+              background: 'linear-gradient(to top, #171717 0%, rgba(23, 23, 23, 0.9) 30%, rgba(23, 23, 23, 0.5) 60%, transparent 100%)',
+            }}
+          />
         </div>
+        
+        {/* Add the necessary CSS for perfect honeycomb tessellation */}
+        <style jsx>{`
+          .honeycomb-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          
+          .hex-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          
+          .hex-row-offset {
+            margin-left: 105px; /* Half hexagon width + margin */
+          }
+        `}</style>
       </section>
 
       {/* Share your story */}
