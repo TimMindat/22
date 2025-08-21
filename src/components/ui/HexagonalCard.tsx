@@ -14,6 +14,7 @@ interface HexagonalCardProps {
   backgroundImage?: string; // New prop for background images
   ghost?: boolean; // decorative, non-interactive, low-emphasis card for edge dummies
   compact?: boolean; // mobile-optimized smaller footprint for dense grids
+  borderStyle?: 'gold' | 'neutral'; // border color theme; defaults to 'gold'
 }
 
 export const HexagonalCard: React.FC<HexagonalCardProps> = ({
@@ -28,7 +29,8 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
   variant = 'default',
   backgroundImage,
   ghost = false,
-  compact = false
+  compact = false,
+  borderStyle = 'gold'
 }) => {
   return (
     <motion.div
@@ -120,7 +122,7 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
               ? '0 15px 35px -5px rgba(51, 65, 85, 0.15), 0 8px 15px -3px rgba(51, 65, 85, 0.1)'
               : '0 12px 30px -5px rgba(51, 65, 85, 0.15), 0 6px 12px -3px rgba(51, 65, 85, 0.1)'}${ghost 
               ? ', inset 0 0 0 1px rgba(255,255,255,0.10)'
-              : ', inset 0 0 0 1px rgba(201,169,110,0.24)'}`
+              : `, inset 0 0 0 1px ${borderStyle === 'gold' ? 'rgba(201,169,110,0.24)' : 'rgba(255,255,255,0.16)'}`}`
           }}
         >
           
@@ -166,6 +168,13 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
                 >
                   {title}
                 </h3>
+                {articles && (
+                  <div className="mt-2 flex items-center" aria-label="articles-count">
+                    <span className="w-2 h-6 bg-[rgba(23,23,23,0.8)] backdrop-blur-[4px] rounded-l"></span>
+                    <span className="h-6 px-3 flex items-center justify-center text-white text-[10px] leading-6 bg-[rgba(23,23,23,0.8)] border-y border-white/20">{articles}</span>
+                    <span className="w-2 h-6 bg-[rgba(23,23,23,0.8)] backdrop-blur-[4px] rounded-r"></span>
+                  </div>
+                )}
               </div>
             ) : (
               <>
@@ -196,10 +205,12 @@ export const HexagonalCard: React.FC<HexagonalCardProps> = ({
                     )}
                   </div>
                 )}
-                {/* Hide edition on mobile for compact hexagons, show on desktop */}
+                {/* Articles badge */}
                 {(edition || articles) && (
-                  <div className={`${compact ? 'hidden sm:inline-block' : 'inline-block'} text-white ${variant === 'tall' ? 'text-sm' : 'text-xs'} bg-black/60 border border-white/16 rounded-md px-3 py-1`}>
-                    {articles ? articles : edition}
+                  <div className={`${compact ? 'hidden sm:flex' : 'flex'} items-center justify-center`} aria-label="articles-count">
+                    <span className="w-2 h-6 bg-[rgba(23,23,23,0.8)] backdrop-blur-[4px] rounded-l"></span>
+                    <span className="h-6 px-3 flex items-center justify-center text-white ${variant === 'tall' ? 'text-xs' : 'text-[10px]'} leading-6 bg-[rgba(23,23,23,0.8)] border-y border-white/20">{articles ? articles : edition}</span>
+                    <span className="w-2 h-6 bg-[rgba(23,23,23,0.8)] backdrop-blur-[4px] rounded-r"></span>
                   </div>
                 )}
               </>

@@ -161,7 +161,7 @@ export const MainHomepage = (): JSX.Element => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] text-white overflow-x-hidden ultra-smooth-scroll gpu-accelerated mobile-native no-scroll-jitter">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] text-white overflow-x-hidden ultra-smooth-scroll gpu-accelerated mobile-native no-scroll-jitter" data-loaded={isLoaded ? 'true' : 'false'}>
       {/* Navbar with mobile optimization */}
       <Navbar />
 
@@ -179,7 +179,7 @@ export const MainHomepage = (): JSX.Element => {
       {/* Mobile-optimized CTA trio with fluid grid system and smooth animations */}
       <section className="py-8 xs:py-10 sm:py-12 md:py-16 relative bg-black/30 overflow-hidden content-visibility-auto section-smooth scroll-reveal mobile-feedback">
         <div className="fluid-container text-center relative">
-          <div className="fluid-grid max-w-6xl mx-auto" style={{'--grid-min-size': '280px'}}>
+          <div className="fluid-grid max-w-6xl mx-auto" style={{ ['--grid-min-size' as any]: '280px' }}>
             {/* Join Collective - Mobile Optimized with micro-interactions */}
             <div className="group relative mobile-touch-target scroll-reveal stagger-1 mobile-native">
               <div className="card-smooth relative bg-black/40 backdrop-blur-sm rounded-xl xs:rounded-2xl p-6 xs:p-8 border border-white/15 hover:border-[#d4a574]/40 hover:bg-black/50 gpu-accelerated">
@@ -491,6 +491,10 @@ export const MainHomepage = (): JSX.Element => {
                 © {new Date().getFullYear()} Trace of the Tides. All rights reserved.
               </p>
               <div className="flex space-x-6">
+                <Link to="/home2" className="text-white/50 hover:text-[#d4a574] text-sm transition-colors duration-300 relative group">
+                  Home2
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#d4a574] group-hover:w-full transition-all duration-300"></span>
+                </Link>
                 <Link to="/privacy" className="text-white/50 hover:text-[#d4a574] text-sm transition-colors duration-300 relative group">
                   Privacy Policy
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#d4a574] group-hover:w-full transition-all duration-300"></span>

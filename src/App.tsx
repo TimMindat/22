@@ -1,11 +1,10 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MainHomepage } from "./screens/MainHomepage/MainHomepage";
+import { Home2 } from "./screens/Home2";
 import BoatProgram from "./screens/ProgramPages/BoatProgram";
 
 import AzureProgram from "./screens/ProgramPages/AzureProgram";
 import BlogPost from "./screens/BlogPost/BlogPost";
-import Navbar from "./components/Navbar/Navbar";
 import SymbolsPage from "./screens/SymbolsPage/SymbolsPage";
 import { ArchivesPage } from "./screens/Archives/ArchivesPage";
 import { ContributePage } from "./screens/Contribute/ContributePage";
@@ -29,6 +28,7 @@ function App() {
         <Route path="/archives" element={<ArchivesPage />} />
         <Route path="/contribute" element={<ContributePage />} />
         <Route path="/maps" element={<MapsPage />} />
+        <Route path="/home2" element={<Home2 />} />
         
         {/* Coast Program Routes */}
         <Route path="/coast" element={<CoastProgram />} />
