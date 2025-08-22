@@ -14,6 +14,7 @@ import CoastProgramPage from "./screens/ProgramPages/CoastProgram";
 import { StoneSection } from "./screens/Coast/Stone/StoneSection";
 import { SaltSection } from "./screens/Coast/Salt/SaltSection";
 import { CompassSection } from "./screens/Coast/Compass/CompassSection";
+import CollectionPage from "./screens/Collections/CollectionPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/contribute" element={<ContributePage />} />
         <Route path="/maps" element={<MapsPage />} />
         <Route path="/home2" element={<Home2 />} />
+        <Route path="/collections/:slug" element={<CollectionPage />} />
         
         {/* Coast Program Routes */}
         <Route path="/coast" element={<CoastProgram />} />

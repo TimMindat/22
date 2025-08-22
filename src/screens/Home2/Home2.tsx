@@ -1,36 +1,55 @@
-import { Link } from "react-router-dom";
-import { useEffect, useMemo } from "react";
-import HexagonalCard from "../../components/ui/HexagonalCard";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { collections } from "../../data/collections";
 
 export const Home2 = (): JSX.Element => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  const navigate = useNavigate();
   // Perfect hexagonal card matching your exact image
-  const HexCard = ({ hasContent = false, hasArticles = false }: { hasContent?: boolean, hasArticles?: boolean }) => (
+  const HexCard = ({ hasContent = false, hasArticles = false, idx }: { hasContent?: boolean, hasArticles?: boolean, idx?: number }) => (
     <div 
       className="hexagon-container"
       style={{
-        width: '200px',
-        height: '173px', // sqrt(3)/2 * width for perfect hexagon proportions
-        margin: '0 5px -43px 5px', // Negative bottom margin for tessellation
+        width: 'var(--hex-w)',
+        height: 'var(--hex-h)',
+        margin: '0 var(--hex-gap) calc(var(--hex-h) * -0.18) var(--hex-gap)',
         position: 'relative',
+        cursor: hasContent ? 'pointer' : 'default',
       }}
+      onClick={() => { 
+        if (hasContent && typeof idx === 'number' && collections[idx]) {
+          navigate(`/collections/${collections[idx].slug}`);
+        }
+      }}
+      onKeyDown={(e) => { 
+        if (hasContent && typeof idx === 'number' && collections[idx] && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          navigate(`/collections/${collections[idx].slug}`);
+        }
+      }}
+      role={hasContent && typeof idx === 'number' && collections[idx] ? 'button' : undefined}
+      tabIndex={hasContent && typeof idx === 'number' && collections[idx] ? 0 : -1}
+      aria-label={hasContent && typeof idx === 'number' && collections[idx] ? `Open ${collections[idx].title} collection` : undefined}
     >
       {/* Perfect hexagon shape */}
-      <div 
+      <div
         className="hexagon"
         style={{
-          width: '200px',
-          height: '173px',
+          width: '100%',
+          height: '100%',
           position: 'relative',
           clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-          background: hasContent ? `url(/imgS.png)` : '#404040',
-          filter: hasContent ? 'grayscale(100%)' : 'none',
+          background: hasContent ? `url(${(typeof idx === 'number' && collections[idx]) ? collections[idx].imageUrl : '/imgS.png'})` : '#404040',
+          filter: hasContent ? 'grayscale(1) contrast(1.05) brightness(0.9) blur(0.5px)' : 'none',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          border: '1px solid #333333',
+          border: '3px solid #080808',
+          boxShadow: '0 16px 40px rgba(0, 0, 0, 0.8), inset 0 0 0 1.5px rgba(255,255,255,0.05)',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          willChange: 'transform, filter, box-shadow',
         }}
       />
       
@@ -46,38 +65,42 @@ export const Home2 = (): JSX.Element => {
           <div 
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.8) 100%)',
+              background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.9) 100%)',
             }}
           />
           
-          <div className="relative z-10 text-center text-white">
+          <div className="relative z-10 text-center text-white px-3 pb-4 pt-2" style={{ transform: 'translateY(10px)' }}>
             {/* Card title */}
-            <h3 
-              className="text-white font-medium mb-2"
+            <h3
+              className="text-white font-semibold mb-2.5 leading-tight"
               style={{
-                fontFamily: 'IBM Plex Sans',
-                fontSize: '16px',
-                lineHeight: '1.2',
-                textShadow: '0px 1px 2px rgba(0, 0, 0, 0.7)',
+                fontFamily: 'IBM Plex Sans, sans-serif',
+                fontSize: '17px',
+                lineHeight: '1.25',
+                letterSpacing: '-0.01em',
+                textShadow: '0px 2px 6px rgba(0, 0, 0, 0.9)'
               }}
             >
-              Insert card title here
+              {typeof idx === 'number' && collections[idx] ? collections[idx].title : 'Insert card title here'}
             </h3>
-            
-            {/* 12 articles label */}
+
+            {/* articles label */}
             {hasArticles && (
-              <div 
-                className="inline-block px-3 py-1 text-xs text-white"
+              <div
+                className="inline-block px-3.5 py-1 text-xs text-white/95"
                 style={{
-                  background: 'rgba(0, 0, 0, 0.6)',
-                  backdropFilter: 'blur(4px)',
+                  background: 'rgba(25, 25, 25, 0.6)',
+                  backdropFilter: 'blur(12px)',
                   borderRadius: '12px',
-                  fontFamily: 'Inter',
+                  fontFamily: 'Inter, sans-serif',
                   fontSize: '11px',
-                  fontWeight: '500',
+                  fontWeight: 500 as any,
+                  letterSpacing: '0.01em',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.4)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)'
                 }}
               >
-                12 articles
+                {typeof idx === 'number' && collections[idx] ? `${collections[idx].articles.length} articles` : '12 articles'}
               </div>
             )}
           </div>
@@ -86,9 +109,7 @@ export const Home2 = (): JSX.Element => {
     </div>
   );
 
-  const rows = useMemo(() => Array.from({ length: 10 }).map((_, i) => i), []);
-  const hexesPerRowMd = 5; // md+ screens
-  const hexesPerRowLg = 6; // lg+ screens
+  // Grid is now static for pixel-perfect matching
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0D0D0D] via-[#111111] to-[#0B0B0B] text-white overflow-x-hidden">
@@ -134,203 +155,216 @@ export const Home2 = (): JSX.Element => {
         </div>
       </header>
 
-      {/* HERO with left text and honeycomb background */}
-      <section className="relative pt-24 sm:pt-28 md:pt-32 pb-12 md:pb-24">
-        <div className="relative container mx-auto px-4 z-20">
-          <div className="max-w-xl">
-            <h1 className="text-[clamp(24px,4vw,36px)] font-semibold mb-3">Home page title</h1>
-            <p className="text-white/70 text-sm sm:text-base md:text-[15px] leading-relaxed max-w-md mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit nulla vel consequat arcu, vel vestibulum nibh.
-            </p>
-            <Link
-              to="#"
-              className="inline-flex items-center justify-center bg-[#D4A05B] hover:bg-[#c49650] active:bg-[#b38645] text-black text-sm font-medium rounded-md px-4 py-2 transition-colors"
-            >
-              Call to Action
-            </Link>
+      {/* HERO with honeycomb background */}
+      <section className="hero-hex-vars relative pt-24 sm:pt-28 md:pt-32 pb-12 md:pb-24">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-[2fr_3fr] gap-x-8 lg:gap-x-16 items-start">
+            
+            {/* Left Column: Hero Text */}
+            <div className="relative z-10 pt-8 md:pt-16 text-center md:text-left">
+              {/* Ghost Hexagon Anchor for Desktop */}
+              <div className="hidden md:block absolute top-1/2 -left-48 lg:-left-56 -translate-y-1/2 opacity-15">
+                <div 
+                  style={{
+                    width: 'var(--hex-w)',
+                    height: 'var(--hex-h)',
+                    clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                    background: '#404040',
+                    transform: 'scale(1.5)',
+                  }}
+                />
+              </div>
+              <h1 className="text-[clamp(2.2rem,5vw,3rem)] font-semibold mb-4 leading-tight whitespace-nowrap">Home page title</h1>
+              <p className="text-white/70 text-[15px] sm:text-base md:text-[16px] leading-relaxed max-w-md mx-auto md:mx-0 mb-8">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit nulla vel consequat arcu, vel vestibulum nibh.
+              </p>
+              <Link
+                to="#"
+                className="inline-flex items-center justify-center bg-[#D4A05B] hover:bg-[#c49650] active:bg-[#b38645] text-black text-sm font-medium rounded-md px-5 py-2.5 transition-colors"
+              >
+                Call to Action
+              </Link>
+            </div>
+
+            {/* Right Column: Honeycomb Grid */}
+            <div className="relative honeycomb-layer mt-12 md:mt-0 lg:full-bleed-right">
+              <div className="honeycomb-grid">
+                {/* Row 1 */}
+                <div className="hex-row" style={{ marginLeft: 'calc(var(--hex-w) * 1)'}}>
+                  <HexCard />
+                  <HexCard hasContent hasArticles idx={0} />
+                  <HexCard hasContent hasArticles idx={1} />
+                </div>
+                
+                {/* Row 2 - offset */}
+                <div className="hex-row hex-row-offset">
+                  <HexCard />
+                  <HexCard hasContent hasArticles idx={2} />
+                  <HexCard hasContent hasArticles idx={3} />
+                  <HexCard hasContent hasArticles idx={4} />
+                </div>
+                
+                {/* Row 3 */}
+                <div className="hex-row">
+                  <HexCard hasContent hasArticles idx={5} />
+                  <HexCard hasContent hasArticles idx={6} />
+                  <HexCard hasContent hasArticles idx={7} />
+                  <HexCard hasContent hasArticles idx={8} />
+                </div>
+                
+                {/* Row 4 - offset */}
+                <div className="hex-row hex-row-offset">
+                  <HexCard hasContent hasArticles idx={9} />
+                  <HexCard hasContent hasArticles idx={10} />
+                  <HexCard hasContent hasArticles idx={11} />
+                  <HexCard />
+                </div>
+                
+                {/* Row 5 */}
+                <div className="hex-row" style={{ marginLeft: 'calc(var(--hex-w) * 1)'}}>
+                    <HexCard />
+                    <HexCard />
+                    <HexCard />
+                </div>
+              </div>
+
+              {/* Bottom volumetric beams */}
+              <div className="absolute left-0 right-0 -bottom-32 h-[350px] pointer-events-none z-10">
+                <div className="beam" style={{ position: 'absolute', left: 'calc(50% - var(--hex-w) * 1.6)', width: 'var(--hex-w)', height: '100%', background: 'radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0) 75%)', filter: 'blur(25px)', opacity: 0.7 }} />
+                <div className="beam" style={{ position: 'absolute', left: 'calc(50% - var(--hex-w) * 0.5)', width: 'var(--hex-w)', height: '100%', background: 'radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.07) 40%, rgba(255,255,255,0) 75%)', filter: 'blur(28px)', opacity: 0.8 }} />
+                <div className="beam" style={{ position: 'absolute', left: 'calc(50% + var(--hex-w) * 0.6)', width: 'var(--hex-w)', height: '100%', background: 'radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0) 75%)', filter: 'blur(25px)', opacity: 0.7 }} />
+              </div>
+              
+              {/* Bottom fade effect */}
+              <div 
+                className="absolute -bottom-64 left-0 right-0 pointer-events-none"
+                style={{
+                  height: '500px',
+                  background: 'linear-gradient(to top, #0B0B0B 30%, rgba(11,11,11,0.98) 55%, rgba(11,11,11,0.7) 80%, rgba(11,11,11,0) 100%)',
+                  backdropFilter: 'blur(10px)',
+                }}
+              />
+            </div>
           </div>
         </div>
-
-        {/* Perfect Honeycomb Background - EXACTLY like your image */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="honeycomb-grid" style={{ paddingTop: '50px' }}>
-            {/* Row 1 */}
-            <div className="hex-row">
-              <HexCard />
-              <HexCard />
-              <HexCard hasContent hasArticles />
-              <HexCard hasContent hasArticles />
-              <HexCard />
-              <HexCard />
-            </div>
-            
-            {/* Row 2 - offset */}
-            <div className="hex-row hex-row-offset">
-              <HexCard />
-              <HexCard hasContent hasArticles />
-              <HexCard hasContent hasArticles />
-              <HexCard hasContent hasArticles />
-              <HexCard />
-            </div>
-            
-            {/* Row 3 */}
-            <div className="hex-row">
-              <HexCard />
-              <HexCard hasContent hasArticles />
-              <HexCard hasContent hasArticles />
-              <HexCard hasContent hasArticles />
-              <HexCard hasContent hasArticles />
-              <HexCard />
-            </div>
-            
-            {/* Row 4 - offset */}
-            <div className="hex-row hex-row-offset">
-              <HexCard hasContent hasArticles />
-              <HexCard hasContent hasArticles />
-              <HexCard hasContent hasArticles />
-              <HexCard hasContent hasArticles />
-              <HexCard />
-            </div>
-            
-            {/* Row 5 */}
-            <div className="hex-row">
-              <HexCard />
-              <HexCard />
-              <HexCard />
-              <HexCard />
-              <HexCard />
-              <HexCard />
-            </div>
-            
-            {/* Row 6 - offset */}
-            <div className="hex-row hex-row-offset">
-              <HexCard />
-              <HexCard />
-              <HexCard />
-              <HexCard />
-            </div>
-          </div>
-          
-          {/* Bottom fade effect */}
-          <div 
-            className="absolute bottom-0 left-0 right-0 pointer-events-none"
-            style={{
-              height: '300px',
-              background: 'linear-gradient(to top, #171717 0%, rgba(23, 23, 23, 0.9) 30%, rgba(23, 23, 23, 0.5) 60%, transparent 100%)',
-            }}
-          />
-        </div>
-        
-        {/* Add the necessary CSS for perfect honeycomb tessellation */}
-        <style jsx>{`
-          .honeycomb-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeInHexGrid 1.5s ease-out;
-          }
-
-          .hex-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            animation: fadeInHexRow 0.8s ease-out forwards;
-          }
-
-          .hex-row:nth-child(1) { animation-delay: 0.1s; }
-          .hex-row:nth-child(2) { animation-delay: 0.2s; }
-          .hex-row:nth-child(3) { animation-delay: 0.3s; }
-          .hex-row:nth-child(4) { animation-delay: 0.4s; }
-          .hex-row:nth-child(5) { animation-delay: 0.5s; }
-          .hex-row:nth-child(6) { animation-delay: 0.6s; }
-
-          .hex-row-offset {
-            margin-left: 105px; /* Half hexagon width + margin */
-          }
-
-          .hexagon-container {
-            opacity: 0;
-            animation: fadeInHex 0.6s ease-out forwards;
-          }
-
-          .hexagon-container:nth-child(odd) { animation-delay: 0.1s; }
-          .hexagon-container:nth-child(even) { animation-delay: 0.2s; }
-
-          @keyframes fadeInHexGrid {
-            from {
-              opacity: 0;
-              transform: translateY(30px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          @keyframes fadeInHexRow {
-            from {
-              opacity: 0;
-              transform: translateY(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          @keyframes fadeInHex {
-            from {
-              opacity: 0;
-              transform: scale(0.8);
-            }
-            to {
-              opacity: 1;
-              transform: scale(1);
-            }
-          }
-
-          /* Mobile responsiveness for hexagon grid */
-          @media (max-width: 767px) {
-            .honeycomb-grid {
-              padding: 20px;
-            }
-
-            .hex-row {
-              flex-direction: column;
-              gap: 10px;
-            }
-
-            .hex-row-offset {
-              margin-left: 0;
-            }
-
-            .hexagon-container {
-              width: 120px !important;
-              height: 104px !important;
-              margin: 0 0 -26px 0 !important;
-            }
-
-            .hex-row {
-              animation-delay: 0s;
-            }
-
-            .hexagon-container {
-              animation-delay: 0s;
-            }
-          }
-
-          @media (max-width: 640px) {
-            .hexagon-container {
-              width: 100px !important;
-              height: 87px !important;
-              margin: 0 0 -22px 0 !important;
-            }
-          }
-        `}</style>
       </section>
+ 
+      {/* CSS for tessellation and responsiveness */}
+      <style>{`
+        /* Hex sizing variables on the hero container */
+        .hero-hex-vars { 
+          --hex-w: clamp(140px, 16vw, 190px); 
+          --hex-h: calc(var(--hex-w) * 0.92); 
+          --hex-gap: 4px;
+        }
+        @media (min-width: 1024px) {
+          .hero-hex-vars {
+            --hex-w: clamp(220px, 20vw, 320px); /* Further increased hexagon size */
+            --hex-gap: 10px; /* Adjusted gap to maintain proportion */
+          }
+        }
 
-      {/* Share your story */}
+        .honeycomb-grid {
+          position: relative;
+          z-index: 5;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start; /* Align grid to the left of its container */
+          margin-left: calc(var(--hex-w) * -0.25);
+          margin-top: -50px;
+          transform: translateX(calc(var(--hex-w) * -0.1));
+        }
+
+        .hex-row {
+          display: flex;
+          justify-content: center;
+          animation: fadeInHexRow 0.8s ease-out forwards;
+        }
+        
+        .hex-row-offset {
+          margin-left: calc(var(--hex-w) * 0.5 + var(--hex-gap));
+        }
+        
+        .hexagon-container { 
+          opacity: 0; 
+          animation: fadeInHex 0.6s ease-out forwards; 
+        }
+        
+        .hex-row:nth-child(1) { animation-delay: 0.08s; }
+        .hex-row:nth-child(2) { animation-delay: 0.18s; }
+        .hex-row:nth-child(3) { animation-delay: 0.28s; }
+        .hex-row:nth-child(4) { animation-delay: 0.38s; }
+        .hex-row:nth-child(5) { animation-delay: 0.48s; }
+
+        @keyframes fadeInHexRow { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; translateY(0); } }
+        @keyframes fadeInHex { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        .hexagon-container:hover .hexagon { 
+          transform: scale(1.05); 
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255,255,255,0.2) !important; 
+          filter: brightness(1.1) contrast(1.05) !important; 
+        }
+        .hexagon-container:hover { 
+          z-index: 20; 
+        }
+        .hexagon-container:focus-visible {
+          outline: none;
+        }
+        .hexagon-container:focus-visible .hexagon {
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 0 0 2px rgba(255,255,255,0.4) !important;
+          transform: scale(1.05);
+        }
+
+        /* Responsive stacking */
+        @media (max-width: 1023px) {
+            .full-bleed-right {
+                width: auto;
+            }
+        }
+        @media (max-width: 767px) {
+          .hero-hex-vars {
+            padding-bottom: 2rem;
+          }
+          .honeycomb-layer {
+            margin-top: 2rem;
+          }
+          .honeycomb-grid {
+            margin-top: 0;
+            margin-left: 0;
+            transform: none;
+            align-items: center;
+          }
+          .hex-row, .hex-row-offset {
+            flex-direction: column;
+            margin-left: 0 !important;
+            gap: 1rem;
+            width: 100%;
+            align-items: center;
+          }
+          .hex-row + .hex-row {
+            margin-top: 1rem;
+          }
+           .hexagon-container {
+             margin: 0 !important;
+           }
+        }
+
+        /* Full Bleed Utility for Desktop */
+        @media (min-width: 1024px) {
+          .full-bleed-right {
+            --container-padding: calc((100vw - 1024px) / 2); /* Approximates Tailwind's container padding */
+            width: calc(100% + var(--container-padding));
+          }
+        }
+        @media (min-width: 1280px) {
+          .full-bleed-right {
+            --container-padding: calc((100vw - 1280px) / 2);
+            width: calc(100% + var(--container-padding));
+          }
+        }
+      `}</style>
+      
+      {/* Share your story (after 12 collections) */}
       <section className="py-20 text-center relative overflow-hidden" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         backgroundSize: '60px 52px'
