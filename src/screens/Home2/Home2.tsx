@@ -188,6 +188,15 @@ export const Home2 = (): JSX.Element => {
 
             {/* Right Column: Honeycomb Grid */}
             <div className="relative honeycomb-layer mt-12 md:mt-0 lg:full-bleed-right">
+              {/* Top Blur Effect */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-[150px] z-20 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(to bottom, #0B0B0B 20%, rgba(11,11,11,0.8) 50%, rgba(11,11,11,0) 100%)',
+                  backdropFilter: 'blur(4px)',
+                }}
+              />
+
               <div className="honeycomb-grid">
                 {/* Row 1 */}
                 <div className="hex-row" style={{ marginLeft: 'calc(var(--hex-w) * 1)'}}>
@@ -237,11 +246,11 @@ export const Home2 = (): JSX.Element => {
               
               {/* Bottom fade effect */}
               <div 
-                className="absolute -bottom-64 left-0 right-0 pointer-events-none"
+                className="absolute -bottom-80 left-0 right-0 pointer-events-none"
                 style={{
-                  height: '500px',
-                  background: 'linear-gradient(to top, #0B0B0B 30%, rgba(11,11,11,0.98) 55%, rgba(11,11,11,0.7) 80%, rgba(11,11,11,0) 100%)',
-                  backdropFilter: 'blur(10px)',
+                  height: '550px',
+                  background: 'linear-gradient(to top, #0B0B0B 40%, rgba(11,11,11,0.98) 60%, rgba(11,11,11,0.7) 85%, rgba(11,11,11,0) 100%)',
+                  backdropFilter: 'blur(12px)',
                 }}
               />
             </div>
@@ -325,18 +334,32 @@ export const Home2 = (): JSX.Element => {
           .hero-hex-vars {
             padding-bottom: 2rem;
           }
+          
+          /* Disable the two-column grid layout */
+          .grid.md\:grid-cols-\[2fr_3fr\] {
+            display: block;
+          }
+
+          /* Reset desktop-specific positioning */
           .honeycomb-layer {
-            margin-top: 2rem;
+            margin-top: 3rem;
           }
           .honeycomb-grid {
-            margin-top: 0;
             margin-left: 0;
+            margin-top: 0;
             transform: none;
             align-items: center;
           }
+
+          /* Hide decorative ghost hexagon on mobile */
+          .hidden.md\:block {
+            display: none;
+          }
+          
+          /* Stack the hexagon rows into a single column */
           .hex-row, .hex-row-offset {
             flex-direction: column;
-            margin-left: 0 !important;
+            margin-left: 0 !important; /* Important to override inline styles */
             gap: 1rem;
             width: 100%;
             align-items: center;
@@ -345,8 +368,22 @@ export const Home2 = (): JSX.Element => {
             margin-top: 1rem;
           }
            .hexagon-container {
-             margin: 0 !important;
+             margin: 0 !important; /* Disable vertical overlap for a clean stack */
            }
+
+          /* Hide empty hexagons that are only for desktop shaping */
+          .hexagon-container:not([role="button"]) {
+            display: none;
+          }
+
+          /* Adapt blur effects for the vertical layout */
+          .full-width-blur-top {
+            height: 150px; /* Soft fade from the top */
+          }
+          .full-width-blur-bottom {
+            height: 400px; /* Large fog at the bottom of the section */
+            bottom: -150px; /* Pull it down to cover the transition to the next section */
+          }
         }
 
         /* Full Bleed Utility for Desktop */
